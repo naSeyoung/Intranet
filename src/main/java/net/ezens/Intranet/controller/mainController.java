@@ -2,7 +2,7 @@ package net.ezens.Intranet.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class mainController {
@@ -21,5 +21,11 @@ public class mainController {
 		
 		
 		return "index";
+	}
+	@RequestMapping("/sample-page")
+	public String sample() {
+		System.out.println("sample-page 이동 ");
+		
+		return "sample-page";
 	}
 }

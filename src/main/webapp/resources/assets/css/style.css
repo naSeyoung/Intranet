@@ -6949,8 +6949,7 @@ body.menu-bottom #collapse-menu {
 	-webkit-transition: all ease-in 0.3s;
 	transition: all ease-in 0.3s;
 }
-
-.btn-primary:hover,
+/* .btn-primary:hover,  */
 .sweet-alert button.confirm:hover,
 .wizard>.actions a:hover {
 	background-color: #77aaff;
@@ -9643,10 +9642,14 @@ span.badge {
 #checkbox-select tr th.select-checkbox:before {
 	left: 15px;
 }
-
-.table td,
+	/* td,th 구별 _ 세영수정 */
+.table td {
+	padding: 1.25rem 0.75rem;
+	border-right: 1px solid #d2d2d2;
+}
 .table th {
 	padding: 1.25rem 0.75rem;
+border-right: 1px solid #d2d2d2;
 }
 
 .table thead th {

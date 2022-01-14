@@ -17,15 +17,18 @@ public class mainController {
 		System.out.println("화면 나와라");
 		System.out.println("화면 나와라");
 		System.out.println("화면 나와라");
-		System.out.println("123213412421");
-		
-		
 		return "index";
 	}
-	@RequestMapping("/sample-page")
-	public String sample() {
-		System.out.println("sample-page 이동 ");
-		
-		return "sample-page";
+	@RequestMapping("/daily-Schedule")
+	public String sample2() {
+		System.out.println("일별 일정 페이지 이동 ");
+		return "daily-Schedule";
 	}
+	@RequestMapping("/monthly-Schedule")
+	public String sample() {
+		System.out.println("월별 일정 페이지 이동 ");
+		
+		return "monthly-Schedule";
+	}
+	
 }

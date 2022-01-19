@@ -94,7 +94,7 @@
                                     class="pcoded-mtext">일별일정</span> <span
                                     class="pcoded-mcaret"></span>
                               </a></li>
-                              <li class=" "><a href="monthly-Schedule"
+                              <li class=" "><a href="/ezenCalendar"
                                  class="waves-effect waves-dark"> <span
                                     class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
                                     class="pcoded-mtext">월간일정</span> <span

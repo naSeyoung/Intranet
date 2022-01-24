@@ -98,7 +98,9 @@ header 있는 자리  -->
                </div>
             </div>
             <div class="card-block table-border-style">
-               <div style="font-size:30px; padding-bottom:5px;">소제목</div>
+               <div style="font-size:30px; padding-bottom:5px;">소제목
+               			 <button class="main-btn01">일정등록</button>
+               </div>
    <div class="table-responsive">
       <table class="main-table01">
          <tbody>
@@ -174,7 +176,7 @@ header 있는 자리  -->
       </table>
       <div>
       
-                                             <button class="btn btn-primary waves-effect waves-light">수정</button>
+                                             <button class="main-btn01">수정</button>
                                              <button class="btn btn-primary waves-effect waves-light">목록</button>
                                           </div>
                                        </div>

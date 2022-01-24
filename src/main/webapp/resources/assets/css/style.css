@@ -6938,7 +6938,7 @@ body.menu-bottom #collapse-menu {
 
 
 /**====== Basic-Buttons css Start ======**/
-
+/*btn 주석 : 내가함 */
 .btn-primary,
 .sweet-alert button.confirm,
 .wizard>.actions a {
@@ -6949,7 +6949,7 @@ body.menu-bottom #collapse-menu {
 	-webkit-transition: all ease-in 0.3s;
 	transition: all ease-in 0.3s;
 }
-/* .btn-primary:hover,  */
+.btn-primary:hover,  
 .sweet-alert button.confirm:hover,
 .wizard>.actions a:hover {
 	background-color: #77aaff;

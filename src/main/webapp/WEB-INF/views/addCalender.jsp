@@ -51,15 +51,17 @@
 <link rel="stylesheet" type="text/css"
 	href="resources/css/fullcalendar/fullcalendar.css">
 	
+	
+<!-- 버튼css  -->
 <style>
-.esMbtn01{
+.esAddbtn{
 	/* margin-bottom:10%; */
 /* 	padding:2x 3px 2px 3px; */
 	width:70px;
-	margin-right:5%;
+	
+	margin-left :2%;
 	margin-bottom:1%;
 	cursor:pointer;
-	margin-left:92%;
 	background-color:#448aff;
  	border-color:#448aff; 
 	color:#fff;
@@ -73,98 +75,45 @@
 	white-space:nowrap;
 	overflow:hidden; 
 }
-.main-btn01:active, .main-btn01:focus { outline:none !important;}
-</style>	
+
+
+.card .card-header h5:after {
+	content: "";
+	background-color: #448aff;
+	position: absolute;
+	left: -20px;
+	top: 0;
+	width: 4px;
+	height: 20px;
+}
+
+.card .card-header h3:after {
+	content: "";
+	background-color: #448aff;
+	position: absolute;
+	left: 0px;
+	width: 4px;
+	height: 30px;
+}
+
+
+</style>
 </head>
 <!-- fullcalendar js  -->
-<script type="text/javascript" src="/resources/js/fullcalendar/fullcalendar.js"></script>
-<script type="text/javascript" src="/resources/js/fullcalendar/theme-chooser.js"></script>
-	
+<script type="text/javascript"
+	src="/resources/js/fullcalendar/fullcalendar.js"></script>
+<script type="text/javascript"
+	src="/resources/js/fullcalendar/theme-chooser.js"></script>
+
 <!-- ***추가**  -->
 
 
 <!-- fullcalendar 언어 설정관련 script -->
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>	
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          expandRows: true,
-          headerToolbar: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay'
-          },
-          initialView: 'dayGridMonth',
-          navLinks: true, // can click day/week names to navigate views
-          editable: true,
-          selectMirror: true,
-          selectable: true,
-          locale : 'ko',
-          nowIndicator: true,
-          dayMaxEvents: true, // allow "more" link when too many events
-          events: [
-            {
-              title: '캘린더의 지옥',
-              start: '2022-01-24',
-            },
-            {
-              title: 'Long Event',
-              start: '2020-09-07',
-              end: '2020-09-10'
-            },
-            {
-              groupId: 999,
-              title: 'Repeating Event',
-              start: '2020-09-09T16:00:00'
-            },
-            {
-              groupId: 999,
-              title: 'Repeating Event',
-              start: '2020-09-16T16:00:00'
-            },
-            {
-              title: 'Conference',
-              start: '2020-09-11',
-              end: '2020-09-13'
-            },
-            {
-              title: 'Meeting',
-              start: '2020-09-12T10:30:00',
-              end: '2020-09-12T12:30:00'
-            },
-            {
-              title: 'Lunch',
-              start: '2020-09-12T12:00:00'
-            },
-            {
-              title: 'Meeting',
-              start: '2020-09-12T14:30:00'
-            },
-            {
-              title: 'Happy Hour',
-              start: '2020-09-12T17:30:00'
-            },
-            {
-              title: 'Dinner',
-              start: '2020-09-12T20:00:00'
-            },
-            {
-              title: 'Birthday Party',
-              start: '2020-09-13T07:00:00'
-            },
-            {
-              title: 'Click for Google',
-              url: 'http://google.com/',
-              start: '2022-01-25'
-            }
-          ]
-        });
-
-        calendar.render();
-      });
-    </script>
+<script
+	src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>
+<script>
+	
+</script>
 
 
 <body>
@@ -195,13 +144,64 @@
 											<div class="col-sm-12">
 												<div class="card">
 													<div class="card-header">
-														<h3>월간일정</h3>
+														<h3>일정등록</h3>
 													</div>
-													<div class="card-block table-border-style">
-													<div id="addCal"><a href="/addCalender"><input type="button" class="esMbtn01" value="일정등록"></a></div>
-													<div id='calendar'></div>
+														<!-- 표 추가  -->
+														<div class="card-block table-border-style">
+															<div class="table-responsive" style="margin-top: 10px;">
+																<table class="main-table02">
+																	<tbody>
+																		<tr>
+																			<td>*구분</td>
+																			<td></td>
+																			<td>공개</td>
+																			<td></td>
+																		</tr>
+																		<tr>
+																			<td>*제목</td>
+																			<td colspan="3">ㅇㅇ</td>
+																		</tr>
+																		<tr>
+																			<td>장소</td>
+																			<td colspan="3">ㅇㅇ</td>
+																		</tr>
+																		<tr>
+																			<td>*시작일</td>
+																			<td></td>
+																			<td>종료일</td>
+																			<td></td>
+																		</tr>
+																		<tr>
+																			<td>내용</td>
+																			<td colspan="3"></td>
+																		</tr>
+																	</tbody>
+																</table>
+																<div>
+
+																	<button class="esAddbtn" style="float : right; margin-top :3%;">목록</button>
+																	<button class="esAddbtn" style="float : right; margin-top :3%;">저장</button>
+															</div>
+														</div>
 													</div>
-												</div>
+													<div class="card-header">
+														<h5>첨부파일</h5><br>
+													</div>
+														<button class="esAddbtn" style="float : left; margin-top : -1%;">추가</button>
+														<div class="card-block table-border-style">
+															<div class="table-responsive">
+																<table class="main-table02">
+																	<tbody>
+																		<tr>
+																			<td>와아악</td>
+																			<td colspan="5">잉</td>
+																		</tr>
+
+																	</tbody>
+																</table>
+														</div>
+													</div>
+													
 											</div>
 										</div>
 									</div>

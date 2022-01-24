@@ -84,7 +84,7 @@ header 있는 자리  -->
       <div class="col-sm-12">
          <div class="card">
             <div class="card-header">
-               <h2>게시판</h2>
+               <h2>일정 등록</h2>
                <div class="card-header-right">
                   <ul class="list-unstyled card-option">
                      <li><i class="fa fa fa-wrench open-card-option"></i>
@@ -173,8 +173,9 @@ header 있는 자리  -->
          </tbody>
       </table>
       <div>
-       <button class="main-btn01">수정</button> <button class="main-btn01">목록</button>
-                                          
+      
+                                             <button class="btn btn-primary waves-effect waves-light">수정</button>
+                                             <button class="btn btn-primary waves-effect waves-light">목록</button>
                                           </div>
                                        </div>
                                     </div>

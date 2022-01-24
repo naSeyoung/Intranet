@@ -74,7 +74,7 @@
                      </div>
                   <!--    <div class="pcoded-navigation-label">Navigation</div> -->
                      <ul class="pcoded-item pcoded-left-item">
-                        <li class="active"><a href="index.html"
+                        <li class="active"><a href="/intranet "
                            class="waves-effect waves-dark"> <span class="pcoded-micon"><i
                                  class="ti-home"></i><b>D</b></span> <span class="pcoded-mtext">Dashboard</span>
                               <span class="pcoded-mcaret"></span>
@@ -100,12 +100,7 @@
                                     class="pcoded-mtext">월간일정</span> <span
                                     class="pcoded-mcaret"></span>
                               </a></li>
-                              <li class=""><a href="accordion.html"
-                                 class="waves-effect waves-dark"> <span
-                                    class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
-                                    class="pcoded-mtext">일정등록</span> <span
-                                    class="pcoded-mcaret"></span>
-                              </a></li>
+                            
                               <li class=" "><a href="tabs.html"
                                  class="waves-effect waves-dark"> <span
                                     class="pcoded-micon"><i class="ti-angle-right"></i></span> <span

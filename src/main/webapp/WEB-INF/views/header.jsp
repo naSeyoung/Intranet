@@ -63,7 +63,7 @@
                   <div>
                      <table class="company-name-cls">
                         <tr>
-                           <td><a href="index.jsp"> 이젠 솔루션</a></td>
+                           <td><a href="intranet"> 이젠 솔루션</a></td>
                         </tr>
                      </table>
                   </div>

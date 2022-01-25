@@ -88,12 +88,6 @@
                               class="pcoded-mtext">일정관리</span> <span class="pcoded-mcaret"></span>
                         </a>
                            <ul class="pcoded-submenu">
-                              <li class=" "><a href="daily-Schedule"
-                                 class="waves-effect waves-dark"> <span
-                                    class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
-                                    class="pcoded-mtext">일별일정</span> <span
-                                    class="pcoded-mcaret"></span>
-                              </a></li>
                               <li class=" "><a href="/ezenCalendar"
                                  class="waves-effect waves-dark"> <span
                                     class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
@@ -101,10 +95,16 @@
                                     class="pcoded-mcaret"></span>
                               </a></li>
                             
-                              <li class=" "><a href="tabs.html"
+                              <li class=" "><a href="/addCalender"
                                  class="waves-effect waves-dark"> <span
                                     class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
-                                    class="pcoded-mtext">일정상세</span> <span class="pcoded-mcaret"></span>
+                                    class="pcoded-mtext">일정등록</span> <span class="pcoded-mcaret"></span>
+                              </a></li>
+                              <li class=" "><a href="color.html"
+                                 class="waves-effect waves-dark"> <span
+                                    class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
+                                    class="pcoded-mtext">일정상세</span> <span
+                                    class="pcoded-mcaret"></span>
                               </a></li>
                               <li class=" "><a href="color.html"
                                  class="waves-effect waves-dark"> <span
@@ -233,6 +233,24 @@
                                     class="pcoded-mtext">기안 수정</span> <span
                                     class="pcoded-mcaret"></span>
                               </a></li>
+                     </ul>
+                     </li>
+                     </ul>
+                         <!-- --------------------------------------------------------------------------------------------------- -->
+                      <ul class="pcoded-item pcoded-left-item">
+                        <li class="pcoded-hasmenu"><a href="javascript:void(0)"
+                           class="waves-effect waves-dark"> <span class="pcoded-micon"><i
+                                 class="ti-layout-grid2-alt"></i><b>BC</b></span> <span
+                              class="pcoded-mtext">게시판</span> <span class="pcoded-mcaret"></span>
+                        </a>
+                           <ul class="pcoded-submenu">
+                              <li class=" "><a href="freeboard/FreeBoardList"
+                                 class="waves-effect waves-dark"> <span
+                                    class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
+                                    class="pcoded-mtext">게시판목록</span> <span
+                                    class="pcoded-mcaret"></span>
+                              </a></li>
+                              
                      </ul>
                      </li>
                      </ul>

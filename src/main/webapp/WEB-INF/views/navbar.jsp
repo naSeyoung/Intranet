@@ -103,6 +103,14 @@
                               <li class=" "><a href="color.html"
                                  class="waves-effect waves-dark"> <span
                                     class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
+                                 class="waves-effect waves-dark"> <span
+                                    class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
+                                    class="pcoded-mtext">일정등록</span> <span class="pcoded-mcaret"></span>
+                              </a></li>
+                              <li class=" "><a href="color.html"
+                                 class="waves-effect waves-dark"> <span
+                                    class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
+
                                     class="pcoded-mtext">일정상세</span> <span
                                     class="pcoded-mcaret"></span>
                               </a></li>

@@ -95,7 +95,7 @@
                                     class="pcoded-mcaret"></span>
                               </a></li>
                             
-                              <li class=" "><a href="/addCalender"
+                              <li class=" "><a href="/addCalendar"
                                  class="waves-effect waves-dark"> <span
                                     class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
                                     class="pcoded-mtext">일정등록</span> <span class="pcoded-mcaret"></span>

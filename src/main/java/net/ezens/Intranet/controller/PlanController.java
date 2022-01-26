@@ -14,12 +14,20 @@ public class PlanController {
 		log.info("이젠캘린더 띄우기 성공");
 		log.info("이젠캘린더 띄우기 성공");
 		log.info("이젠캘린더 띄우기 성공");
-		return "ezenCalendar";
+		return "plan/ezenCalendar";
 	}
-	
-	@GetMapping("/addCalender") //일정관리탭 - 일정등록
+
+	@GetMapping("/addCalendar") //일정관리탭 - 일정등록
 	public String addCalender() {
 		log.info("일정등록페이지");
-		return "addCalender";
+		return "plan/addCalendar";
 	}
+	
+	@GetMapping("/hi") //일정관리탭 - 일정등록
+	public String hi() {
+		log.info("hi페이지");
+		return "plan/hi";
+	}
+	
+	
 }

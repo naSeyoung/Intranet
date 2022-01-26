@@ -51,17 +51,15 @@
 <link rel="stylesheet" type="text/css"
 	href="resources/css/fullcalendar/fullcalendar.css">
 	
-	
-<!-- 버튼css  -->
 <style>
-.esAddbtn{
+.esMbtn01{
 	/* margin-bottom:10%; */
 /* 	padding:2x 3px 2px 3px; */
 	width:70px;
-	
-	margin-left :2%;
+	margin-right:5%;
 	margin-bottom:1%;
 	cursor:pointer;
+	margin-left:92%;
 	background-color:#448aff;
  	border-color:#448aff; 
 	color:#fff;
@@ -75,52 +73,85 @@
 	white-space:nowrap;
 	overflow:hidden; 
 }
+.main-btn01:active, .main-btn01:focus { outline:none !important;}
 
-
-.card .card-header h5:after {
-	content: "";
-	background-color: #448aff;
-	position: absolute;
-	left: -20px;
-	top: 0;
-	width: 4px;
-	height: 20px;
-}
-
-.card .card-header h3:after {
-	content: "";
-	background-color: #448aff;
-	position: absolute;
-	left: 0px;
-	width: 4px;
-	height: 30px;
-}
-
-
-</style>
+</style>	
 </head>
 <!-- fullcalendar js  -->
-<script type="text/javascript"
-	src="/resources/js/fullcalendar/fullcalendar.js"></script>
-<script type="text/javascript"
-	src="/resources/js/fullcalendar/theme-chooser.js"></script>
-
+<script type="text/javascript" src="/resources/js/fullcalendar/fullcalendar.js"></script>
+<script type="text/javascript" src="/resources/js/fullcalendar/theme-chooser.js"></script>
+	
 <!-- ***추가**  -->
 
 
 <!-- fullcalendar 언어 설정관련 script -->
-<script
-	src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>
-<script>
-	
-</script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>	
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+        googleCalendarApiKey: 'AIzaSyAJ9dIKkvU-vS9Mwala5mPBxZuvnNcuZs0',
+          expandRows: true,
+          headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+          },
+          initialView: 'dayGridMonth',
+          navLinks: true, // can click day/week names to navigate views
+          editable: true,
+          selectMirror: true,
+          selectable: true,
+          locale : 'ko',
+          nowIndicator: true,
+          dayMaxEvents: true, // allow "more" link when too many events
+  	    eventSources: [
+    	    {
+    	          googleCalendarId: 'qduatr3seur835pk4aolok2900@group.calendar.google.com',
+    	          className: '공휴일',
+    	          color: '#be5683'
+    	        }
+    	    ],
+          events: [
+            {
+              title: 'Long Event',
+              start: '2022-01-07',
+              end: '2022-01-10'
+            },
+            {
+              groupId: 999,
+              title: 'test',
+              start: '2022-01-09T16:00:00'
+            },
+            {
+              title: 'Conference',
+              start: '2022-02-11',
+              end: '2022-02-13'
+            },
+            {
+              title: 'TEST',
+              start: '2022-02-12T10:30:00',
+              end: '2022-02-12T12:30:00'
+            },
+            {
+              title: 'Click for Google',
+              url: 'http://google.com/',
+              start: '2022-01-25'
+            }
+          ]
+        });
+
+        calendar.render();
+      });
+    </script>
 
 
 <body>
 	<!-- Pre-loader start -->
 	<%
-		String navbarPage = "navbar.jsp";
-		String headerPage = "header.jsp";
+		String navbarPage = "../navbar.jsp";
+		String headerPage = "../header.jsp";
 	%>
 	<!-- Pre-loader end -->
 	<div id="pcoded" class="pcoded">
@@ -144,64 +175,13 @@
 											<div class="col-sm-12">
 												<div class="card">
 													<div class="card-header">
-														<h3>일정등록</h3>
+														<h3>월간일정</h3>
 													</div>
-														<!-- 표 추가  -->
-														<div class="card-block table-border-style">
-															<div class="table-responsive" style="margin-top: 10px;">
-																<table class="main-table02">
-																	<tbody>
-																		<tr>
-																			<td>*구분</td>
-																			<td></td>
-																			<td>공개</td>
-																			<td></td>
-																		</tr>
-																		<tr>
-																			<td>*제목</td>
-																			<td colspan="3">ㅇㅇ</td>
-																		</tr>
-																		<tr>
-																			<td>장소</td>
-																			<td colspan="3">ㅇㅇ</td>
-																		</tr>
-																		<tr>
-																			<td>*시작일</td>
-																			<td></td>
-																			<td>종료일</td>
-																			<td></td>
-																		</tr>
-																		<tr>
-																			<td>내용</td>
-																			<td colspan="3"></td>
-																		</tr>
-																	</tbody>
-																</table>
-																<div>
-
-																	<button class="esAddbtn" style="float : right; margin-top :3%;">목록</button>
-																	<button class="esAddbtn" style="float : right; margin-top :3%;">저장</button>
-															</div>
-														</div>
+													<div class="card-block table-border-style">
+													<div id="addCal"><button class="esMbtn01" onclick="location.href='addCalendar'">일정등록</button></div>
+													<div id='calendar'></div>
 													</div>
-													<div class="card-header">
-														<h5>첨부파일</h5><br>
-													</div>
-														<button class="esAddbtn" style="float : left; margin-top : -1%;">추가</button>
-														<div class="card-block table-border-style">
-															<div class="table-responsive">
-																<table class="main-table02">
-																	<tbody>
-																		<tr>
-																			<td>와아악</td>
-																			<td colspan="5">잉</td>
-																		</tr>
-
-																	</tbody>
-																</table>
-														</div>
-													</div>
-													
+												</div>
 											</div>
 										</div>
 									</div>

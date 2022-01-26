@@ -56,7 +56,7 @@
 </head>
 
 <body>
-  <nav class="navbar header-navbar pcoded-header">
+  <nav class="navbar header-navbar pcoded-header" >
             <div class="navbar-wrapper">
                <div class="navbar-logo">
                   <div class="mobile-search waves-effect waves-light"></div>
@@ -77,7 +77,7 @@
                      </li>
                      <li class="user-profile header-notification"><a href="#!"
                         class="waves-effect waves-light"> <img
-                           src="resources/assets/images/avatar-4.jpg" class="img-radius"
+                           src="../resources/assets/images/avatar-4.jpg" class="img-radius"
                            alt="User-Profile-Image"> <span>이창주</span> <i
                            class="ti-angle-down"></i>
                      </a>

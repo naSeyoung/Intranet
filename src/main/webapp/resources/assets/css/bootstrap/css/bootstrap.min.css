@@ -51,13 +51,8 @@
 	text-align:center;
 }
 .main-btn01{
-	/* margin-bottom:10%; */
-/* 	padding:2x 3px 2px 3px; */
 	width:70px;
-	margin-top:5%;
-	margin-right:10%;
 	cursor:pointer;
-	margin-left:60%;
 	background-color:#448aff;
  	border-color:#448aff; 
 	color:#fff;
@@ -72,4 +67,5 @@
 	overflow:hidden; /*width가 고정되어 있는 상태에서 text가 길어지면 해당 element를 넘어서는데 이를 표시하지 않음 */
 }
 .main-btn01:active, .main-btn01:focus { outline:none !important;}
+.pcoded-content{width:1250px;}
  

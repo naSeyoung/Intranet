@@ -51,8 +51,23 @@
 <!-- Style.css -->
 <link rel="stylesheet" type="text/css"
 	href="../resources/assets/css/style.css">
-<!-- DatePicker -->	
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- DatePicker -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+	integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+	integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
+	integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+
 </head>
 
 
@@ -65,8 +80,8 @@ String headerPage = "../header.jsp";
 <!-- Pre-loader end -->
 <div id="pcoded" class="pcoded">
 	<div class="pcoded-overlay-box"></div>
-<div class="pcoded-container navbar-wrapper">
-	<!-- .navbar header-navbar pcoded-header
+	<div class="pcoded-container navbar-wrapper">
+		<!-- .navbar header-navbar pcoded-header
 header 있는 자리  -->
 <jsp:include page="<%=headerPage%>" />
 <div class="pcoded-main-container">
@@ -102,58 +117,71 @@ header 있는 자리  -->
 					</div>
 				</div>
 				<div class="card-block table-border-style">
-					<!--         <div style="font-size:30px; padding-bottom:5px;">소제목</div> -->
 <!-- ----------------------datepicker----------------------------------------------- -->
-<div class="fixed-box">
+<div class="fixed-box" >
 	<form id="searchFrm" name="searchFrm">
-		<input class ="datepicker" type="hidden" name="startDate"/> 
-		<input class ="datepicker" type="hidden" name="endDate" />
-		
-	</form>
+	
+	<div class="select-box" style="float:left;  height:30px;">
+	<span style="margin-left:5%; margin-right:3%;">일자  </span>
+<input class="datepicker" id="startDate" name="startDate" style="width:34%;"readonly />
+<!-- color="transparent" text-shadow="0 0 0 black" -->
+	<span>~</span>
+		<input class="datepicker" id="endDate" name="endDate" style="width:34%;" readonly />
+</div>
+		<!-- color="transparent" text-shadow="0 0 0 black" -->
+<div class="select-box">
+<select name="search-category"  style="float:left; height:30px; ">
+<option value="" selected="selected">전체</option>
+<option value="">제목</option>
+<option value="">작성자</option>
+<option value="">작성일자</option>
+</select>
+<input id="searchBoard" style="float:left; height:30px; width:35%; margin-left:1%;"/>
+<button class ="main-btn01" type="button" value="검색" style="margin-left:1%;">검색</button>
+<button class ="main-btn01" type="button" value="등록" style="margin-left:1%; font-color:white;" onclick="location.href='FreeBoardReg'"> 등록</button>
+</div>
 
-</div>
-<!-- --------------------------------------------------------------------- -->
-</div>
+
 <div class="card-block table-border-style">
 	<div class="table-responsive" style="margin-top: 10px;">
-					<table class="main-table02">
-						<thead>
-							<tr>
-								<th scope="row" class="table-info"
-									id="main-table02-num">번호</th>
-								<th scope="row" class="table-info">제목</th>
-								<th scope="row" class="table-info">작성자</th>
-								<th scope="row" class="table-info">작성일자</th>
-							</tr>
-						<thead>
-						<tbody>
-							<tr>
-								<td id="main-table02-num">1</td>
-								<td style="width:60%;">mark</td>
-								<td>mark</td>
-								<td>mark</td>
-							</tr>
-							<tr>
-								<td id="main-table02-num">2</td>
-								<td >mark</td>
-								<td>mark</td>
-								<td>mark</td>
-							</tr>
-								<tr>
-								<td id="main-table02-num">2</td>
-								<td >mark</td>
-								<td>mark</td>
-								<td>mark</td>
-							</tr>
-						</tbody>
-					</table>
-					<div>
-						<button class="main-btn01">수정</button>
-						<button class="main-btn01">목록</button>
+<table class="main-table02">
+	<thead>
+		<tr>
+			<th scope="row" class="table-info"
+				id="main-table02-num">번호</th>
+			<th scope="row" class="table-info">제목</th>
+			<th scope="row" class="table-info">작성자</th>
+			<th scope="row" class="table-info">작성일자</th>
+		</tr>
+	<thead>
+	<tbody>
+		<tr>
+			<td id="main-table02-num">1</td>
+			<td style="width: 60%;">mark</td>
+						<td>mark</td>
+						<td>mark</td>
+					</tr>
+					<tr>
+						<td id="main-table02-num">2</td>
+						<td>mark</td>
+						<td>mark</td>
+						<td>mark</td>
+					</tr>
+					<tr>
+						<td id="main-table02-num">2</td>
+						<td>mark</td>
+						<td>mark</td>
+						<td>mark</td>
+					</tr>
+				</tbody>
+			</table>
+			<div>
 
-					</div>
-				</div>
 			</div>
+		</div>
+	</div>
+</form>
+
 						</div>
 					</div>
 				</div>
@@ -161,24 +189,87 @@ header 있는 자리  -->
 		</div>
 	</div>
 </div>
+		</div>
+	</div>
 </div>
 </div>
-</div>
-</div>
+		</div>
+	</div>
 </div>
 <script>
-$(function(){
-  $('.datepicker').datepicker();
-})
+$(document).ready(function() {
+	$(".datepicker").datepicker({
+		showButtonPanel: true,
+		dateFormat: "yy-mm-dd",
+		onClose: function(selectedDate) {
+		/* 	var eleId = $(this).attr("id");
+			var optionName = "";
+
+            if(eleId.indexOf("StartDate") > 0) {
+                eleId = eleId.replace("StartDate", "EndDate");
+                optionName = "minDate";
+            } else {
+                eleId = eleId.replace("EndDate", "StartDate");
+                optionName = "maxDate";
+            }
+            $("#"+eleId).datepicker( "option", optionName, selectedDate ); */
+		}
+	});
+	$(".dateclick").dateclick();
+});
+function setSearchDate(start){
+    var num = start.substring(0,1);
+    var str = start.substring(1,2);
+    var today = new Date();
+    var endDate = $.datepicker.formatDate('yy-mm-dd', today);
+    $('#endDate').val(endDate);
+    if(str == 'd'){
+        today.setDate(today.getDate() - num);
+    }else if (str == 'w'){
+        today.setDate(today.getDate() - (num*7));
+    }else if (str == 'm'){
+        today.setMonth(today.getMonth() - num);
+        today.setDate(today.getDate() + 1);
+    }
+    var startDate = $.datepicker.formatDate('yy-mm-dd', today);
+    $('#startDate').val(startDate);
+    // 종료일은 시작일 이전 날짜 선택하지 못하도록 비활성화
+    $("#endDate").datepicker( "option", "minDate", startDate );
+    // 시작일은 종료일 이후 날짜 선택하지 못하도록 비활성화
+    $("#startDate").datepicker( "option", "maxDate", endDate );
+}
+
+//DateClick
+jQuery.fn.dateclick = function(){
+    var $obj = $(this);
+    $obj.click(function(){
+        $(this).parent().find("input").focus();
+    });
+}
+
+//페이지 이동 or 검색
+/* function fnSearch(page) {
+	$("#currentPage").val(page);
+	$("#searchForm").attr("action", "/order/orderStatus/page");
+	$("#searchForm").submit();
+} */
+
+
 
 </script>
 
 
 <!-- Required Jquery -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+	integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+	integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <script type="text/javascript"
 	src="../resources/assets/js/jquery/jquery.min.js "></script>
 <script type="text/javascript"
@@ -198,10 +289,12 @@ $(function(){
 	src="../resources/assets/js/jquery.mCustomScrollbar.concat.min.js "></script>
 
 <!-- menu js -->
-	<script src="../resources/assets/js/pcoded.min.js"></script>
-	<script src="../resources/assets/js/vertical/vertical-layout.min.js "></script>
+<script src="../resources/assets/js/pcoded.min.js"></script>
+<script src="../resources/assets/js/vertical/vertical-layout.min.js "></script>
 
-	<script type="text/javascript" src="../resources/assets/js/script.js "></script>
+<script type="text/javascript" src="../resources/assets/js/script.js "></script>
+<!-- ckeditor -->
+	<script src="//cdn.ckeditor.com/4.17.1/full/ckeditor.js"></script>
 </body>
 
 </html>

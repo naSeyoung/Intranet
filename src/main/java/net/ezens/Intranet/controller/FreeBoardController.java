@@ -13,4 +13,11 @@ public class FreeBoardController {
 		
 		return "freeboard/FreeBoardList";
 	}
+	//자유게시판 등록 
+	@RequestMapping("/FreeBoardReg")
+	public String FreeBoardReg() {
+		
+		return "freeboard/FreeBoardReg";
+	}
+	
 }

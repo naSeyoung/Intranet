@@ -75,6 +75,24 @@
 }
 .main-btn01:active, .main-btn01:focus { outline:none !important;}
 
+.card .card-header h5:after {
+	content: "";
+	background-color: #448aff;
+	position: absolute;
+	left: -20px;
+	top: 0;
+	width: 4px;
+	height: 20px;
+}
+
+.card .card-header h3:after {
+	content: "";
+	background-color: #448aff;
+	position: absolute;
+	left: 0px;
+	width: 4px;
+	height: 30px;
+}
 </style>	
 </head>
 <!-- fullcalendar js  -->
@@ -91,7 +109,7 @@
         var calendarEl = document.getElementById('calendar');
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
-        googleCalendarApiKey: 'AIzaSyAJ9dIKkvU-vS9Mwala5mPBxZuvnNcuZs0',
+        googleCalendarApiKey: 'AIzaSyAJ9dIKkvU-vS9Mwala5mPBxZuvnNcuZs0', //구글캘린더 연동
           expandRows: true,
           headerToolbar: {
             left: 'prev,next today',
@@ -99,16 +117,16 @@
             right: 'dayGridMonth,timeGridWeek,timeGridDay'
           },
           initialView: 'dayGridMonth',
-          navLinks: true, // can click day/week names to navigate views
+          navLinks: true, 
           editable: true,
           selectMirror: true,
           selectable: true,
           locale : 'ko',
           nowIndicator: true,
-          dayMaxEvents: true, // allow "more" link when too many events
+          dayMaxEvents: true,
   	    eventSources: [
     	    {
-    	          googleCalendarId: 'qduatr3seur835pk4aolok2900@group.calendar.google.com',
+    	          googleCalendarId: 'qduatr3seur835pk4aolok2900@group.calendar.google.com', //공휴일 데이터 가져오기
     	          className: '공휴일',
     	          color: '#be5683'
     	        }
@@ -120,8 +138,8 @@
               end: '2022-01-10'
             },
             {
-              groupId: 999,
-              title: 'test',
+//               groupId: 999,
+              title: '월간일정테스트',
               start: '2022-01-09T16:00:00'
             },
             {

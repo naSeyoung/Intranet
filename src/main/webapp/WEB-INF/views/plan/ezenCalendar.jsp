@@ -48,8 +48,7 @@
 	href="resources/assets/css/style.css">
 
 <!-- fullcalendar css-->
-<link rel="stylesheet" type="text/css"
-	href="resources/css/fullcalendar/fullcalendar.css">
+<link rel="stylesheet" type="text/css" href="resources/css/fullcalendar/fullcalendar.css">
 	
 <style>
 .esMbtn01{
@@ -75,24 +74,24 @@
 }
 .main-btn01:active, .main-btn01:focus { outline:none !important;}
 
-.card .card-header h5:after {
-	content: "";
-	background-color: #448aff;
-	position: absolute;
-	left: -20px;
-	top: 0;
-	width: 4px;
-	height: 20px;
-}
+/* .card .card-header h5:after { */
+/* 	content: ""; */
+/* 	background-color: #448aff; */
+/* 	position: absolute; */
+/* 	left: -20px; */
+/* 	top: 0; */
+/* 	width: 4px; */
+/* 	height: 20px; */
+/* } */
 
-.card .card-header h3:after {
-	content: "";
-	background-color: #448aff;
-	position: absolute;
-	left: 0px;
-	width: 4px;
-	height: 30px;
-}
+/* .card .card-header h3:after { */
+/* 	content: ""; */
+/* 	background-color: #448aff; */
+/* 	position: absolute; */
+/* 	left: 0px; */
+/* 	width: 4px; */
+/* 	height: 30px; */
+/* } */
 </style>	
 </head>
 <!-- fullcalendar js  -->
@@ -109,7 +108,6 @@
         var calendarEl = document.getElementById('calendar');
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
-        googleCalendarApiKey: 'AIzaSyAJ9dIKkvU-vS9Mwala5mPBxZuvnNcuZs0', //구글캘린더 연동
           expandRows: true,
           headerToolbar: {
             left: 'prev,next today',
@@ -124,18 +122,39 @@
           locale : 'ko',
           nowIndicator: true,
           dayMaxEvents: true,
+          eventColor : 'red',
+          // contentHeight : ''
+        googleCalendarApiKey: 'AIzaSyAJ9dIKkvU-vS9Mwala5mPBxZuvnNcuZs0', //구글캘린더 연동
   	    eventSources: [
-    	    {
+    	    	{
     	          googleCalendarId: 'qduatr3seur835pk4aolok2900@group.calendar.google.com', //공휴일 데이터 가져오기
     	          className: '공휴일',
     	          color: '#be5683'
+    	        },
+    	        {
+    	        	url : "/aa",
+    	        	method : 'POST',
+    	        	
+    	        	color : "yellow",
+    	        	textColor : "blue"
     	        }
     	    ],
           events: [
             {
+             title: '연말정산해야해!!!!',
+              start: '2022-01-27',
+              url : "https://www.hometax.go.kr/ui/pp/yrs_index.html?isCdn=Y&ST1BOX=1&ND2BOX=1"
+            },
+            {
               title: 'Long Event',
               start: '2022-01-07',
               end: '2022-01-10'
+            },
+            {
+              title: 'ajax',
+              start: '2022-01-28',
+              end: '2022-01-28',
+              color:"green"
             },
             {
 //               groupId: 999,
@@ -158,6 +177,12 @@
               start: '2022-01-25'
             }
           ]
+          , eventClick : function(event) {
+        	  if(event.url){
+        		  window.open(event.url);
+        		  return false;
+        	  }
+          }
         });
 
         calendar.render();

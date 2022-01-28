@@ -104,7 +104,6 @@
 /* 	width: 4px; */
 /* 	height: 30px; */
 /* } */
-
 th {
 	width: 10%;
 }
@@ -172,90 +171,119 @@ th {
 											<div class="col-sm-12">
 												<div class="card">
 													<div class="card-header">
-														<h3>일정등록</h3>
+														<h3>TEST</h3>
+														<div style="width: 1000px; height: 200px; margin: auto; text-align: center;">
+															구분 : ${cal_sort } <br> 
+															공개: ${cal_openYN }<br>
+															제목 : ${cal_title } <br> 
+															장소: ${cal_place }<br>
+															시작날짜: ${cal_startDate }<br>
+															마감날짜: ${cal_endDate }<br>
+															시작시각: ${cal_time1 }<br>
+															마감시각: ${cal_time2 }<br>
+															내용: ${cal_content }<br>
+															과연 나올 것인가: ${hihi }<br>
+														</div>
 													</div>
 													<!-- 표 추가  -->
 													<div class="card-block table-border-style">
 														<div class="table-responsive" style="margin-top: 10px;">
-															<form action="/test" method="post" name="hi" id="hi" enctype="multipart/form-data" target="repacatFrame">
-															<table class="main-table02">
-																<tbody>
-																	<tr>
-																		<th>*구분</th>
-																		<td>
-																			<select id="cal_sort" name="cal_sort">
+															<form action="/test" method="post" name="hi" id="hi">
+																<table class="main-table02">
+																	<tbody>
+																		<tr>
+																			<th>*구분</th>
+																			<td><select id="sort" name="sort">
 																					<option value="00">개인 일정</option>
 																					<option value="01">감리</option>
 																					<option value="02">출장</option>
 																					<option value="03">회의</option>
-																			</select>
-																		</td>
-																		<th>공개</th>
-																		<td colspan="3">
-																			<select id="cal_openYN"name="cal_openYN">
+																			</select></td>
+																			<th>공개</th>
+																			<td colspan="3"><select id="open_yn"
+																				name="open_yn">
 																					<option value="Y">전체공개</option>
 																					<option value="N">개인공개</option>
-																			</select>
-																		</td>
-																	</tr>
-																	<tr>
-																		<th>*제목</th>
-																		<td colspan="3">
-																		<input type="text" name="cal_title" id="cal_title" placeholder="제목을 입력하세요" style="width: 50%"></td>
-																		
-																	</tr>
-																	<tr>
-																		<th>장소</th>
-																		<td colspan="3"><input type="text"
-																			name="cal_place" id="cal_place"
-																			placeholder="장소를 입력하세요" style="width: 50%"></td>
-																	</tr>
-																	<tr>
-																		<th>시작일</th>
-																		<td>
-																			<input type="text" id="cal_startDate" name="cal_startDate" value="" placeholder="날짜선택" style="width: 60%"> 
-																			<input type="text" id="cal_time1" name="cal_time1" value="" placeholder="시간선택" required size="8" maxlength="5">
-																		</td>
-																		<th>종료일</th>
-																		<td>
-																			<input type="text" id="cal_endDate" name="cal_endDate" value="" placeholder="날짜선택" style="width: 60%"> 
-																			<input type="text"id="cal_time2" name="cal_time2" value="" placeholder="시간선택" required size="8" maxlength="5">
-																		</td>
-																	</tr>
+																			</select></td>
+																		</tr>
+																		<tr>
+																			<th>*제목</th>
+																			<td colspan="3"><input type="text"
+																				name="cal_title" id="cal_title"
+																				placeholder="제목을 입력하세요" style="width: 50%"></td>
+																		</tr>
+																		<tr>
+																			<th>장소</th>
+																			<td colspan="3"><input type="text"
+																				name="cal_place" id="cal_place"
+																				placeholder="장소를 입력하세요" style="width: 50%"></td>
+																		</tr>
+																		<tr>
+																			<th>시작일</th>
+																			<td><input type="text" id="cal_start"
+																				name="cal_start" value="" placeholder="날짜선택"
+																				style="width: 60%"> <input type="text"
+																				id="time1" name="time1" value="" placeholder="시간선택"
+																				required size="8" maxlength="5"></td>
+																			<th>종료일</th>
+																			<td><input type="text" id="cal_end"
+																				name="cal_end" value="" placeholder="날짜선택"
+																				style="width: 60%"> <input type="text"
+																				id="time2" name="time2" value="" placeholder="시간선택"
+																				required size="8" maxlength="5"></td>
+																		</tr>
 																		<tr>
 																			<th>내용</th>
-																			<td colspan="3"><textarea cols="70" rows="10" name="cal_content" id="cal_content"></textarea></td>
+																			<td colspan="3"><textarea cols="70" rows="10"
+																					name="cal_content" id="cal_content"></textarea></td>
 																		</tr>
 																		<tr>
 																			<th>파일첨부</th>
 																			<td colspan="3"><input type="file" name="file"></td>
 																		</tr>
 																	</tbody>
-															</table>
-													<div class="card-header">
-														<h5>파일첨부 구현</h5>
-														<br>
-													</div>
+																</table>
+																<div class="card-header">
+																	<h5>첨부파일</h5>
+																	<br>
+																</div>
+																<button class="esAddbtn"
+																	style="float: left; margin-top: -1%;">추가</button>
+																<input type="file" class="esAddbtn"
+																	style="float: left; margin-top: -1%;" value="추가">
 
-													<button class="esAddbtn" style="float: left; margin-top: -1%;">추가</button>
+																<div style="margin-top: 100px;">
+																	<input type="button" class="esAddbtn" value="추가되어라"
+																		onclick="document.all.file.click();">
+																	<!-- 버튼 클릭시 파일찾기로 링크해 준다 -->
 
-													<!-- 파일 표추가 -->
-													<div class="card-block table-border-style">
-														<div class="table-responsive" style="margin-top: 10px;">
-															<table class="main-table02">
-																<tbody>
-																	<tr>
-																		<td></td>
-																		<td style="width: 90%;">파일명</td>
-																	</tr>
-																</tbody>
-															</table>
-														</div>
-													</div>
-															<div>
-																<a href="/ezenCalendar"><input type="button"class="esAddbtn" value="목록"style="float: right; margin-top: 3%;"></a>
-																<a href="javascript:submit_hi(document.hi);"><input type="button"class="esAddbtn" value="저장"style="float: right; margin-top: 3%;"></a>
-															</div>
+																	<input type="file" name="file" id="file"
+																		style="display: none;" />
+																	<!-- 화면에서 파일찾기를 안보이게 한다. -->
+																</div>
+
+
+
+																<!-- 파일 표추가 -->
+																<div class="card-block table-border-style">
+																	<div class="table-responsive" style="margin-top: 10px;">
+																		<table class="main-table02">
+																			<tbody>
+																				<tr>
+																					<td></td>
+																					<td style="width: 90%;">파일명</td>
+																				</tr>
+																			</tbody>
+																		</table>
+																	</div>
+																</div>
+																<div>
+																	<button class="esAddbtn"
+																		style="float: right; margin-top: 3%;">목록</button>
+																	<button class="esAddbtn"
+																		style="float: right; margin-top: 3%;">저장</button>
+																	<input type="submit" id="coffee_submit" value="ㅎㅇ">
+																</div>
 															</form>
 														</div>
 													</div>
@@ -276,10 +304,13 @@ th {
 
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="resources/js/fullcalendar/jquery-ui-timepicker-addon.js"></script>
+	<script>
+		
+	</script>
 
 
 	<script>
-		$('#cal_startDate, #cal_endDate') //날짜선택
+		$('#cal_start, #cal_end') //날짜선택
 		.datepicker(
 				{
 					dateFormat : "yy-mm-dd",
@@ -298,34 +329,11 @@ th {
 					showOn : "focus", // 엘리먼트와 이미지 동시 사용
 				});
 
-		$("#cal_time1, #cal_time2").timepicker({ //시간선택
+		$("#time1, #time2").timepicker({ //시간선택
 			controlType : 'select',
 			timeFormat : "HH:mm" //24시
 
 		});
-		
-		function submit_hi(form) {
-			
-			if($("#cal_title").val() == ""){
-				alert("제목을 입력해주세요");
-				return false;
-			} else if($("#cal_startDate").val() == "" || $("#cal_endDate").val() == ""){
-				alert("날짜를 선택해주세요.");
-				return false;
-				
-			} else if($("#cal_startDate").val() > $("#cal_endDate").val()) {
-				alert("시작일이 종료일보다 큽니다.");
-				return false;
-			} else if($("#cal_time1").val() == "" || $("#cal_time2").val() == "") {
-				alert("시간을 선택해주세요.")
-				return false;
-			} 
-			
-			
-			
-			form.action = "/test";
-			form.submit();
-		}
 	</script>
 
 	<!-- Required Jquery -->

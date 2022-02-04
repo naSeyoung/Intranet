@@ -74,24 +74,6 @@
 }
 .main-btn01:active, .main-btn01:focus { outline:none !important;}
 
-/* .card .card-header h5:after { */
-/* 	content: ""; */
-/* 	background-color: #448aff; */
-/* 	position: absolute; */
-/* 	left: -20px; */
-/* 	top: 0; */
-/* 	width: 4px; */
-/* 	height: 20px; */
-/* } */
-
-/* .card .card-header h3:after { */
-/* 	content: ""; */
-/* 	background-color: #448aff; */
-/* 	position: absolute; */
-/* 	left: 0px; */
-/* 	width: 4px; */
-/* 	height: 30px; */
-/* } */
 </style>	
 </head>
 <!-- fullcalendar js  -->
@@ -103,7 +85,7 @@
 
 <!-- fullcalendar 언어 설정관련 script -->
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>	
-    <script>
+<script>
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
 
@@ -115,14 +97,14 @@
             right: 'dayGridMonth,timeGridWeek,timeGridDay'
           },
           initialView: 'dayGridMonth',
-          navLinks: true, 
+          navLinks: true,
+          droppable : true,
+          selectable : true,
           editable: true,
-          selectMirror: true,
-          selectable: true,
-          locale : 'ko',
           nowIndicator: true,
           dayMaxEvents: true,
           eventColor : 'red',
+          locale : 'ko',
           // contentHeight : ''
         googleCalendarApiKey: 'AIzaSyAJ9dIKkvU-vS9Mwala5mPBxZuvnNcuZs0', //구글캘린더 연동
   	    eventSources: [
@@ -141,25 +123,9 @@
     	    ],
           events: [
             {
-             title: '연말정산해야해!!!!',
-              start: '2022-01-27',
-              url : "https://www.hometax.go.kr/ui/pp/yrs_index.html?isCdn=Y&ST1BOX=1&ND2BOX=1"
-            },
-            {
-              title: 'Long Event',
-              start: '2022-01-07',
-              end: '2022-01-10'
-            },
-            {
-              title: 'ajax',
-              start: '2022-01-28',
-              end: '2022-01-28',
-              color:"green"
-            },
-            {
 //               groupId: 999,
               title: '월간일정테스트',
-              start: '2022-01-09T16:00:00'
+              start: '2022-02-09T16:00:00'
             },
             {
               title: 'Conference',
@@ -174,7 +140,7 @@
             {
               title: 'Click for Google',
               url: 'http://google.com/',
-              start: '2022-01-25'
+              start: '2022-02-25'
             }
           ]
           , eventClick : function(event) {
@@ -187,8 +153,37 @@
 
         calendar.render();
       });
-    </script>
+</script>
+<script>
+    //fullcalendar
+	 document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
 
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        initialDate: '2022-02-12',
+        locale: 'ko',
+        headerToolbar: {
+            left: 'dayGridMonth,timeGridWeek,timeGridDay',
+            center: 'title',
+            right: 'prev,next today'
+        },
+        editable: true,
+        dayMaxEventRows:true,
+
+        events: [
+            {
+            title: '[영업부] 2020년 하반기 영업실적',
+            description: '2020년 하반기 영업실적 안내입니다.',
+            start: '2022-02-01',
+            },
+        ],
+    
+        });
+
+    calendar.render();
+  });
+</script>
 
 <body>
 	<!-- Pre-loader start -->

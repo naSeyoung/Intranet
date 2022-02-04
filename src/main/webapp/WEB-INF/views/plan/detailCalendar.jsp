@@ -233,7 +233,8 @@
                                              </table>
                                              <div>
                                                 <a href="/ezenCalendar"><input type="button"class="main-btn01" value="목록"style="float: right; margin-top: 3%; margin-left: 1%;"></a>
-                                                <a href="javascript:submit_calForm(document.cal_form);"><input type="button"class="main-btn01" value="저장"style="float: right; margin-top: 3%; margin-left: 1%;"></a>
+                                                <a href="javascript:submit_calDel(document.cal_form);"><input type="button"class="main-btn01" value="삭제"style="float: right; margin-top: 3%; margin-left: 1%;"></a>
+                                                <a href="javascript:submit_calUpdate(document.cal_form);"><input type="button"class="main-btn01" value="수정"style="float: right; margin-top: 3%; margin-left: 1%;"></a>
                                              </div>
                                              </form>
                                           </div>
@@ -305,7 +306,7 @@
          
          form.action = "/test";
          form.submit();
-      };
+      }
    </script>
 
    <!-- Required Jquery -->

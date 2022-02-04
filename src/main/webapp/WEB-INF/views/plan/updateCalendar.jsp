@@ -305,7 +305,7 @@
          
          form.action = "/test";
          form.submit();
-      };
+      }
    </script>
 
    <!-- Required Jquery -->

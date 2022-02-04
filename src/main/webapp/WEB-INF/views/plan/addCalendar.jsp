@@ -303,7 +303,7 @@
          };
          
          
-         form.action = "/test";
+         form.action = "";
          form.submit();
       };
    </script>

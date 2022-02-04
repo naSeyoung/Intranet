@@ -92,19 +92,36 @@
         var calendar = new FullCalendar.Calendar(calendarEl, {
           expandRows: true,
           headerToolbar: {
-            left: 'prev,next today',
+            left: 'prev next today',
             center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            right: 'dayGridMonth,timeGridWeek,timeGridDay listMonth'
           },
           initialView: 'dayGridMonth',
           navLinks: true,
           droppable : true,
           selectable : true,
-          editable: true,
+          editable: false,
           nowIndicator: true,
           dayMaxEvents: true,
           eventColor : 'red',
           locale : 'ko',
+          views                     : {
+              month : {
+                columnFormat : 'dddd'
+              },
+              agendaWeek : {
+                columnFormat : 'M/D ddd',
+                titleFormat  : 'YYYY년 M월 D일',
+                eventLimit   : false
+              },
+              agendaDay : {
+                columnFormat : 'dddd',
+                eventLimit   : false
+              },
+              listWeek : {
+                columnFormat : ''
+              }
+            },
           // contentHeight : ''
         googleCalendarApiKey: 'AIzaSyAJ9dIKkvU-vS9Mwala5mPBxZuvnNcuZs0', //구글캘린더 연동
   	    eventSources: [
@@ -126,11 +143,6 @@
 //               groupId: 999,
               title: '월간일정테스트',
               start: '2022-02-09T16:00:00'
-            },
-            {
-              title: 'Conference',
-              start: '2022-02-11',
-              end: '2022-02-13'
             },
             {
               title: 'TEST',
@@ -216,7 +228,8 @@
 														<h3>월간일정</h3>
 													</div>
 													<div class="card-block table-border-style">
-													<div id="addCal"><button class="esMbtn01" onclick="location.href='addCalendar'">일정등록</button></div>
+<!-- 													<div id="addCal"><button class="esMbtn01"  onclick="location.href='addCalendar'">일정등록</button></div> -->
+													<div id="addCal"><button class="main-btn01" style="margin-bottom: 1%; margin-left: 90%;" onclick="location.href='addCalendar'">등록</button></div>
 													<div id='calendar'></div>
 													</div>
 												</div>

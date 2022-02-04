@@ -168,7 +168,6 @@
                                                       <th><span class="required">*</span>제목</th>
                                                       <td colspan="3">
                                                       <input type="text" name="cal_title" id="cal_title" placeholder="제목을 입력하세요" style="width: 50%"></td>
-                                                      
                                                    </tr>
                                                    <tr>
                                                       <th><span class="required"></span>장소</th>
@@ -192,10 +191,6 @@
                                                          <th style="vertical-align: inherit;">내용</th>
                                                          <td colspan="3"><textarea cols="90" rows="10" name="cal_content" id="cal_content"></textarea></td>
                                                       </tr>
-<!--                                                       <tr> -->
-<!--                                                          <th>파일첨부</th> -->
-<!--                                                          <td colspan="3"><input type="file" name="file"></td> -->
-<!--                                                       </tr> -->
                                                    </tbody>
                                              </table>
                                        <div class="card-header">
@@ -206,9 +201,6 @@
                                        
                                        <input type="button" class="main-btn01" value="추가" style="margin-left: 1%;"onclick=document.all.cal_file.click();>
 										<input type="file" name="cal_file" id="cal_file" style="display: none;"/>       
-
-
-
 
                                        <!-- 파일 표추가 -->
                                              <table class="main-table02" style="margin-top: 3%;">
@@ -284,7 +276,7 @@
       });
       
       function submit_calForm(form) {
-    	  if($("#cal_sort").val() == "") {
+/*     	  if($("#cal_sort").val() == "") {
          	 alert("구분을 선택해주세요.");
          	 return false;
           } else if($("#cal_title").val() == ""){
@@ -300,11 +292,11 @@
          } else if($("#cal_time1").val() == "" || $("#cal_time2").val() == "") {
             alert("시간을 선택해주세요.")
             return false;
-         };
+         } */
          
-         
-         form.action = "";
-         form.submit();
+//          form.action = "";
+//          form.submit();
+      
       };
    </script>
 

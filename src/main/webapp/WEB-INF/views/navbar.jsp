@@ -88,16 +88,17 @@
                               class="pcoded-mtext">일정관리</span> <span class="pcoded-mcaret"></span>
                         </a>
                            <ul class="pcoded-submenu">
-                               <li class=" "><a href="/addCalendar"
-                                 class="waves-effect waves-dark"> <span
-                                    class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
-                                    class="pcoded-mtext">일별일정</span> <span class="pcoded-mcaret"></span>
-                              </a></li>
+
                               <li class=" "><a href="/ezenCalendar"
                                  class="waves-effect waves-dark"> <span
                                     class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
                                     class="pcoded-mtext">월별일정</span> <span
                                     class="pcoded-mcaret"></span>
+                              </a></li>
+                               <li class=" "><a href="/setCalendar"
+                                 class="waves-effect waves-dark"> <span
+                                    class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
+                                    class="pcoded-mtext">일정설정</span> <span class="pcoded-mcaret"></span>
                               </a></li>
                      </ul>
                      </li>

@@ -42,7 +42,7 @@ public class PlanController {
 		return "plan/updateCalendar";
 	}
 	
-	@RequestMapping(value="setCalendar", method=RequestMethod.POST) // 일정설정페이지
+	@RequestMapping(value="setCalendar", method= {RequestMethod.POST,RequestMethod.GET} ) // 일정설정페이지
 	public String setCalendar(HttpServletRequest req, Model model,Param param) {
 		String cal_type = req.getParameter("cal_type");
 		model.addAttribute("cal_type",cal_type);

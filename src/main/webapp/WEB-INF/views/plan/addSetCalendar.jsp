@@ -92,10 +92,10 @@
 
 <!--  제이쿼리 ui js -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-   
-</script>
 
+
+<!-- 은솔 팔레트  -->
+<script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
 
 <body>
    <!-- Pre-loader start -->
@@ -134,17 +134,28 @@
                                        <!-- 파일 표추가 -->
                                              <table class="main-table02" style="margin-top: 3%; width: 90%;">
                                              	<colgroup>
-                                             	<col width="10%">
-                                             	<col width="90%">
+                                             	<col width="20%">
+                                             	<col width="60%">
+                                             	<col width="20%">
                                              	</colgroup>
                                                 <tbody>
                                                    <tr>
                                                       <th>일정명</th>
-                                                      <td style="text-align: center;"><input type="text" name="cal_type" id="cal_type" value=""></td>
+                                                      <td  colspan="2"  style="text-align: center;"><input type="text" name="cal_type" id="cal_type" value="" style="margin-left: -20%;"></td>
                                                    </tr>
                                                    <tr>
-                                                      <th>색선택</th>
-                                                      <td style="text-align: center;"><input type="color" value=""><input type="text" value="" name="cal_color" id="cal_color"></td>
+                                                      <th style="vertical-align: inherit;">색선택</th>
+                                                      <td style="text-align: center;">
+<!--                                                       	<input type="color" value=""><input type="text" value="" name="cal_color" id="cal_color"> -->
+                                                      	<div id="colorPicker" style="margin-left: 35%;">
+                                                      	</div>
+                                                      </td>
+                                                      	
+                                                      	<td>
+                                                      	<div style="text-align: center;">
+                                                      	<input type="text" id="hexInput" name="hexInput" value="" style="width:100px; text-align: center; margin-top: 50%;"></input>
+                                                      	</div>
+                                                      	</td>
                                                    </tr>
                                                 </tbody>
                                              </table>
@@ -173,10 +184,29 @@
  		  alert("일정명을 선택해주세요");
  		  return false;
  	  }
- 	  
       form.action = "/setCalendar";
       form.submit();
    };
+   
+ var colorPicker = new iro.ColorPicker("#colorPicker", {
+   width: 200,
+   
+    color: "#ff0000",
+   borderWidth: 1,
+   borderColor: "#fff",
+ });
+
+ var hexInput = document.getElementById("hexInput");
+
+ colorPicker.on(["color:init", "color:change"], function(color){
+   hexInput.value = color.hexString;
+ });
+
+ hexInput.addEventListener('change', function() {
+   colorPicker.color.hexString = this.value;
+ });
+  	
+  	
    
    </script>
 

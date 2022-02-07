@@ -135,8 +135,8 @@
 <!--                                              <table class="main-table02" style="margin-top: 3%; margin-left:10%; width: 80%;"> -->
                                              <table class="main-table02" style="margin-top: 3%; width: 90%;">
                                              	<colgroup>
-                                             	<col width="5%">
-                                             	<col width="95%">
+                                             	<col width="20%">
+                                             	<col width="80%">
                                              	</colgroup>
                                                 <tbody>
                                                    <tr>
@@ -163,6 +163,10 @@
          </div>
       </div>
    </div>
+   
+   <script>
+   	
+   </script>
 
    <!-- Required Jquery -->
    <script type="text/javascript"

@@ -22,21 +22,21 @@
 
 <body>
 	<!-- Pre-loader start -->
-<%
+<%-- <%
 String navbarPage = "/WEB-INF/views/navbar.jsp";
 String headerPage = "/WEB-INF/views/header.jsp";
-%>
+%> --%>
 <!-- Pre-loader end -->
 <div id="pcoded" class="pcoded">
 	<div class="pcoded-overlay-box"></div>
 	<div class="pcoded-container navbar-wrapper">
 		<!-- .navbar header-navbar pcoded-header
 header 있는 자리  -->
-<jsp:include page="<%=headerPage%>" />
+<%-- <jsp:include page="<%=headerPage%>" /> --%>
 <div class="pcoded-main-container">
 	<div class="pcoded-wrapper">
 		<!-- .pcoded-navbar 부분 -->
-<jsp:include page="<%=navbarPage%>" />
+<%-- <jsp:include page="<%=navbarPage%>" /> --%>
 
 <form method="POST">
 <div class="pcoded-content">

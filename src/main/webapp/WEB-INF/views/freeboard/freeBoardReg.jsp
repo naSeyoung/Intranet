@@ -21,10 +21,10 @@
 
 <body>
 	<!-- Pre-loader start -->
-<%
+<%-- <%
 String navbarPage = "/WEB-INF/views/navbar.jsp";
 String headerPage = "/WEB-INF/views/header.jsp";
-%>
+%> --%>
 
 <!-- Pre-loader end -->
 <div id="pcoded" class="pcoded">
@@ -32,15 +32,15 @@ String headerPage = "/WEB-INF/views/header.jsp";
 	<div class="pcoded-container navbar-wrapper">
 		<!-- .navbar header-navbar pcoded-header
 <!-- header 있는 자리  -->
-<jsp:include page="<%=headerPage%>" />
+<%-- <jsp:include page="<%=headerPage%>" /> --%>
 <div class="pcoded-main-container">
 	<div class="pcoded-wrapper">
 		<!-- .pcoded-navbar 부분 -->
-<jsp:include page="<%=navbarPage%>" />
+<%-- <jsp:include page="<%=navbarPage%>" /> --%>
 
 <form method="POST">
-<div class="pcoded-content">
-	<!-- 지우지말기 -->
+	<div class="pcoded-content">
+		<!-- 지우지말기 -->
 <!-- Page-header end -->
 <div class="pcoded-inner-content">
 	<!-- Main-body start -->
@@ -64,50 +64,61 @@ String headerPage = "/WEB-INF/views/header.jsp";
 							<li><i class="fa fa-trash close-card"></i></li>
 						</ul>
 					</div>
+				</div>
+				<div class="card-block table-border-style">
+					<div class="table-responsive">
+						<table class="main-table01">
+							<tbody>
+								<tr>
+									<th scope="row" class="table-info"
+										style="width: 10%;">제목</th>
+<td><input id="title" name="title"
+	style="width: 100%; border: 0;" /></td>
+</tr>
+<tr>
+	<th scope="row" class="table-info"
+		style="width: 10%;">작성자</th>
+<td><input id="first_reg_user"
+	name="first_reg_user"
+	style="width: 100%; border: 0;" /></td>
+</tr>
+<tr>
+	<th scope="row" class="table-info"
+		style="width: 10%;">날짜</th>
+<td><input id="first-reg-dt" name="first-reg-dt"
+	style="width: 100%; border: 0;" /></td>
+</tr>
+<tr>
+	<th scope="row" class="table-info"
+		style="width: 10%;">내용</th>
+				<td><textarea id="editor" name="editor" rows=10
+						name="contents"></textarea></td>
+			</tr>
+		</tbody>
+	</table>
 </div>
-	<div class="card-block table-border-style">
-		<div class="table-responsive">
-			<table class="main-table01">
-				<tbody>
-					<tr>
-						<th scope="row" class="table-info" style="width: 10%;">제목</th>
-						<td><input id="title" name="title" style="width:100%; border:0;"/></td>
-					</tr>
-					<tr>
-						<th scope="row" class="table-info" style="width: 10%;">작성자</th>
-						<td><input id="first_reg_user" name="first_reg_user" style="width:100%; border:0;"/></td>
-					</tr>
-					<tr>
-						<th scope="row" class="table-info" style="width: 10%;">날짜</th>
-						<td><input id="first-reg-dt" name="first-reg-dt" style="width:100%; border:0;"/></td>
-					</tr>
-					<tr>
-						<th scope="row" class="table-info" style="width: 10%;">내용</th>
-						<td><textarea id="editor" name="editor" rows=10 name="contents"></textarea></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		
-		<div style="font-size: 20px; padding-bottom: 5px;">파일첨부</div>
-		<div><button class ="main-btn01" type="button" value="검색">추가</button></div>
-		
-		
-		
-	</div>
-</div>
+
+<div style="font-size: 20px; padding-bottom: 5px;">파일첨부</div>
+															<div>
+																<button class="main-btn01" type="button" value="검색">추가</button>
+															</div>
+
+
+
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-</div>
-</div>
-</div>
-</form>
-</div>
-</div>
-</div>
-</div>
 </body>
 
 <script>

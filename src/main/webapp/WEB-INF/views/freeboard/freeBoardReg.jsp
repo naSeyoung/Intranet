@@ -1,24 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="tiles" uri ="http://tiles.apache.org/tags-tiles"  %>
 <c:set var="path" value="${pageContext.request.contextPath }" />
-<fmt:requestEncoding value="utf-8" />
+<fmt:requestEncoding value="utf-8" /> --%>
 <!DOCTYPE html>
 <html lang="ko">
 
-<head>
+<!-- <head>
 <title>이젠 인트라넷</title>
-<!-- Meta -->
+Meta
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
 
-</head>
-
-
+</head> -->
 <body>
 	<!-- Pre-loader start -->
 <%-- <%
@@ -119,8 +118,7 @@ String headerPage = "/WEB-INF/views/header.jsp";
 			</div>
 		</div>
 	</div>
-</body>
-
+	</body>
 <script>
 	CKEDITOR.replace("editor",{
 		  filebrowserUploadUrl: '/Intranet/imageUpload.do'

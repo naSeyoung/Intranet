@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.ezens.Intranet.mapper.TestMapper">
+
+	<select id="selectTest" resultType="TestModel">
+		select 'test11' test1
+				,'test22' test2
+				,'test33' test3
+				,'test44' test4
+		from dual
+	</select>
+
+
+</mapper>

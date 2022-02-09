@@ -15,10 +15,6 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" /> 
 
-	<!-- 객체를 자동으로 만들 기본 패키지 지정: 기본패키지 아래의 특정하게 정의해 놓은 클래스를 자동 생성한다.  -->
-<context:component-scan base-package="net.ezens" /> <!-- com.legacy.xx로  패키지 생성을 했을 경우 legacy까지만 base-package로 설정 --> 
-<context:component-scan base-package="net.ezens.Intranet" /> <!-- com.legacy.xx로  패키지 생성을 했을 경우 legacy까지만 base-package로 설정 --> 
-
  <!-- Tiles -->
 <!--     <beans:bean id="tilesConfigurer" 
                 class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">

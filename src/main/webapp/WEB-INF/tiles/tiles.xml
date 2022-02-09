@@ -1,38 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE tiles-definitions PUBLIC
-  "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
-  "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <!-- tilesLayout (o) , tiles.xml (x) 실행안됨 --> 
 	 
 
 <tiles-definitions>
 	<!-- 레이아웃(tiles) 적용하는 화면  -->
-	<definition name="tilesLayout" template="../WEB-INF/views/tilesLayout.jsp">
-		<put-attribute name="siteTop" value="../WEB-INF/views/header.jsp" />
-		<put-attribute name="leftNav" value="../WEB-INF/views/navbar.jsp" />
-	    <put-attribute name="body" value="" />
+	<definition name="tilesLayout" template="/WEB-INF/views/tilesLayout.jsp">
+		<put-attribute name="siteTop" value="/WEB-INF/views/header.jsp" />
+		<put-attribute name="body" value=""/>
+		<put-attribute name="leftNav" value="/WEB-INF/views/navbar.jsp" />
+		
+		<!-- <put-attribute name="googleFont" value="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700"/>
+		<put-attribute name="wavesCss" value="/assets/pages/waves/css/waves.min.css"/>
+		<put-attribute name="styleCss" value="/assets/css/style.css"/>
+		<put-attribute name="scrollbarCss" value="/assets/css/jquery.mCustomScrollbar.css"/>
+		<put-attribute name="Required" value="/assets/css/bootstrap/css/bootstrap.min.css"/> -->
+		
 	</definition>
-	<!-- 레이아웃 적용(tiles) 이 name이 controller에서 사용 -->
-  <definition name="*.tiles" extends="base">
-        <put-attribute name="body" value="../WEB-INF/views/{1}.jsp" />
+<!-- 	tiles 적용할 파일 선언  -->
+	<definition name="/freeBoardReg" extends ="tilesLayout">
+		<put-attribute name="body" value="/WEB-INF/views/freeboard/freeBoardReg.jsp" />
+	</definition>	
+	 <!-- */* : 모든 페이지를 layout으로 적용-->
+	<definition name="*" extends="tilesLayout">
+        <put-attribute name="body" value="/WEB-INF/views/{1}.jsp" />
     </definition>
-	<definition name="*/*.tiles" extends="base">
-		<put-attribute name="body" value="../WEB-INF/views/{1}/{2}.jsp" />
+	<definition name="*/*" extends="tilesLayout">
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>
-	<definition name="*/*.tiles" extends="base">
-		<put-attribute name="body" value="../WEB-INF/views/{1}/{2}.jsp" />
-	</definition>
-	
-	<!-- 타일즈 미 적용 할때
-	<definition name="normalLayout" template="/WEB-INF/jsp/layout/NormalLayout.jsp">
-		<put-attribute name="NormalLayout" value="" />
-	</definition>
-	<definition name="*.jsp" extends="baseEmpty">
-		<put-attribute name="NormalLayout" value="/WEB-INF/jsp/{1}.jsp" />
-	</definition>
-	<definition name="*/*.jsp" extends="baseEmpty">
-		<put-attribute name="NormalLayout" value="/WEB-INF/jsp/{1}/{2}.jsp" />
-	</definition>-->
 	
 </tiles-definitions>

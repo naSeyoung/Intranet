@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.ezens.Intranet.mapper.ScheMapper">
+
+<select id="SelectAllList" resultType="hashMap">
+	SELECT userCode,userName,TO_CHAR(hiDay,'YYYY-MM-DD HH24:MI') AS hiDay FROM testTable
+</select>
+
+<insert id="Insert" parameterType="hashMap">
+	INSERT INTO testTable (
+		userCode,
+		userName,
+		hiDay
+	) VALUES (
+		#{code, jdbcType=VARCHAR},
+		#{name, jdbcType=VARCHAR },
+		SYSDATE
+		
+	)
+</insert>
+
+<delete id="Delete" parameterType="hashMap">
+	DELETE FROM testTable
+		WHERE userCode = #{code, jdbcType=VARCHAR}
+</delete>
+
+
+<select id="scheList" resultType="hashMap">
+	SELECT
+		sche_seq,
+		mst_seq,
+		user_id,
+		start_dt,
+		end_dt,
+		title,
+		contents,
+		place,
+		reg_id,
+		reg_dt,
+		upd_id,
+		upd_dt,
+		sche_type
+	FROM tb_intra_sche
+		
+</select>
+</mapper>

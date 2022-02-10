@@ -21,7 +21,7 @@
 
 <body>
 <div>
-    <h2 style="align:center; font-size:200px; ">error다 메롱</h2>
+    <h2 style="align:center; font-size:20px; ">error.jsp </h2>
 
 </div>
 </body>

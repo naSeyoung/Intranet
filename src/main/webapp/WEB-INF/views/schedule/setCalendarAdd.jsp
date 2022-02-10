@@ -47,53 +47,7 @@
 <link rel="stylesheet" type="text/css"
    href="resources/assets/css/style.css">
 
-<!-- fullcalendar css-->
-<link rel="stylesheet" type="text/css"
-   href="resources/css/fullcalendar/fullcalendar.css">
-<!-- datetimepicker -->
-<link
-   href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
-   rel="stylesheet" type="text/css" />
-<script
-   src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"
-   type="text/javascript"></script>
-<script
-   src=" https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"
-   type="text/javascript"></script>
-
-
-<!--timepicker -->
-<link rel="stylesheet"
-   href="resources/css/fullcalendar/jquery-ui-timepicker-addon.css" />
-<link rel="stylesheet"
-   href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
-
 </head>
-<!-- fullcalendar js  -->
-<script type="text/javascript"
-   src="/resources/js/fullcalendar/fullcalendar.js"></script>
-<script type="text/javascript"
-   src="/resources/js/fullcalendar/theme-chooser.js"></script>
-
-<!-- ***추가**  -->
-
-
-<!-- fullcalendar 언어 설정관련 script -->
-<script
-   src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>
-
-<!--datepicker  -->
-<!--  제이쿼리 ui css -->
-<link rel="stylesheet"
-   href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
-<!--  제이쿼리 js -->
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-
-<!--  제이쿼리 ui js -->
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-
 <!-- 은솔 팔레트  -->
 <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
 

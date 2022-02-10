@@ -131,7 +131,7 @@
                                        <div class="card-block table-border-style" >
                                           <div class="table-responsive">
                                        <!-- 파일 표추가 -->
-                                       <div id="addCal"><button class="main-btn01" style=" margin-left: 88%;" onclick="location.href='addSetCalendar'">등록</button></div>
+                                       <div id="addCal"><button class="main-btn01" style=" margin-left: 88%;" onclick="location.href='setCalendarAdd'">등록</button></div>
 <!--                                              <table class="main-table02" style="margin-top: 3%; margin-left:10%; width: 80%;"> -->
                                              <table class="main-table02" style="margin-top: 3%; width: 90%;">
                                              	<colgroup>

@@ -3,7 +3,7 @@
 <mapper namespace="net.ezens.Intranet.mapper.ScheMapper">
 
 <select id="SelectAllList" resultType="hashMap">
-	SELECT userCode,userName,TO_CHAR(hiDay,'YYYY-MM-DD HH24:MI') AS hiDay FROM testTable
+	SELECT userCode,userName,TO_CHAR(hiDay,'YYYY-MM-DD HH24:MI') AS h FROM testTable ORDER BY hiDay DESC
 </select>
 
 <insert id="Insert" parameterType="hashMap">
@@ -12,8 +12,8 @@
 		userName,
 		hiDay
 	) VALUES (
-		#{code, jdbcType=VARCHAR},
-		#{name, jdbcType=VARCHAR },
+		#{code,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR},
 		SYSDATE
 		
 	)
@@ -27,20 +27,53 @@
 
 <select id="scheList" resultType="hashMap">
 	SELECT
-		sche_seq,
-		mst_seq,
-		user_id,
-		start_dt,
-		end_dt,
-		title,
-		contents,
-		place,
-		reg_id,
-		reg_dt,
-		upd_id,
-		upd_dt,
-		sche_type
+		SCHE_SEQ,
+		MST_SEQ,
+		USER_ID,
+		TO_CHAR(START_DT,'YYYY-MM-DD HH24:MI') START_DT,
+		TO_CHAR(END_DT,'YYYY-MM-DD HH24:MI') END_DT,
+		TITLE,
+		CONTENTS,
+		PLACE,
+		REG_ID,
+		REG_DT,
+		UPD_ID,
+		UPD_DT,
+		SCHE_TYPE
 	FROM tb_intra_sche
-		
 </select>
+<insert id="insertSche" parameterType="hashMap">
+	INSERT INTO tb_intra_sche (
+		SCHE_SEQ
+<!-- 		MST_SEQ, -->
+<!-- 		USER_ID, -->
+		,START_DT
+		,END_DT
+		,TITLE
+		,CONTENTS
+		,PLACE
+<!-- 		REG_ID, -->
+<!-- 		REG_DT, -->
+<!-- 		UPD_ID, -->
+<!-- 		UPD_DT, -->
+		,SCHE_TYPE
+	) VALUES (
+		(SELECT NVL(MAX(SCHE_SEQ),0)+1 FROM TB_INTRA_SCHE)
+<!-- 		MST_SEQ... -->
+<!-- 		#{USER_ID} -->
+		,#{calStDt,jdbcType=TIMESTAMP}
+		,#{calEdDt,jdbcType=TIMESTAMP}
+		,#{cal_title,jdbcType=VARCHAR}
+		,#{cal_content,jdbcType=VARCHAR}
+		,#{cal_place,jdbcType=VARCHAR}
+<!-- 		#{REG_ID}, -->
+<!-- 		#{REG_DT}, -->
+<!-- 		#{UPD_ID}, -->
+<!-- 		#{UPD_DT}, -->
+		,#{cal_type,jdbcType=VARCHAR}
+	)
+	
+	
+	
+</insert>
 </mapper>

@@ -26,7 +26,14 @@ public class ScheServiceImpl implements ScheService {
 		
 		return scheMapper.scheList();
 	}
+	
 
+	@Override
+	public void insertSche(Map<String, Object> param) throws Exception {
+
+		scheMapper.insertSche(param);
+	}
+	
 	@Override
 	public void Insert(Map<String, Object> param) throws Exception {
 		
@@ -39,5 +46,6 @@ public class ScheServiceImpl implements ScheService {
 		scheMapper.Delete(param);
 		
 	}
+
 
 }

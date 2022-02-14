@@ -97,6 +97,5 @@
 			</div>
 	</div>
  --%>
-	<%-- 	<tiles:insertAttribute name="css" /> --%>
 </body>
 </html>

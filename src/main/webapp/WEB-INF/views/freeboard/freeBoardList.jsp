@@ -16,10 +16,10 @@
 
 </head>
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <body>
 	<!-- Pre-loader start -->
 <!-- Pre-loader end -->
-<%String navbarPage = "/WEB-INF/views/navbar.jsp"; %> 
 <div id="pcoded" class="pcoded">
 	<div class="pcoded-overlay-box"></div>
 	<div class="pcoded-container navbar-wrapper">
@@ -27,7 +27,6 @@
 <div class="pcoded-main-container">
 	<div class="pcoded-wrapper">
 		<!-- .pcoded-navbar 부분 -->
-<%-- 	<jsp:include page="<%=navbarPage%>" /> --%>
 <form method="POST">
 <div class="pcoded-content">
 	<!-- 지우지말기 -->

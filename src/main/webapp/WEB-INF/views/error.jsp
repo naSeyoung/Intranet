@@ -21,7 +21,8 @@
 
 <body>
 <div>
-    <h2 style="align:center; font-size:20px; ">error.jsp </h2>
+    <h2 style="align:center; font-size:20px; ">error.jsp
+     </h2>
 
 </div>
 </body>

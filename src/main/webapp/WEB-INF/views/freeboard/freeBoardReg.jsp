@@ -83,8 +83,8 @@ String headerPage = "/WEB-INF/views/header.jsp";
 																		<tr>
 																			<th scope="row" class="table-info"
 																				style="width: 10%;">날짜</th>
-																			<td><input id="first-reg-dt" name="first-reg-dt"
-																				style="width: 100%; border: 0;" /></td>
+																			<td><input id="first-reg-dt"  
+																				style="width: 100%; border: 0;"  /></td>
 																		</tr>
 																		<tr>
 																			<th scope="row" class="table-info"
@@ -99,8 +99,10 @@ String headerPage = "/WEB-INF/views/header.jsp";
 															<div style="font-size: 20px; padding-bottom: 5px;">파일첨부</div>
 															<div>
 																<button class="main-btn01" type="button" value="검색">추가</button>
+																</div>
+																<div>
+																<button class="main-btn01" type="button" style="float:right;"value="검색">등록하기</button>
 															</div>
-
 
 
 														</div>
@@ -118,16 +120,20 @@ String headerPage = "/WEB-INF/views/header.jsp";
 		</div>
 	</div>
 </body>
+<script type="text/javascript" src="../resources/plugins/ckeditor/ckeditor.js"></script>
 <script>
+$(document).ready(function(){
+	document.getElementById("first-reg-dt").innerHTML = localeDate  +  " / "  +  localeTime;
+});
 	CKEDITOR.replace("editor",{
-		  filebrowserUploadUrl: '/Intranet/imageUpload.do'
-		  /*  filebrowserBrowseUrl:  '/imageUpload2.do?type=Files'
- 	     	    filebrowserImageBrowseUrl: '/freeboard/FreeBoardList?type=Files', 
-	    filebrowserImageUploadUrl: '/imageUpload.do'         */ <!--이게 화면에 보이게 해주는듯 f12 이경로로 404뜸 -->
+		  //filebrowserIUploadUrl: 'freeboard/imageUpload'
+		    //filebrowserBrowseUrl:  '/imageUpload2.do?type=Files'
+ 	     	    filebrowserImageBrowseUrl: '/imageUpload',  
+	    //filebrowserImageUploadUrl: '/imageUpload.do'          <!--이게 화면에 보이게 해주는듯 f12 이경로로 404뜸 -->
  	<!--'/imageUpload.do?type=Images',-->
 	});
 	console.log("upload");
-/* CKEDITOR.on('dialogDefinition', function (ev) {
+	CKEDITOR.on('dialogDefinition', function (ev) {
     var dialog = ev.data.definition.dialog;
     var dialogName = ev.data.name;
     var dialogDefinition = ev.data.definition;
@@ -138,9 +144,12 @@ String headerPage = "/WEB-INF/views/header.jsp";
         dialogDefinition.removeContents('advanced'); // 자세히탭 제거
         dialogDefinition.removeContents('Link'); // 링크탭 제거
     }
-}); */
+    var now = new Date();
+    console.log(now);
+
+		
+});
 //window.parent.CKEDITOR.tools.callFunction(1,"${url}","전송완료");
-//window.parent.CKEDITOR.tools.callFunction('" + funcNum + "', '" + url + "');
 
 </script>
 

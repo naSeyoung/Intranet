@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * * cKeditor 서버로 전송된 이미지 뿌려주기
- * 
  * @param uid
  * @param fileName
  * @param request

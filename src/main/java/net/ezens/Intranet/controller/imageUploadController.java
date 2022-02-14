@@ -55,7 +55,7 @@ System.out.println("============================이미지업로드컨트롤러 �
 		 
 			String callback = request.getParameter("CKEditorFuncNum");
 			printWriter = response.getWriter();
-			String fileUrl = "/imageUpload2.do?uid=" + uid + "&fileName=" + fileName;
+			String fileUrl = "/imageUpload.do?uid=" + uid + "&fileName=" + fileName;
 			System.out.println("fileUrl:"+fileUrl);
 			// 작성화면
 			// 업로드시 메시지 출력 

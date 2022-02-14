@@ -1,16 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     import="java.util.*"
     %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
-<fmt:requestEncoding value="utf-8"/>     
+<fmt:requestEncoding value="utf-8"/>     --%> 
 <!DOCTYPE html>
 <html lang="ko">
 
 <title>이젠 인트라넷</title>
-<meta charset="utf-8">
+<!-- Meta -->
+<!--<meta charset="utf-8">
 <meta name="viewport"
    content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -18,7 +19,7 @@
 
 
 </head>
-
+ -->
 <body>
   <nav class="navbar header-navbar pcoded-header" >
             <div class="navbar-wrapper">
@@ -42,7 +43,7 @@
                      <li class="user-profile header-notification"><a href="#!"
                         class="waves-effect waves-light"> <img
                            src="../resources/assets/images/avatar-4.jpg" class="img-radius"
-                           alt="User-Profile-Image"> <span>이이름</span> <i
+                           alt="User-Profile-Image"> <span>이창주</span> <i
                            class="ti-angle-down"></i>
                      </a>
                         <ul class="show-notification profile-notification">

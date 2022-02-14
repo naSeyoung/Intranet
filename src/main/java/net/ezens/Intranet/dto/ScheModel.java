@@ -1,5 +1,6 @@
 package net.ezens.Intranet.dto;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
@@ -14,8 +15,8 @@ public class ScheModel {
 	private int sche_seq;
 	private int mst_seq;
 	private String user_id;
-	private Date start_dt;
-	private Date end_dt;
+	private Timestamp start_dt;
+	private Timestamp end_dt;
 	private String title;
 	private String conetents;
 	private String place;

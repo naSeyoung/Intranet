@@ -4,32 +4,32 @@
   "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <!-- tilesLayout (o) , tiles.xml (x) 실행안됨 --> 
+	 
+
 <tiles-definitions>
 	<!-- 레이아웃(tiles) 적용하는 화면  -->
 	<definition name="tilesLayout" template="/WEB-INF/views/tilesLayout.jsp">
 		<put-attribute name="siteTop" value="/WEB-INF/views/header.jsp" />
 		<put-attribute name="body" value=""/>
 		<put-attribute name="leftNav" value="/WEB-INF/views/navbar.jsp" />
+		
+		<!-- <put-attribute name="googleFont" value="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700"/>
+		<put-attribute name="wavesCss" value="/assets/pages/waves/css/waves.min.css"/>
+		<put-attribute name="styleCss" value="/assets/css/style.css"/>
+		<put-attribute name="scrollbarCss" value="/assets/css/jquery.mCustomScrollbar.css"/>
+		<put-attribute name="Required" value="/assets/css/bootstrap/css/bootstrap.min.css"/> -->
+		
 	</definition>
-	<!-- tiles 적용할 파일 선언 --> 
-	<!-- .jsp를 2순위로 두었기 때문에 .tiles등으로 명시해주어야 1순위임을 암  -->
-<!-- 	<definition name="freeboard/freeBoardList.tiles" extends ="tilesLayout">
-		<put-attribute name="siteTop" value="/WEB-INF/views/header.jsp" />
-		<put-attribute name="body" value="/WEB-INF/views/freeboard/freeBoardList.jsp" />
-		<put-attribute name="leftNav" value="/WEB-INF/views/navbar.jsp" />
-	</definition>	 -->
-	<!--  */* : 모든 페이지를 layout으로 적용 -->
-	<definition name="*.tiles" extends="tilesLayout">
-		<put-attribute name="siteTop" value="/WEB-INF/views/header.jsp" />
-        <put-attribute name="body" value="/WEB-INF/views/{1}" />
-        <put-attribute name="leftNav" value="/WEB-INF/views/navbar.jsp" />
+<!-- 	tiles 적용할 파일 선언  -->
+	<definition name="/freeBoardReg" extends ="tilesLayout">
+		<put-attribute name="body" value="/WEB-INF/views/freeboard/freeBoardReg.jsp" />
+	</definition>	
+	 <!-- */* : 모든 페이지를 layout으로 적용-->
+	<definition name="*" extends="tilesLayout">
+        <put-attribute name="body" value="/WEB-INF/views/{1}.jsp" />
     </definition>
-	<definition name="*/*.tiles" extends="tilesLayout">
-		<put-attribute name="siteTop" value="/WEB-INF/views/header.jsp" />
+	<definition name="*/*" extends="tilesLayout">
 		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
-		<put-attribute name="leftNav" value="/WEB-INF/views/navbar.jsp" />
 	</definition>
-	<definition name="*/*/*.tiles" extends="tilesLayout">
-		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
-	</definition>
+	
 </tiles-definitions>

@@ -50,24 +50,42 @@
 <!-- fullcalendar css-->
 <link rel="stylesheet" type="text/css" href="resources/css/fullcalendar/fullcalendar.css">
 	
-<!-- **************************추가 TEST***********************************  -->
-<script type="text/javascript" src="/resources/js/es/esSche.js"></script>
-	
+<style>
+.esMbtn01{
+	/* margin-bottom:10%; */
+/* 	padding:2x 3px 2px 3px; */
+	width:70px;
+	margin-right:5%;
+	margin-bottom:1%;
+	cursor:pointer;
+	margin-left:92%;
+	background-color:#448aff;
+ 	border-color:#448aff; 
+	color:#fff;
+	border-radius:4px;
+	vertical-align:middle !important;
+	font-size:13px;
+	position:relative;
+	font-weight:520;
+	height:30px !important;
+	border: 0;outline: 0;
+	white-space:nowrap;
+	overflow:hidden; 
+}
+.main-btn01:active, .main-btn01:focus { outline:none !important;}
+
+</style>	
 </head>
 <!-- fullcalendar js  -->
 <script type="text/javascript" src="/resources/js/fullcalendar/fullcalendar.js"></script>
 <script type="text/javascript" src="/resources/js/fullcalendar/theme-chooser.js"></script>
 	
+<!-- ***추가**  -->
+
 
 <!-- fullcalendar 언어 설정관련 script -->
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>	
-<!--fullcalendar ajax사용  -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script>
-
-<%-- <%
-	List<ScheModel> list = (ArrayList<ScheModel>)reqeust.getAttribute("showSchedule");
-%> --%>
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
 
@@ -87,6 +105,24 @@
           dayMaxEvents: true,
           eventColor : 'red',
           locale : 'ko',
+//           views                     : {
+//               month : {
+//                 columnFormat : 'dddd'
+//               },
+//               agendaWeek : {
+//                 columnFormat : 'M/D ddd',
+//                 titleFormat  : 'YYYY년 M월 D일',
+//                 eventLimit   : false
+//               },
+//               agendaDay : {
+//                 columnFormat : 'dddd',
+//                 eventLimit   : false
+//               },
+//               listWeek : {
+//                 columnFormat : ''
+//               }
+//             },
+          // contentHeight : ''
         googleCalendarApiKey: 'AIzaSyAJ9dIKkvU-vS9Mwala5mPBxZuvnNcuZs0', //구글캘린더 연동
   	    eventSources: [
     	    	{
@@ -96,17 +132,6 @@
     	        }
     	    ],
           events: [
-        	 <%--  <%
-        	  	for(int i=0; i<list.size(); i++) {
-        		  ScheModel scheModel = (ScheModel)list.get(i);
-       		  %>
-       		  {
-       			  title : <%=scheModel.getTitle()%>
-       		  	cnotent : <%=scheModel.getContent()%>
-       		  },
-       		  <%
-        	  }
-        	  %> --%>
             {
 //               groupId: 999,
               title: '월간일정테스트',
@@ -123,6 +148,12 @@
               start: '2022-02-25'
             }
           ]
+          , eventClick : function(event) {
+        	  if(event.url){
+        		  window.open(event.url);
+        		  return false;
+        	  }
+          }
         });
 
         calendar.render();
@@ -162,7 +193,6 @@
 													<div class="card-block table-border-style">
 <!-- 													<div id="addCal"><button class="esMbtn01"  onclick="location.href='addCalendar'">일정등록</button></div> -->
 													<div id="addCal"><button class="main-btn01" style="margin-bottom: 1%; margin-left: 90%;" onclick="location.href='calendarAdd'">등록</button></div>
-													<!-- <button class = "main-btn01" type="button" onclick="click_add();">TEST</button> -->
 													<div id='calendar'></div>
 													</div>
 												</div>
@@ -177,12 +207,7 @@
 			</div>
 		</div>
 	</div>
-	<script>
-	/*function click_add() {
-	var url = "/calendarAdd";
-	window.open(url);
-};*/
-	</script>
+
 	<!-- Required Jquery -->
 	<script type="text/javascript"
 		src="resources/assets/js/jquery/jquery.min.js "></script>

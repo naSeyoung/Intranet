@@ -98,10 +98,9 @@
 
 <!--  제이쿼리 ui js -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-   
-</script>
 
+<!-- **************************추가 TEST***********************************  -->
+<script type="text/javascript" src="/resources/js/fullcalendar/esSche.js"></script>
 
 <body>
    <!-- Pre-loader start -->
@@ -136,7 +135,7 @@
                                        <!-- 표 추가  -->
                                        <div class="card-block table-border-style">
                                           <div class="table-responsive" style="margin-top: 10px;">
-                                             <form action="/test" method="post" name="cal_form" id="cal_form" enctype="multipart/form-data" target="repacatFrame">
+                                             <form action="/calendarAdded" method="post" name="cal_form" id="cal_form" enctype="multipart/form-data" target="repacatFrame">
                                              <table class="main-table02">
                                              	<colgroup>
                                              	<col width="15%">
@@ -148,8 +147,9 @@
                                                    <tr>
                                                       <th><span class="required">*</span>구분</th>
                                                       <td>
-                                                         <select id="cal_sort" name="cal_sort">
+                                                         <select id="cal_type" name="cal_type">
                                                          	<option value="">전체</option>
+                                                         	<!-- 리스트 뿌려줘야함 -->
                                                                <option value="00">개인 일정</option>
                                                                <option value="01">감리</option>
                                                                <option value="02">출장</option>
@@ -167,24 +167,24 @@
                                                    <tr>
                                                       <th><span class="required">*</span>제목</th>
                                                       <td colspan="3">
-                                                      <input type="text" name="cal_title" id="cal_title" placeholder="제목을 입력하세요" style="width: 50%"></td>
+                                                      <input type="text" autocomplete="off" name="cal_title" id="cal_title" placeholder="제목을 입력하세요" style="width: 50%"></td>
                                                    </tr>
                                                    <tr>
                                                       <th><span class="required"></span>장소</th>
-                                                      <td colspan="3"><input type="text"
+                                                      <td colspan="3"><input type="text" autocomplete="off"
                                                          name="cal_place" id="cal_place"
                                                          placeholder="장소를 입력하세요" style="width: 50%"></td>
                                                    </tr>
                                                    <tr>
                                                       <th><span class="required">*</span>시작일</th>
                                                       <td>
-                                                         <input type="text" id="cal_startDate" name="cal_startDate" value="" placeholder="날짜선택" style="width: 60%"> 
-                                                         <input type="text" id="cal_time1" name="cal_time1" value="" placeholder="시간선택" required size="8" maxlength="5" style="margin-left: 3%;">
+                                                         <input type="text" autocomplete="off" id="cal_startDate" name="cal_startDate" value="" placeholder="날짜선택" style="width: 60%"> 
+                                                         <input type="text" autocomplete="off" id="cal_time1" name="cal_time1" value="" placeholder="시간선택" required size="8" maxlength="5" style="margin-left: 3%;">
                                                       </td>
                                                       <th><span class="required">*</span>종료일</th>
                                                       <td>
-                                                         <input type="text" id="cal_endDate" name="cal_endDate" value="" placeholder="날짜선택" style="width: 60%"> 
-                                                         <input type="text"id="cal_time2" name="cal_time2" value="" placeholder="시간선택" required size="8" maxlength="5" style="margin-left: 3%;">
+                                                         <input type="text" autocomplete="off" id="cal_endDate" name="cal_endDate" value="" placeholder="날짜선택" style="width: 60%"> 
+                                                         <input type="text" autocomplete="off" id="cal_time2" name="cal_time2" value="" placeholder="시간선택" required size="8" maxlength="5" style="margin-left: 3%;">
                                                       </td>
                                                    </tr>
                                                       <tr>
@@ -225,7 +225,8 @@
                                              </table>
                                              <div>
                                                 <a href="/ezenCalendar"><input type="button"class="main-btn01" value="목록"style="float: right; margin-top: 3%; margin-left: 1%;"></a>
-                                                <a href="javascript:submit_calForm(document.cal_form);"><input type="button"class="main-btn01" value="저장"style="float: right; margin-top: 3%; margin-left: 1%;"></a>
+                                                <a href="javascript:submit_scheAdd(document.cal_form);"><input type="button"class="main-btn01" value="저장"style="float: right; margin-top: 3%; margin-left: 1%;"></a>
+                                                <!-- <button class="main-btn01" type="button" onclick="click_ok();">TEST</button> -->
                                              </div>
                                              </form>
                                           </div>
@@ -268,36 +269,50 @@
                autoSize : false, // 오토리사이즈(body등 상위태그의 설정에 따른다)
                showOn : "focus", // 엘리먼트와 이미지 동시 사용
             });
+      
+      $("#cal_startDate").datepicker('setDate','today');
+      $("#cal_endDate").datepicker('setDate','today');
 
       $("#cal_time1, #cal_time2").timepicker({ //시간선택
          controlType : 'select',
          timeFormat : "HH:mm" //24시
-
       });
       
-      function submit_calForm(form) {
-/*     	  if($("#cal_sort").val() == "") {
-         	 alert("구분을 선택해주세요.");
-         	 return false;
-          } else if($("#cal_title").val() == ""){
-            alert("제목을 입력해주세요");
-            return false;
-         } else if($("#cal_startDate").val() == "" || $("#cal_endDate").val() == ""){
-            alert("날짜를 선택해주세요.");
-            return false;
+     // var start_dt = $("#cal_startDate") + ${("#cal_time1")}
+      
+      
+
+      
+//       function submit_calForm(form) {
+//      	  if($("#cal_sort").val() == "") {
+//          	 alert("구분을 선택해주세요.");
+//          	 return false;
+//           } else if($("#cal_title").val() == ""){
+//             alert("제목을 입력해주세요");
+//             return false;
+//          } else if($("#cal_startDate").val() == "" || $("#cal_endDate").val() == ""){
+//             alert("날짜를 선택해주세요.");
+//             return false;
             
-         } else if($("#cal_startDate").val() > $("#cal_endDate").val()) {
-            alert("시작일이 종료일보다 큽니다.");
-            return false;
-         } else if($("#cal_time1").val() == "" || $("#cal_time2").val() == "") {
-            alert("시간을 선택해주세요.")
-            return false;
-         } */
+//          } else if($("#cal_startDate").val() > $("#cal_endDate").val()) {
+//             alert("시작일이 종료일보다 큽니다.");
+//             return false;
+//          } else if($("#cal_time1").val() == "" || $("#cal_time2").val() == "") {
+//             alert("시간을 선택해주세요.")
+//             return false;
+//          } 
          
-//          form.action = "";
+//          form.action = "/aTest";
 //          form.submit();
       
+//       };
+      
+      function submit_scheAdd(form) {
+    	  form.action ="/calendarAdded";
+    	  form.submit();
       };
+      
+      
    </script>
 
    <!-- Required Jquery -->

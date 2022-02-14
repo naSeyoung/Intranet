@@ -15,13 +15,13 @@ public class FreeBoardController {
 	public String FreeBoardList(Locale locale, Model model) {
 		System.out.println("자유게시판 이동");
 		
-		return "freeboard/freeBoardList.tiles";
+		return "freeboard/freeBoardList";
 	}
 	//자유게시판 등록 
-	@RequestMapping(value="/FreeBoardReg",method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public String FreeBoardReg(Locale locale, Model model) {
 		
-		return "freeboard/freeBoardReg.tiles";
+		return "freeboard/freeBoardReg";
 	}
 	
 }

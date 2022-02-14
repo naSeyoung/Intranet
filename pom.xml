@@ -92,14 +92,6 @@
 			<!-- <scope>provided</scope> -->
 			<version>8.5.24</version>
 		</dependency>
-		<!-- DB 관련 라이브러리 -->
-		<dependency>
-			<groupId>oracle</groupId>
-			<artifactId>ojdbc6</artifactId>
-			<version>11.2.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/ojdbc6.jar</systemPath>
-		</dependency>
 
 		<!-- DateUtil 양력/음력 변환 icu4j라이브러리 -->
 		<dependency>

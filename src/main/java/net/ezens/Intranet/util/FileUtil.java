@@ -15,7 +15,7 @@ public class FileUtil {
 	public String saveFile(MultipartFile mfile, String Path) throws IllegalStateException, IOException {
 		String originalFile = mfile.getOriginalFilename();										//업로드시 파일 이름
 		String originalFileExtension = originalFile.substring(originalFile.lastIndexOf(".")); 			//확장자
-		String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension; //저장될 식별 아이디
+		String storedFileName = UUID.randomUUID().toString().replaceAll("-", ""); //저장될 식별 아이디
 		
 		//파일 저장 (realPath + filePath)
 		File file = new File(Path + storedFileName) ;	//경로+파일

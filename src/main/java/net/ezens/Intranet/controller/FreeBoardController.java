@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/freeboard") 
 public class FreeBoardController {
 	//자유 게시판 
 	@RequestMapping(value="/FreeBoardList", method = RequestMethod.GET)
@@ -22,6 +21,12 @@ public class FreeBoardController {
 	public String FreeBoardReg(Locale locale, Model model) {
 		
 		return "freeboard/freeBoardReg.tiles";
+	}
+	//자유게시판 상세
+	@RequestMapping(value="/FreeBoardDetail", method = RequestMethod.GET)
+	public String FreeBoardDetail(Locale locale, Model model) {
+		
+		return "freeboard/freeBoardDetail.tiles";
 	}
 	
 }

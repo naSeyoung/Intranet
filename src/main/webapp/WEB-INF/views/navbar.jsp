@@ -187,7 +187,7 @@
                               class="pcoded-mtext">게시판</span> <span class="pcoded-mcaret"></span>
                         </a>
                            <ul class="pcoded-submenu">
-                              <li class=" "><a href="freeboard/FreeBoardList"
+                              <li class=" "><a href="FreeBoardList"
                                  class="waves-effect waves-dark"> <span
                                     class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
                                     class="pcoded-mtext">게시판목록</span> <span

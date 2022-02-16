@@ -17,6 +17,8 @@
 
 
 </head>
+<script type="text/javascript"
+	src="../resources/plugins/ckeditor/ckeditor.js"></script>
 <body>
 	<!-- Pre-loader start -->
 	<%-- <%
@@ -102,19 +104,33 @@ String headerPage = "/WEB-INF/views/header.jsp";
 																	type="button" value="검색">추가</button>
 																<input id="input_file" multiple="multiple" type="file"
 																	style="display: none;" /> <span
-																	style="font-size: 15px; color: gray;">※첨부파일은 최대
+																	style="font-size: 15px; color: gray;">&nbsp;&nbsp; ※첨부파일은 최대
 																	5개까지 등록이 가능합니다.</span>
 															</div>
 															<div class="data_file_txt" id="data_file_txt"
 																style="margin: 40px;">
 																<span>첨부 파일</span> <br />
-																<div id="articlefileChange"></div>
+																<div id="articlefileChange">
+																<table class="main-table02">
+																	<!--	 <thead>
+																		<tr>
+																			<th scope="row" class="table-info">번호</th>
+																			<th scope="row" class="table-info">파일명</th>
+																			<th scope="row" class="table-info">삭제</th>
+																		</tr>
+																	<thead>
+																<tbody>
+																		<tr>
+																			<td id="main-table02-num"  >1</td>
+																			<td style="width: 60%;">mark</td>
+																		</tr>
+																	</tbody> -->
+																</table>
+																</div>
 															</div>
 															<div>
 																<button class="main-btn01" type="submit"
 																	style="float: right;" value="검색">등록하기</button>
-
-
 															</div>
 														</div>
 													</div>
@@ -130,8 +146,7 @@ String headerPage = "/WEB-INF/views/header.jsp";
 		</div>
 	</div>
 </body>
-<script type="text/javascript"
-	src="../resources/plugins/ckeditor/ckeditor.js"></script>
+
 <script>
 $(document).ready(function(){
 	//input file 파일 첨부시 fileCheck 함수 실행 
@@ -157,20 +172,20 @@ function fileCheck(e) {
     var filesArr = Array.prototype.slice.call(files);
     // 파일 개수 확인 및 제한
     if (fileCount + filesArr.length > totalCount) {
-      $.alert('파일은 최대 '+totalCount+'개까지 업로드 할 수 있습니다.');
+     alert('파일은 최대 '+totalCount+'개까지 업로드 할 수 있습니다.');
       return;
     } else {
     	 fileCount = fileCount + filesArr.length;
     }
-    // 각각의 파일 배열담기 및 기타
-    filesArr.forEach(function (f) {
+     // 각각의 파일 배열담기 및 기타
+     filesArr.forEach(function (f) {
       var reader = new FileReader();
       reader.onload = function (e) {
         content_files.push(f);
         $('#articlefileChange').append(
        		'<div id="file' + fileNum + '" onclick="fileDelete(\'file' + fileNum + '\')">'
        		+ '<font style="font-size:12px">' + f.name + '</font>'  
-       		+ '<img src="/img/icon_minus.png" style="width:20px; height:auto; vertical-align: middle; cursor: pointer;"/>' 
+       		+ '&nbsp;&nbsp;&nbsp;&nbsp;<img src="../resources/img/minus.png" style="width:20px; height:auto; vertical-align: middle; cursor: pointer;"/>' 
        		+ '<div/>'
 		);
         fileNum ++;
@@ -181,6 +196,24 @@ function fileCheck(e) {
     //초기화 한다.
     $("#input_file").val("");
   }
+    
+    // 각각의 파일 배열담기 및 기타
+  //  filesArr.forEach(function (f) {
+ //     var reader = new FileReader();
+ //     reader.onload = function (e) {
+ //       content_files.push(f);
+ //       $('.main-table02').append(
+//  '<tbody><tr><td id="main-table02-num">' + fileNum + '</td><td style="width: 60%;">' 
+// 	+ f.name + '</td><td><button class="main-btn01" onclick="fileDelete(\'file' + fileNum + '\')">삭제하기</button></td></tr></tbody>'
+//		);
+//        fileNum ++;
+ //     };
+ //     reader.readAsDataURL(f);
+ //   });
+ //   console.log(content_files);
+    
+
+   
 //파일 부분 삭제 함수
 function fileDelete(fileNum){
     var no = fileNum.replace(/[^0-9]/g, "");

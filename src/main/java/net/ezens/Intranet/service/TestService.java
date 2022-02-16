@@ -9,11 +9,10 @@ import net.ezens.Intranet.mapper.TestMapper;
 @Service
 public class TestService {
 
-//	@Autowired
-//	TestMapper testMapper;
+	@Autowired
+	TestMapper testMapper;
 	
 	public TestModel selectTest() {
-//		return testMapper.selectTest();
-		return new TestModel("1", "1", "1", "1");
+		return testMapper.selectTest();
 	}
 }

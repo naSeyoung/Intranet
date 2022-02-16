@@ -15,11 +15,27 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import net.ezens.Intranet.dto.TestModel;
 import net.ezens.Intranet.service.TestService;
 import net.ezens.Intranet.util.FileUtil;
+import net.ezens.Intranet.util.PropertyUtil;
 
 @RestController
 public class TestController { 
 	
 	private static final Logger logger = LoggerFactory.getLogger(TestController.class);
+	
+	private String boardFilePath;
+	private String apprFilePath;
+	private String scheFilePath;
+
+	private String FILE_LOCATION = "property/fileLocation.properties";
+	
+	private PropertyUtil flProp;
+	
+	public TestController() {
+		flProp = new PropertyUtil(FILE_LOCATION);
+		boardFilePath = flProp.get("board.file.path");
+		apprFilePath = flProp.get("appr.file.path");
+		scheFilePath = flProp.get("schedule.file.path");
+	}
 	
 	@Autowired
 	TestService TestService;
@@ -51,5 +67,16 @@ public class TestController {
 		} 
 		
 		return localPath+fileName;
+	}
+	
+	@RequestMapping("/propTest")
+	public String propTest() {
+		String result = "";
+		
+		result += boardFilePath + " ";
+		result += apprFilePath + " ";
+		result += scheFilePath + " ";
+		
+		return result;
 	}
 }

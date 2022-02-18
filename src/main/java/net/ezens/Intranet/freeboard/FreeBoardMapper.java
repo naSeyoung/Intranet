@@ -1,12 +1,10 @@
 package net.ezens.Intranet.freeboard;
 
-import java.util.List;
-
-import org.springframework.stereotype.Repository;
+import org.apache.ibatis.annotations.Mapper;
 
 import net.ezens.Intranet.freeboard.model.FreeBoard;
 
-@Repository
+@Mapper
 public interface FreeBoardMapper {
 	
 	void insContents(FreeBoard freeBoard,String board_Seq);

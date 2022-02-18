@@ -109,17 +109,15 @@ String headerPage = "/WEB-INF/views/header.jsp";
 															</div>
 															<div class="data_file_txt" id="data_file_txt"
 																style="margin: 40px;">
-																<span>첨부 파일</span> <br />
 																<div id="articlefileChange">
 																<table class="main-table02">
-																	<!--	 <thead>
+																		 <thead>
 																		<tr>
-																			<th scope="row" class="table-info">번호</th>
+																			<th scope="row" class="table-info">구분</th>
 																			<th scope="row" class="table-info">파일명</th>
-																			<th scope="row" class="table-info">삭제</th>
 																		</tr>
 																	<thead>
-																<tbody>
+															<!--	<tbody>
 																		<tr>
 																			<td id="main-table02-num"  >1</td>
 																			<td style="width: 60%;">mark</td>
@@ -178,14 +176,14 @@ function fileCheck(e) {
     	 fileCount = fileCount + filesArr.length;
     }
      // 각각의 파일 배열담기 및 기타
-     filesArr.forEach(function (f) {
+   /*   filesArr.forEach(function (f) {
       var reader = new FileReader();
       reader.onload = function (e) {
         content_files.push(f);
         $('#articlefileChange').append(
        		'<div id="file' + fileNum + '" onclick="fileDelete(\'file' + fileNum + '\')">'
        		+ '<font style="font-size:12px">' + f.name + '</font>'  
-       		+ '&nbsp;&nbsp;&nbsp;&nbsp;<img src="../resources/img/minus.png" style="width:20px; height:auto; vertical-align: middle; cursor: pointer;"/>' 
+       		+ '&nbsp;&nbsp;&nbsp;&nbsp;' 
        		+ '<div/>'
 		);
         fileNum ++;
@@ -194,24 +192,25 @@ function fileCheck(e) {
     });
     console.log(content_files);
     //초기화 한다.
-    $("#input_file").val("");
+  
+  } */
+    
+     //각각의 파일 배열담기 및 기타
+    filesArr.forEach(function (f) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        content_files.push(f);
+        $('.main-table02').append(
+  '<tbody><tr><td class="main-table02-num" style="width:5%;"><button  onclick="fileDelete(\'file' + fileNum + '\')"><img src="../resources/static/img/minus.png"/></button></td><td>' 
+ 	+ f.name + '</td></tr></tbody>'
+		);
+        fileNum ++;
+     };
+     reader.readAsDataURL(f);
+   });
+  console.log(content_files);
+  $("#input_file").val("");
   }
-    
-    // 각각의 파일 배열담기 및 기타
-  //  filesArr.forEach(function (f) {
- //     var reader = new FileReader();
- //     reader.onload = function (e) {
- //       content_files.push(f);
- //       $('.main-table02').append(
-//  '<tbody><tr><td id="main-table02-num">' + fileNum + '</td><td style="width: 60%;">' 
-// 	+ f.name + '</td><td><button class="main-btn01" onclick="fileDelete(\'file' + fileNum + '\')">삭제하기</button></td></tr></tbody>'
-//		);
-//        fileNum ++;
- //     };
- //     reader.readAsDataURL(f);
- //   });
- //   console.log(content_files);
-    
 
    
 //파일 부분 삭제 함수

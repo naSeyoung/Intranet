@@ -18,7 +18,7 @@ public class FileUtil {
 	//실제 파일 저장 메소드
 	public List<FileInfoDto> saveFiles(List<MultipartFile> mpFiles, String upLoadPath) throws IllegalStateException, IOException {
 		String fileSeparator = File.separator;
-		String replacedPath = upLoadPath.replaceAll("\\/", fileSeparator);
+		String replacedPath = upLoadPath.replaceAll("\\\\/", fileSeparator);
 		
 		List<FileInfoDto> fileList = new ArrayList<FileInfoDto>();
 		int cnt = 1;
@@ -36,6 +36,7 @@ public class FileUtil {
 			if(!file.isDirectory()) {
 				file.mkdirs();
 			}
+			
 			mpFile.transferTo(file);						//파일저장
 			
 			logger.info("file path : " + file.getPath());

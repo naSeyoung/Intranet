@@ -54,7 +54,7 @@ public class DataSourceConfig {
         org.apache.ibatis.session.Configuration configuration = sqlSessionFactory.getConfiguration();
         
         /* 실제DB컬럼명 스네이크 표기법 = 카멜케이스 표기법 맵핑 */
-//        configuration.setMapUnderscoreToCamelCase(true);
+        configuration.setMapUnderscoreToCamelCase(true);
  
         return sqlSessionFactory;
     }

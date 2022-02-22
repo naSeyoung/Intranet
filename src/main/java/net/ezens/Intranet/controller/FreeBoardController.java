@@ -5,12 +5,11 @@ import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
-import lombok.Value;
-import net.ezens.Intranet.freeboard.FreeBoardService;
-import net.ezens.Intranet.freeboard.model.FreeBoard;
+import net.ezens.Intranet.dto.FreeBoardDto;
+import net.ezens.Intranet.service.FreeBoardService;
 
 @Controller
 public class FreeBoardController {
@@ -20,22 +19,28 @@ public class FreeBoardController {
 	//private String board_Seq;
 	
 	//자유 게시판 
-	@RequestMapping(value="/FreeBoardList", method = RequestMethod.GET)
+	@GetMapping(value="/FreeBoardList")
 	public String FreeBoardList(Locale locale, Model model) {
 		System.out.println("자유게시판 이동");
 		
 		return "freeboard/freeBoardList.tiles";
 	}
 	//자유게시판 등록 
-	@RequestMapping(value="/FreeBoardReg",method = RequestMethod.GET)
-	public String FreeBoardReg(FreeBoard freeBoard,String board_Seq) {
-		boardService.insContents(freeBoard, board_Seq);
-	//return "freeboard/freeBoardReg.tiles";
-		return "";
+	@GetMapping(value="/FreeBoardReg")
+	public String FreeBoardReg(FreeBoardDto freeBoard) {
+		
+	return "freeboard/freeBoardReg.tiles";
 	}
 	
+	//등록 후 
+	@PostMapping(value="/FreeBoardRegFin")
+	public String FreeBoardReged(FreeBoardDto freeBoard) {
+		boardService.insContents(freeBoard);
+		System.out.println("=========FreeBoardRegFin==========진입완료");
+	return "redirect:/freeboard/freeBoardList.tiles";
+	}
 	//자유게시판 상세
-	@RequestMapping(value="/FreeBoardDetail", method = RequestMethod.GET)
+	@GetMapping(value="/FreeBoardDetail")
 	public String FreeBoardDetail(Locale locale, Model model) {
 		
 		return "freeboard/freeBoardDetail.tiles";

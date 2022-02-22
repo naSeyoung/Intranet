@@ -1,9 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="net.ezens.Intranet.freeboard.FreeBoardMapper">
+<mapper namespace="net.ezens.Intranet.mapper.FreeBoardMapper">
 
-<insert id="insContents" parameterType="net.ezens.Intranet.freeboard.model.FreeBoard">
-
-</insert>
+	<insert id="insContents" parameterType="FreeBoardDto">
+		INSERT INTO TB_INTRA_BOARD_INFO(
+		BOARD_SEQ
+		, MST_SEQ
+		, CP_INFO_SEQ
+		, TITLE
+		, USER_ID
+		, REG_DT
+		, DEL_YN
+		, VIEW_CNT
+		, TYPE_CD
+		, RECOMEND_CNT
+		, CONTENTS
+		)
+		VALUES (
+		#{boardSeq,jdbcType=INTEGER}
+		, #{mstSeq,jdbcType=INTEGER}
+		, #{cpInfoSeq,jdbcType=INTEGER}
+		, #{title,jdbcType=VARCHAR}
+		, #{userId,jdbcType=VARCHAR}
+		, #{regDt,jdbcType=DATE}
+		, 'N'
+		, #{viewCnt,jdbcType=INTEGER}
+		, 'ABC1'
+		, #{recomendCnt,jdbcType=INTEGER}
+		, #{contents,jdbcType=VARCHAR})
+		
+	</insert>
 
 </mapper>

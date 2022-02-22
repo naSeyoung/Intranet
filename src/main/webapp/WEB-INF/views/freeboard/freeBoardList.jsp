@@ -95,22 +95,10 @@
 	<thead>
 	<tbody>
 		<tr>
-			<td id="main-table02-num">1</td>
-			<td style="width: 60%;">mark</td>
-						<td>mark</td>
-						<td>mark</td>
-					</tr>
-					<tr>
-						<td id="main-table02-num">2</td>
-						<td>mark</td>
-						<td>mark</td>
-						<td>mark</td>
-					</tr>
-					<tr>
-						<td id="main-table02-num">2</td>
-						<td>mark</td>
-						<td>mark</td>
-						<td>mark</td>
+			<td id="main-table02-num">${boardSeq}</td>
+			<td style="width: 60%;">${title}</td>
+						<td>${userId}</td>
+						<td>${regDt}</td>
 					</tr>
 				</tbody>
 			</table>

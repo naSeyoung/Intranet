@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="net.ezens.Intranet.mapper.FreeBoardMapper">
-
+	
+	<select id="insList" resultType="FreeBoardDto" >
+		SELECT board_seq,title, user_id, reg_dt
+		FROM TB_INTRA_BOARD_INFO
+	</select>
 	<insert id="insContents" parameterType="FreeBoardDto">
 		INSERT INTO TB_INTRA_BOARD_INFO(
 		BOARD_SEQ
@@ -14,21 +18,19 @@
 		, VIEW_CNT
 		, TYPE_CD
 		, RECOMEND_CNT
-		, CONTENTS
-		)
+		, CONTENTS )
 		VALUES (
-		#{boardSeq,jdbcType=INTEGER}
-		, #{mstSeq,jdbcType=INTEGER}
-		, #{cpInfoSeq,jdbcType=INTEGER}
+		(SELECT NVL(MAX(BOARD_SEQ),0)+1 FROM TB_INTRA_BOARD_INFO),
+		(SELECT NVL(MAX(MST_SEQ),0)+1 FROM TB_INTRA_BOARD_INFO),
+		(SELECT NVL(MAX(CP_INFO_SEQ),0)+1 FROM TB_INTRA_BOARD_INFO)
 		, #{title,jdbcType=VARCHAR}
 		, #{userId,jdbcType=VARCHAR}
 		, #{regDt,jdbcType=DATE}
-		, 'N'
+		, #{delYn,jdbcType=VARCHAR}
 		, #{viewCnt,jdbcType=INTEGER}
-		, 'ABC1'
+		, #{typeCd,jdbcType=VARCHAR}
 		, #{recomendCnt,jdbcType=INTEGER}
-		, #{contents,jdbcType=VARCHAR})
-		
+		, #{contents,jdbcType=VARCHAR}) 
 	</insert>
 
 </mapper>

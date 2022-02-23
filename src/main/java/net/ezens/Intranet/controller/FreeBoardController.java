@@ -20,9 +20,9 @@ public class FreeBoardController {
 	
 	//자유 게시판 
 	@GetMapping(value="/FreeBoardList")
-	public String FreeBoardList(Locale locale, Model model) {
+	public String FreeBoardList(FreeBoardDto freeBoard,Model d) {
 		System.out.println("자유게시판 이동");
-		
+		d.addAttribute("list",boardService.insList(freeBoard));
 		return "freeboard/freeBoardList.tiles";
 	}
 	//자유게시판 등록 
@@ -37,7 +37,8 @@ public class FreeBoardController {
 	public String FreeBoardReged(FreeBoardDto freeBoard) {
 		boardService.insContents(freeBoard);
 		System.out.println("=========FreeBoardRegFin==========진입완료");
-	return "redirect:/freeboard/freeBoardList.tiles";
+	 return "redirect:/FreeBoardList";
+	
 	}
 	//자유게시판 상세
 	@GetMapping(value="/FreeBoardDetail")

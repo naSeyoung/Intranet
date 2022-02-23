@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+   <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -38,7 +38,7 @@ String headerPage = "/WEB-INF/views/header.jsp";
 				<!-- .pcoded-navbar 부분 -->
 				<%-- <jsp:include page="<%=navbarPage%>" /> --%>
 
-				<form id="contentsForm" action="/FreeBoardRegFin" method="POST" enctype="multipart/form-data">
+				<form id="contentsForm" action="/FreeBoardRegFin" method="POST"  onsubmit="registerAction()" enctype="multipart/form-data">
 					<div class="pcoded-content">
 						<!-- 지우지말기 -->
 						<!-- Page-header end -->
@@ -53,19 +53,20 @@ String headerPage = "/WEB-INF/views/header.jsp";
 												<div class="card">
 													<div class="card-header">
 														<h2>게시글작성</h2>
-														<div class="card-header-right">
-															<ul class="list-unstyled card-option">
-																<li><i class="fa fa fa-wrench open-card-option"></i>
-																</li>
-																<li><i class="fa fa-window-maximize full-card"></i>
-																</li>
-																<li><i class="fa fa-minus minimize-card"></i></li>
-																<li><i class="fa fa-refresh reload-card"></i></li>
-																<li><i class="fa fa-trash close-card"></i></li>
-															</ul>
-														</div>
+			<div class="card-header-right">
+				<ul class="list-unstyled card-option">
+					<li><i class="fa fa fa-wrench open-card-option"></i>
+					</li>
+					<li><i class="fa fa-window-maximize full-card"></i>
+					</li>
+					<li><i class="fa fa-minus minimize-card"></i></li>
+					<li><i class="fa fa-refresh reload-card"></i></li>
+					<li><i class="fa fa-trash close-card"></i></li>
+				</ul>
+			</div>
 													</div>
 													<div class="card-block table-border-style">
+													
 														<div class="table-responsive">
 															<table class="main-table01">
 																<tbody>
@@ -113,19 +114,16 @@ String headerPage = "/WEB-INF/views/header.jsp";
 		<table class="main-table02">
 				 <thead>
 				<tr>
-					<th scope="row" class="table-info">구분</th>
-					<th scope="row" class="table-info">파일명</th>
+					<th scope="row" class="table-info"  >구분</th>
+					<th scope="row" class="table-info" style="width:90%;">파일명</th>
 				</tr>
 			<thead>
-	<!--	<tbody>
-				<tr>
-					<td id="main-table02-num"  >1</td>
-					<td style="width: 60%;">mark</td>
-				</tr>
-			</tbody> -->
+			<tbody id="tb01">
+			</tbody>
 		</table>
 		</div>
 	</div>
+
 	<div>
 		<button class="main-btn01" type="submit"
 			style="float: right;" value="검색" onclick="contentsSubmit">등록하기</button>
@@ -139,14 +137,30 @@ String headerPage = "/WEB-INF/views/header.jsp";
 								</div>
 							</div>
 							</div>
+							
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
+	
 </body>
 
 <script>
+/*  function contentsSubmit(){
+console.log("ㅇㅇㅇㅇㅇ");
+alert("등록완료");
+$.ajax({
+url:"/FreeBoardRegFin",
+method : "Post",
+data : $("#contentsForm").serialize(),
+dataType : "JSON", 
+}).done(function(){
+alert("글이 등록되었습니다. ");
+}).fail(function(error){
+alert(JSON.stringify(error));
+});
+}  */
 $(document).ready(function(){
 	//input file 파일 첨부시 fileCheck 함수 실행 
 	$("#input_file").on("change",fileCheck);
@@ -157,20 +171,7 @@ $(function () {
         $('#input_file').click();
     });
 });
- function contentsSubmit(){
-		console.log("ㅇㅇㅇㅇㅇ");
-	alert("등록완료");
-	$.ajax({
-		url:"/FreeBoardRegFin",
-		method : "Post",
-		data : $("#contentsForm").serialize(),
-		dataType : "JSON", 
-	}).done(function(){
-		alert("글이 등록되었습니다. ");
-	}).fail(function(error){
-		alert(JSON.stringify(error));
-	});
-} 
+
 //파일 현재 필드 숫자 totalCount랑 비교값 
 var fileCount = 0;
 //해당 숫자를 수정하여 전체 업로드 갯수를 정한다. 
@@ -183,6 +184,7 @@ function fileCheck(e) {
     var files = e.target.files;
     // 파일 배열 담기
     var filesArr = Array.prototype.slice.call(files);
+    console.log("filesArr ----> " + filesArr);
     // 파일 개수 확인 및 제한
     if (fileCount + filesArr.length > totalCount) {
      alert('파일은 최대 '+totalCount+'개까지 업로드 할 수 있습니다.');
@@ -190,51 +192,46 @@ function fileCheck(e) {
     } else {
     	 fileCount = fileCount + filesArr.length;
     }
-     // 각각의 파일 배열담기 및 기타
-   /*   filesArr.forEach(function (f) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        content_files.push(f);
-        $('#articlefileChange').append(
-       		'<div id="file' + fileNum + '" onclick="fileDelete(\'file' + fileNum + '\')">'
-       		+ '<font style="font-size:12px">' + f.name + '</font>'  
-       		+ '&nbsp;&nbsp;&nbsp;&nbsp;' 
-       		+ '<div/>'
-		);
-        fileNum ++;
-      };
-      reader.readAsDataURL(f);
-    });
-    console.log(content_files);
-    //초기화 한다.
-  
-  } */
-    
      //각각의 파일 배열담기 및 기타
     filesArr.forEach(function (f) {
       var reader = new FileReader();
       reader.onload = function (e) {
         content_files.push(f);
-        $('.main-table02').append(
-  '<tbody><tr><td class="main-table02-num" style="width:5%;"><button  onclick="fileDelete(\'file' + fileNum + '\')"><img src="../resources/static/img/minus.png"/></button></td><td>' 
- 	+ f.name + '</td></tr></tbody>'
-		);
+        console.log("content_files.push(f) ---->" + content_files.push(f)); //왜 두개씩 ? 추가? 
+        $('#tb01').append(
+  /*       		
+  '<tbody><tr><td class="main-table02-num" style="width:10%;">'
+  +'<img src="../resources/static/img/del.png" onclick="fileDelete(\'file'+fileNum+'\')" style=" vertical-align: middle; cursor: pointer; "/>'
+  +'<td font style="font-size:12px" >' + f.name + '</td></tr></tbody>'
+   */
+  '<tr><td class="main-table02-num" style="width:10%;"><div id="file' + fileNum + '" onclick="fileDelete(\'file' + fileNum + '\')">'
+  +'<img src="../resources/static/img/del.png" style=" vertical-align: middle; cursor: pointer; "/>'
+  +'<td font style="font-size:12px" >' + f.name + '</td></tr></tbody>'
+		); 
         fileNum ++;
      };
      reader.readAsDataURL(f);
    });
-  console.log(content_files);
+  console.log("파일이름 : " + content_files );
+  console.log("파일이름 : " + fileNum  );
   $("#input_file").val("");
   }
 
    
 //파일 부분 삭제 함수
 function fileDelete(fileNum){
-    var no = fileNum.replace(/[^0-9]/g, "");
+ 	console.log("fileDelete 누름");
+	var no = fileNum.replace(/[^0-9]/g, "");
+    console.log("no ---> " + no);
     content_files[no].is_delete = true;
-	$('#' + fileNum).remove();
+//   	console.log("content_files[no] ---> "+content_files[no]);
+//   	console.log("content_files ---> "+content_files);
+	$('#'+fileNum).parent().parent().remove(); //1번쨰 시도 
+	console.log('hehe');
+	//$('tbody').remove(); //다른 방법 시도 
+// 	console.log($('tbody td').eq(fileNum).remove());
 	fileCount --;
-    console.log(content_files);
+//     console.log(content_files);
 }
 
 // 폼 submit 로직 ---> 여기서부터 맞게 수정해야함 삭제까진 돌아감 

@@ -66,6 +66,14 @@
 	white-space:nowrap; /*text의 길이가 길어지면 자동으로 줄이 바뀌는데 이를 한줄로 설정한다. */
 	overflow:hidden; /*width가 고정되어 있는 상태에서 text가 길어지면 해당 element를 넘어서는데 이를 표시하지 않음 */
 }
+#fileImgBtn{ /*파일첨부 삭제이모지 버튼*/
+	background-color:transparent;
+	margin:auto;
+	border:0px;
+	text-align:center;
+	display:block;
+	
+}
 .main-btn01:active, .main-btn01:focus { outline:none !important;}
 .pcoded-content{width:1250px;}
  

@@ -57,7 +57,7 @@
 				<div class="card-block table-border-style">
 <!-- ----------------------datepicker----------------------------------------------- -->
 <div class="fixed-box" >
-	<form id="searchFrm" name="searchFrm">
+	<form id="searchFrm" name="searchFrm" method="post">
 	
 	<div class="select-box" style="float:left;  height:30px;">
 	<span style="margin-left:5%; margin-right:3%;">일자  </span>
@@ -94,12 +94,14 @@
 		</tr>
 	<thead>
 	<tbody>
+	<c:forEach var="board" items="${list}" varStatus="status">
 		<tr>
-			<td id="main-table02-num">${boardSeq}</td>
-			<td style="width: 60%;">${title}</td>
-						<td>${userId}</td>
-						<td>${regDt}</td>
+			<td id="main-table02-num">${board.boardSeq}</td>
+			<td style="width: 60%;">${board.title}</td>
+						<td>${board.userId}</td>
+						<td>${board.regDt}</td>
 					</tr>
+	</c:forEach>
 				</tbody>
 			</table>
 			<div>

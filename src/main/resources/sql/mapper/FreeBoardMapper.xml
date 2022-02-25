@@ -32,5 +32,14 @@
 		, #{recomendCnt,jdbcType=INTEGER}
 		, #{contents,jdbcType=VARCHAR}) 
 	</insert>
-
+	<select id="detail" resultType="FreeBoardDto" parameterType="int">
+		SELECT BOARD_SEQ, MST_SEQ , CP_INFO_SEQ , TITLE, USER_ID, REG_DT, CONTENTS
+		FROM TB_INTRA_BOARD_INFO
+		WHERE BOARD_SEQ = #{boardSeq}
+	
+	</select>
+<!-- 	<delete id="delContents" parameterType="int">
+		DELETE FROM TB_INTRA_BOARD_INFO 
+		WHERE BOARD_SEQ = #{board_seq} 
+	</delete> -->
 </mapper>

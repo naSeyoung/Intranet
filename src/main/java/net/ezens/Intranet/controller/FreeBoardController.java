@@ -42,9 +42,11 @@ public class FreeBoardController {
 	}
 	//자유게시판 상세
 	@GetMapping(value="/FreeBoardDetail")
-	public String FreeBoardDetail(Locale locale, Model model) {
-		
+	public String FreeBoardDetail(int boardSeq, Model d) {
+		System.out.println("상세페이지 이동");
+		d.addAttribute("vo", boardService.detail(boardSeq));
 		return "freeboard/freeBoardDetail.tiles";
 	}
+	
 	
 }

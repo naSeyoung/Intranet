@@ -13,5 +13,5 @@ public interface FreeBoardMapper {
 	
 	void insContents(FreeBoardDto freeBoard);
 	ArrayList<FreeBoardDto> insList(FreeBoardDto freeBoard);			
-	
+	FreeBoardDto detail(int boardSeq);
 }

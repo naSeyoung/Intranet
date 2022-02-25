@@ -66,6 +66,23 @@
 	white-space:nowrap; /*text의 길이가 길어지면 자동으로 줄이 바뀌는데 이를 한줄로 설정한다. */
 	overflow:hidden; /*width가 고정되어 있는 상태에서 text가 길어지면 해당 element를 넘어서는데 이를 표시하지 않음 */
 }
+.upbtn, .delbtn, .listbtn{
+	width:70px;
+	cursor:pointer;
+	background-color:#448aff;
+ 	border-color:#448aff; 
+	color:#fff;
+	border-radius:4px;
+	vertical-align:middle !important;
+	font-size:13px;
+	position:relative;
+	font-weight:520;
+	height:30px !important;
+	border: 0;outline: 0; /*음영제거*/
+	float:right;
+	margin-left:3%;
+	
+}
 #fileImgBtn{ /*파일첨부 삭제이모지 버튼*/
 	background-color:transparent;
 	margin:auto;

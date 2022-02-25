@@ -108,13 +108,13 @@ String headerPage = "/WEB-INF/views/header.jsp";
 			style="font-size: 15px; color: gray;">&nbsp;&nbsp; ※첨부파일은 최대 	5개까지 등록이 가능합니다.</span>
 	
 	</div>
-	<div class="data_file_txt" id="data_file_txt"
-		style="margin: 40px;">
+	<div class="data_file_txt" id="data_file_txt" style="margin-top:2%; margin-bottom:3%;">
+		
 		<div id="articlefileChange">
 		<table class="main-table02">
 				 <thead>
 				<tr>
-					<th scope="row" class="table-info"  >구분</th>
+					<th scope="row" class="table-info" >구분</th>
 					<th scope="row" class="table-info" style="width:90%;">파일명</th>
 				</tr>
 			<thead>
@@ -204,8 +204,8 @@ function fileCheck(e) {
   +'<img src="../resources/static/img/del.png" onclick="fileDelete(\'file'+fileNum+'\')" style=" vertical-align: middle; cursor: pointer; "/>'
   +'<td font style="font-size:12px" >' + f.name + '</td></tr></tbody>'
    */
-  '<tr><td class="main-table02-num" style="width:10%;"><div id="file' + fileNum + '" onclick="fileDelete(\'file' + fileNum + '\')">'
-  +'<img src="../resources/static/img/del.png" style=" vertical-align: middle; cursor: pointer; "/>'
+  '<tr><td class="main-table02-num" style="width:10%; text-align:center;"><div id="file' + fileNum + '" onclick="fileDelete(\'file' + fileNum + '\')">'
+  +'<img src="resources/img/minus.png" style=" vertical-align: middle; cursor: pointer; "/>'
   +'<td font style="font-size:12px" >' + f.name + '</td></tr></tbody>'
 		); 
         fileNum ++;
@@ -224,14 +224,9 @@ function fileDelete(fileNum){
 	var no = fileNum.replace(/[^0-9]/g, "");
     console.log("no ---> " + no);
     content_files[no].is_delete = true;
-//   	console.log("content_files[no] ---> "+content_files[no]);
-//   	console.log("content_files ---> "+content_files);
 	$('#'+fileNum).parent().parent().remove(); //1번쨰 시도 
 	console.log('hehe');
-	//$('tbody').remove(); //다른 방법 시도 
-// 	console.log($('tbody td').eq(fileNum).remove());
 	fileCount --;
-//     console.log(content_files);
 }
 
 // 폼 submit 로직 ---> 여기서부터 맞게 수정해야함 삭제까진 돌아감 

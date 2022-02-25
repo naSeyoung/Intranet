@@ -95,8 +95,8 @@
 	<thead>
 	<tbody>
 	<c:forEach var="board" items="${list}" varStatus="status">
-		<tr>
-			<td id="main-table02-num">${board.boardSeq}</td>
+		<tr class="dataRow">
+			<td class="boardSeq" id="main-table02-num">${board.boardSeq}</td>
 			<td style="width: 60%;">${board.title}</td>
 						<td>${board.userId}</td>
 						<td>${board.regDt}</td>
@@ -128,6 +128,12 @@
 </div>
 </body>
 <script>
+$(function(){
+	$(".dataRow").click(function(){
+		var boardSeq = $(this).find('.boardSeq').text();
+		location = "FreeBoardDetail?boardSeq=" + boardSeq +"";
+	});
+});
 $(document).ready(function() {
 	$(".datepicker").datepicker({
 		showButtonPanel: true,

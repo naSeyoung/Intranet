@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.ezens.Intranet.dto.FileInfoDto;
-import net.ezens.Intranet.dto.TestModel;
+import net.ezens.Intranet.dto.TestDto;
 import net.ezens.Intranet.service.TestService;
 import net.ezens.Intranet.util.FileUtil;
 import net.ezens.Intranet.util.PropertyUtil;
@@ -46,7 +46,7 @@ public class TestController {
 	@RequestMapping("/selectTest")
 	public String selectTest() {
 		String result = "";
-		TestModel model = TestService.selectTest();
+		TestDto model = TestService.selectTest();
 		result += model.toString();
 		logger.info("result : " + result);
 		return result;

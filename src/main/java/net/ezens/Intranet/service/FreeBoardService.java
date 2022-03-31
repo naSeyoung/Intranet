@@ -20,8 +20,14 @@ public class FreeBoardService {
 	public ArrayList<FreeBoardDto> insList(FreeBoardDto freeBoard){
 		return freeboardMapper.insList(freeBoard);
 	}
+	//상세보기
 	public FreeBoardDto detail(int boardSeq) {
 		return freeboardMapper.detail(boardSeq);
 	}
-
+	public void FreeBoardUpdate(FreeBoardDto freeBoard) {
+		 freeboardMapper.FreeBoardUpdatePost(freeBoard);
+	}
+	public void delContents(FreeBoardDto freeBoard) {
+		 freeboardMapper.delContents(freeBoard);
+	}
 }

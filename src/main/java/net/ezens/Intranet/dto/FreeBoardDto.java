@@ -33,4 +33,9 @@ public class FreeBoardDto {
 	private String contents;//게시글 내용
 	
 	private String typeCd;//구분_코드
+	
+	//freeBoardList 검색필터 
+	private String type; //검색 타입
+	private String schWord; //검색 내용 
+	private String all; //검색 전체
 }

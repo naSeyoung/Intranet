@@ -2,10 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="net.ezens.Intranet.mapper.FreeBoardMapper">
 	
-	<select id="insList" resultType="FreeBoardDto" >
+	<select id="insList" resultType="FreeBoardDto">
 		SELECT board_seq,title, user_id, reg_dt
 		FROM TB_INTRA_BOARD_INFO
+		WHERE DEL_YN = 'N'
+		<include refid="search"/>
 	</select>
+	<sql id="search">
+ 	<if test="type !=null and 'type.equals(all)'">
+				AND title LIKE '%' || #{schWord} || '%' 
+				OR user_id LIKE '%' || #{schWord} || '%' 
+				OR reg_dt LIKE '%' || #{schWord} || '%' 
+				OR contents LIKE '%' || #{schWord} || '%' 
+			</if>
+			<if test="type !=null and 'type.equals(sch_title)'">
+				AND title LIKE '%' || #{schWord} || '%' 
+			</if>
+			<if test="type !=null and 'type.equals(sch_id)'">
+				AND user_id LIKE '%' || #{schWord} || '%' 
+			</if>
+			<if test="type !=null and 'type.equals(sch_regDate)'">
+			AND reg_dt LIKE '%' || #{schWord} || '%' 
+			</if>	
+	</sql>
 	<insert id="insContents" parameterType="FreeBoardDto">
 		INSERT INTO TB_INTRA_BOARD_INFO(
 		BOARD_SEQ
@@ -26,7 +45,7 @@
 		, #{title,jdbcType=VARCHAR}
 		, #{userId,jdbcType=VARCHAR}
 		, #{regDt,jdbcType=DATE}
-		, #{delYn,jdbcType=VARCHAR}
+		, 'N'
 		, #{viewCnt,jdbcType=INTEGER}
 		, #{typeCd,jdbcType=VARCHAR}
 		, #{recomendCnt,jdbcType=INTEGER}
@@ -36,10 +55,16 @@
 		SELECT BOARD_SEQ, MST_SEQ , CP_INFO_SEQ , TITLE, USER_ID, REG_DT, CONTENTS
 		FROM TB_INTRA_BOARD_INFO
 		WHERE BOARD_SEQ = #{boardSeq}
-	
 	</select>
-<!-- 	<delete id="delContents" parameterType="int">
-		DELETE FROM TB_INTRA_BOARD_INFO 
-		WHERE BOARD_SEQ = #{board_seq} 
-	</delete> -->
+	<update id="FreeBoardUpdatePost" parameterType="FreeBoardDto">
+		UPDATE TB_INTRA_BOARD_INFO
+		SET TITLE=#{title}, CONTENTS=#{contents}
+		WHERE BOARD_SEQ=#{boardSeq} <!--  AND USER_ID=#{userId} -->
+	</update> 
+		<delete id="delContents" parameterType="FreeBoardDto">
+		<!-- DELETE FROM TB_INTRA_BOARD_INFO WHERE BOARD_SEQ = #{boardSeq} --> 
+		UPDATE TB_INTRA_BOARD_INFO
+		SET DEL_YN='Y'
+		WHERE BOARD_SEQ=#{boardSeq}
+	</delete> 
 </mapper>

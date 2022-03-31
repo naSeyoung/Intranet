@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <fmt:requestEncoding value="utf-8" />
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 
 <head>
@@ -16,7 +16,10 @@
 
 </head>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
+	integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <body>
 	<!-- Pre-loader start -->
 <!-- Pre-loader end -->
@@ -27,7 +30,6 @@
 <div class="pcoded-main-container">
 	<div class="pcoded-wrapper">
 		<!-- .pcoded-navbar 부분 -->
-<form method="POST">
 <div class="pcoded-content">
 	<!-- 지우지말기 -->
 <!-- Page-header end -->
@@ -55,85 +57,95 @@
 					</div>
 				</div>
 				<div class="card-block table-border-style">
-<!-- ----------------------datepicker----------------------------------------------- -->
-<div class="fixed-box" >
-	<form id="searchFrm" name="searchFrm" method="post">
+					<!-- ----------------------datepicker----------------------------------------------- -->
+<div class="fixed-box">
 	
-	<div class="select-box" style="float:left;  height:30px;">
-	<span style="margin-left:5%; margin-right:3%;">일자  </span>
-<input class="datepicker" id="startDate" name="startDate" style="width:34%;"readonly />
+		<div class="select-box"
+			style="float: left; height: 30px;">
+	<span style="margin-left: 5%; margin-right: 3%;">일자
+	</span> <input class="datepicker" id="startDate"
+		name="startDate" style="width: 34%;" readonly />
+	<!-- color="transparent" text-shadow="0 0 0 black" -->
+	<span>~</span> <input class="datepicker" id="endDate"
+		name="endDate" style="width: 34%;" readonly />
+
+</div>
 <!-- color="transparent" text-shadow="0 0 0 black" -->
-	<span>~</span>
-		<input class="datepicker" id="endDate" name="endDate" style="width:34%;" readonly />
-		
-</div>
-		<!-- color="transparent" text-shadow="0 0 0 black" -->
+<form id="searchFrm" name="searchFrm" method="Get">
 <div class="select-box">
-<select name="search-category"  style="float:left; height:30px; ">
-<option value="" selected="selected">전체</option>
-<option value="">제목</option>
-<option value="">작성자</option>
-<option value="">작성일자</option>
-</select>
-<input id="searchBoard" style="float:left; height:30px; width:35%; margin-left:1%;"/>
-<button class ="main-btn01" type="button" value="검색" style="margin-left:1%;">검색</button>
-<button class ="main-btn01" type="button" value="등록" style="margin-left:1%; font-color:white;" onclick="location.href='FreeBoardReg'"> 등록</button>
-</div>
-
-
-<div class="card-block table-border-style">
-	<div class="table-responsive" style="margin-top: 10px;">
-<table class="main-table02">
-	<thead>
-		<tr>
-			<th scope="row" class="table-info"
-				id="main-table02-num">번호</th>
-			<th scope="row" class="table-info">제목</th>
-			<th scope="row" class="table-info">작성자</th>
-			<th scope="row" class="table-info">작성일자</th>
-		</tr>
-	<thead>
-	<tbody>
-	<c:forEach var="board" items="${list}" varStatus="status">
-		<tr class="dataRow">
-			<td class="boardSeq" id="main-table02-num">${board.boardSeq}</td>
-			<td style="width: 60%;">${board.title}</td>
+	<select name="type" id="searchOption" style="float: left; height: 30px;">
+		<option value="all" ${freeBoard.type eq "all" ? "selected" : "" } >전체</option>
+		<option value="sch_title" ${freeBoard.type eq "sch_title" ? "selected" : "" } >제목</option>
+		<option value="sch_id" ${freeBoard.type eq "sch_id" ? "selected" : "" }>작성자</option>
+		<option value="sch_regDate" ${freeBoard.type eq "sch_regDate" ? "selected" : "" }>작성일자</option>
+		<option value="sch_title"<c:if test="${type=='sch_title'}"> selected </c:if>>제목</option>
+	</select> 
+	<input type="text" id="searchBoard" name="schWord" value="${param.schWord}" style="float: left; height: 30px; width: 35%; margin-left: 1%;" />
+	<button class="main-btn01" type="submit" value="검색" id="searchBtn" style="margin-left: 1%;">검색</button>
+		 
+	<button class="main-btn01" type="button" value="등록" style="margin-left: 1%; font-color: white;"
+	onclick="location.href='FreeBoardReg'">등록</button>
+		
+	</div>
+</form>
+<form id="contentsList" method="get" action="/FreeBoardList">
+	<div class="card-block table-border-style">
+		<div class="table-responsive" style="margin-top: 10px;">
+		<table class="main-table02" id="tableAjax">
+			<thead >
+				<tr>
+					<th scope="row" class="table-info"
+						id="main-table02-num">번호</th>
+					<th scope="row" class="table-info">제목</th>
+					<th scope="row" class="table-info">작성자</th>
+					<th scope="row" class="table-info">작성일자</th>
+				</tr>
+			<thead>
+			<tbody >
+				<c:forEach var="board" items="${list}"
+					varStatus="status">
+					<tr class="dataRow">
+						<td class="boardSeq" id="main-table02-num">${board.boardSeq}</td>
+						<td style="width: 60%;">${board.title}</td>
 						<td>${board.userId}</td>
 						<td>${board.regDt}</td>
 					</tr>
-	</c:forEach>
-				</tbody>
-			</table>
-			<div>
+				</c:forEach>
+																			</tbody>
+																		</table>
+																		<div></div>
+																	</div>
+																</div>
+																<input type="hidden" name="schWord" value="${param.schWord }"/>
+																<input type="hidden" name="type" value="${param.type }"/>
+															</form>
 
-			</div>
-		</div>
-	</div>
-</form>
-
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
-		</div>
-	</div>
-</div>
-</form>
-</div>
-		</div>
-	</div>
-</div>
 </body>
 <script>
+//let searchOption = '${searchOption};
+//$("#searchOption").val(searchOption).prop("selected",true);
 $(function(){
-	$(".dataRow").click(function(){
+	$(".dataRow").click(function(){ //상세페이지 이동 
 		var boardSeq = $(this).find('.boardSeq').text();
-		location = "FreeBoardDetail?boardSeq=" + boardSeq +"";
+		location = "FreeBoardDetail?boardSeq=" + boardSeq +""; 
 	});
 });
+var a = document.getElementById('searchOption').options[document.getElementById('searchOption').selectedIndex].text;
+alert(a);
 $(document).ready(function() {
 	$(".datepicker").datepicker({
 		showButtonPanel: true,
@@ -153,7 +165,9 @@ $(document).ready(function() {
 		}
 	});
 	$(".dateclick").dateclick();
-});
+
+	});
+		
 function setSearchDate(start){
     var num = start.substring(0,1);
     var str = start.substring(1,2);

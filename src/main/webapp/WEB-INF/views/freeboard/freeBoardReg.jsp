@@ -1,5 +1,5 @@
-   <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8" import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
@@ -17,8 +17,7 @@
 
 
 </head>
-<script type="text/javascript"
-	src="../resources/plugins/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="../resources/plugins/ckeditor/ckeditor.js"></script>
 <body>
 	<!-- Pre-loader start -->
 <%-- <%
@@ -32,101 +31,102 @@ String headerPage = "/WEB-INF/views/header.jsp";
 	<div class="pcoded-container navbar-wrapper">
 		<!-- .navbar header-navbar pcoded-header
 <!-- header 있는 자리  -->
-		<%-- <jsp:include page="<%=headerPage%>" /> --%>
-		<div class="pcoded-main-container">
-			<div class="pcoded-wrapper">
-				<!-- .pcoded-navbar 부분 -->
-				<%-- <jsp:include page="<%=navbarPage%>" /> --%>
+<%-- <jsp:include page="<%=headerPage%>" /> --%>
+<div class="pcoded-main-container">
+	<div class="pcoded-wrapper">
+		<!-- .pcoded-navbar 부분 -->
+<%-- <jsp:include page="<%=navbarPage%>" /> --%>
 
-				<form id="contentsForm" action="/FreeBoardRegFin" method="POST"  onsubmit="registerAction()" enctype="multipart/form-data">
-					<div class="pcoded-content">
-						<!-- 지우지말기 -->
-						<!-- Page-header end -->
-						<div class="pcoded-inner-content">
-							<!-- Main-body start -->
-							<div class="main-body">
-								<div class="page-wrapper">
-									<!-- Page-body start -->
-									<div class="page-body">
-										<div class="row">
-											<div class="col-sm-12">
-												<div class="card">
-													<div class="card-header">
-														<h2>게시글작성</h2>
-			<div class="card-header-right">
-				<ul class="list-unstyled card-option">
-					<li><i class="fa fa fa-wrench open-card-option"></i>
-					</li>
-					<li><i class="fa fa-window-maximize full-card"></i>
-					</li>
-					<li><i class="fa fa-minus minimize-card"></i></li>
-					<li><i class="fa fa-refresh reload-card"></i></li>
-					<li><i class="fa fa-trash close-card"></i></li>
-				</ul>
-			</div>
-													</div>
-													<div class="card-block table-border-style">
-													
-														<div class="table-responsive">
-															<table class="main-table01">
-																<tbody>
-																	<tr>
-																		<th scope="row" class="table-info"
-																			style="width: 10%;">제목</th>
-																		<td><input id="title" name="title"
-																			style="width: 100%; border: 0;" /></td>
-																	</tr>
-																	<tr>
-																		<th scope="row" class="table-info"
-																			style="width: 10%;">작성자</th>
-																		<td><input id="first_reg_user"
-																			name="userId"
-																			style="width: 100%; border: 0;" /></td>
-																	</tr>
-																	<tr>
-																		<th scope="row" class="table-info"
-																			style="width: 10%;">날짜</th>
-																		<td><input type="date" id="first-reg-dt" name="regDt"
-																			style="width: 100%; border: 0;" readonly /></td>
-																	</tr>
-																	<tr>
-																		<th scope="row" class="table-info"
-																			style="width: 10%;">내용</th>
-					<td><textarea id="editor" name="contents" rows=10
-							name="contents"></textarea></td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-
-	<div style="font-size: 20px; padding-bottom: 5px;">파일첨부</div>
-	<div>
-		<button id="btn-upload" type="button" class="main-btn01"
-			type="button" value="검색">추가</button>
-		<input id="input_file" multiple="multiple" type="file"
-			style="display: none;" /> <span
-			style="font-size: 15px; color: gray;">&nbsp;&nbsp; ※첨부파일은 최대 	5개까지 등록이 가능합니다.</span>
+<form id="contentsForm" action="/FreeBoardRegFin" method="POST"  onsubmit="registerAction()" enctype="multipart/form-data">
+<div class="pcoded-content">
+	<!-- 지우지말기 -->
+<!-- Page-header end -->
+<div class="pcoded-inner-content">
+	<!-- Main-body start -->
+<div class="main-body">
+	<div class="page-wrapper">
+		<!-- Page-body start -->
+						<div class="page-body">
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="card">
+										<div class="card-header">
+											<h2>게시글작성</h2>
+<div class="card-header-right">
+	<ul class="list-unstyled card-option">
+		<li><i class="fa fa fa-wrench open-card-option"></i>
+		</li>
+		<li><i class="fa fa-window-maximize full-card"></i>
+		</li>
+		<li><i class="fa fa-minus minimize-card"></i></li>
+		<li><i class="fa fa-refresh reload-card"></i></li>
+		<li><i class="fa fa-trash close-card"></i></li>
+	</ul>
+</div>
+										</div>
+										<div class="card-block table-border-style">
+										
+											<div class="table-responsive">
+												<table class="main-table01">
+													<tbody>
+														<tr>
+															<th scope="row" class="table-info"
+																style="width: 10%;">제목</th>
+			<td><input id="title" name="title"
+				style="width: 100%; border: 0;" /></td>
+		</tr>
+		<tr>
+			<th scope="row" class="table-info"
+				style="width: 10%;">작성자</th>
+			<td><input id="first_reg_user"
+				name="userId"
+				style="width: 100%; border: 0;" /></td>
+		</tr>
+		<tr>
+			<th scope="row" class="table-info"
+				style="width: 10%;">날짜</th>
+			<td><input type="date" id="first-reg-dt" name="regDt"
+				style="width: 100%; border: 0;" readonly /></td>
+		</tr>
+		<tr>
+			<th scope="row" class="table-info"
+				style="width: 10%;">내용</th>
+				<td><textarea id="editor" name="contents" rows=10
+						name="contents"></textarea></td>
+			</tr>
+		</tbody>
+	</table>
 	
-	</div>
-	<div class="data_file_txt" id="data_file_txt" style="margin-top:2%; margin-bottom:3%;">
-		
-		<div id="articlefileChange">
-		<table class="main-table02">
-				 <thead>
-				<tr>
-					<th scope="row" class="table-info" >구분</th>
-					<th scope="row" class="table-info" style="width:90%;">파일명</th>
-				</tr>
-			<thead>
-			<tbody id="tb01">
-			</tbody>
-		</table>
-		</div>
-	</div>
+</div>
 
-	<div>
-		<button class="main-btn01" type="submit"
-			style="float: right;" value="검색" onclick="contentsSubmit">등록하기</button>
+<div style="font-size: 20px; padding-bottom: 5px;">파일첨부</div>
+<div>
+	<button id="btn-upload" type="button" class="main-btn01"
+		type="button" value="검색">추가</button>
+	<input id="input_file" multiple="multiple" type="file"
+		style="display: none;" /> <span
+style="font-size: 15px; color: gray;">&nbsp;&nbsp; ※첨부파일은 최대 	5개까지 등록이 가능합니다.</span>
+
+</div>
+<div class="data_file_txt" id="data_file_txt" style="margin-top:2%; margin-bottom:3%;">
+
+<div id="articlefileChange">
+<table class="main-table02">
+		 <thead>
+		<tr>
+			<th scope="row" class="table-info" >구분</th>
+			<th scope="row" class="table-info" style="width:90%;">파일명</th>
+			</tr>
+		<thead>
+		<tbody id="tb01">
+		</tbody>
+	</table>
+	</div>
+</div>
+
+<div>
+	<button class="main-btn01" type="submit"
+		style="float: right;" value="검색" onclick="contentsSubmit">등록하기</button>
 		</div>
 	</div>
 													</div>
@@ -230,7 +230,7 @@ function fileDelete(fileNum){
 }
 
 // 폼 submit 로직 ---> 여기서부터 맞게 수정해야함 삭제까진 돌아감 
-	function registerAction(){
+	function registerAction(){ 
 	var form = $("form")[0];        
  	var formData = new FormData(form);
 		for (var x = 0; x < content_files.length; x++) {
@@ -284,6 +284,6 @@ console.log("upload");
 });
 //window.parent.CKEDITOR.tools.callFunction(1,"${url}","전송완료");
 
-</script>
 
+</script>
 </html>

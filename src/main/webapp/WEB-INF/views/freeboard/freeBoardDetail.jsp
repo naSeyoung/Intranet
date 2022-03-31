@@ -12,8 +12,11 @@
 <title>이젠 인트라넷</title>
 
 </head>
+<script>
+
+</script>
 <body>
-<form method="post">
+<form name="detailForm">
 	<div id="pcoded" class="pcoded">
 		<div class="pcoded-overlay-box"></div>
 		<div class="pcoded-container navbar-wrapper">
@@ -50,7 +53,8 @@
 						<table class="main-table01">
 							<tbody>
 								<tr>
-									<th scope="row" class="table-info" style="width: 10%;">제목</th>
+									<th scope="row" class="table-info" style="width: 10%">제목</th>
+									
 		<td id="title" name="title" style="width: 100%; border: 0;">${vo.title}</td>
 	</tr>
 	<tr>
@@ -116,10 +120,13 @@
 
 															</div>
 		<div style="width:100%; margin-top:4%;">
-			<button class="listbtn">목록</button><button class="delbtn">삭제</button><button class="upbtn">수정</button>
+		<input type="hidden" name="boardSeq" value="${vo.boardSeq}"/>
+			<button class="listbtn" type="submit" onclick="history.back(); return false;">목록</button><button class="delbtn" type="submit">삭제</button><button class="upbtn" type="submit">수정</button>
+			
+			
 		
 		</div>
-															
+															 
 															
 														</div>
 													</div>
@@ -138,11 +145,21 @@
 </form>
 </body>
 <script>
-$(function(){
-	$(".listbtn").click(function(){
-		location="FreeBoardList"
-	});
-});
+$(document).ready(function(){
+	var formObj = $("form[name='detailForm']");
+	//수정 
+		$(".upbtn").on("click",function(){
+			formObj.attr("action","/FreeBoardUpdateView" );
+			formObj.attr("method","get");
+			formObj.submit();
+		})
+	//삭제 
+		$(".delbtn").on("click",function(){
+			formObj.attr("action","/ContentsDel");
+			formObj.attr("method","post");
+			formObj.submit();
+		})
+})
 /* document.getElementById("first-reg-dt").value = new Date().toISOString()
 		.substring(0, 10); //현재 날짜  */
 function adjustHeight(commentBox) { // commentBox 세로줄 자동 조절

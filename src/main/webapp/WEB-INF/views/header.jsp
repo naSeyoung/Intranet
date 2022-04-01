@@ -1,7 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"
-    import="java.util.*"
-    %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
@@ -27,24 +24,23 @@
                   <div>
                      <table class="company-name-cls">
                         <tr>
-                           <td><a href="intranet"> 이젠 솔루션</a></td>
+                           <td><a href="/ezenCalendar"> 이젠 솔루션</a></td>
                         </tr>
                      </table>
                   </div>
                </div>
                <div class="navbar-container container-fluid">
-
                   <ul class="nav-right">
                      <li class="header-notification">
                         <ul class="show-notification">
                         </ul>
                      </li>
-                     <li class="user-profile header-notification"><a href="#!"
-                        class="waves-effect waves-light"> <img
-                           src="../resources/assets/images/avatar-4.jpg" class="img-radius"
-                           alt="User-Profile-Image"> <span>이이름</span> <i
-                           class="ti-angle-down"></i>
-                     </a>
+                     <li class="user-profile header-notification">
+	                   	<a href="#!" class="waves-effect waves-light">
+	                     	<img src="/assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image"> 
+	                   		<span>이이름</span> 
+	                   		<i class="ti-angle-down"></i>
+	                    </a>
                         <ul class="show-notification profile-notification">
                            <li class="waves-effect waves-light"><a href="#!"> <i
                                  class="ti-settings"></i> Settings

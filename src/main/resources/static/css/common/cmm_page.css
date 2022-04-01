@@ -1,0 +1,20 @@
+@charset "EUC-KR";
+
+.page_block{
+	width: 100%;
+	padding: 0 20px 20px 20px;
+}
+
+.tbl_page_box{
+	width: 100%;
+	border-spacing: 0px;
+	border-collapse: collapse;
+}
+
+.tbl_page {
+	width: 100%;
+	border:0px;
+	border-spacing: 0px;
+	padding: 3px;
+}
+

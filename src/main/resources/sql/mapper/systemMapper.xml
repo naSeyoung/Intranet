@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.ezens.Intranet.mapper.SystemMapper">
+
+	<sql id="prePaging">
+		SELECT paging.*
+		FROM(
+			SELECT ROWNUM ROW_NUM, page.*
+			FROM(
+	</sql>
+	<sql id="endPaging">
+			) page
+		) paging
+		<![CDATA[
+		WHERE ROW_NUM > #{minRow,  jdbcType=INTEGER} AND ROW_NUM <= #{maxRow, jdbcType=INTEGER}
+		]]>
+	</sql>
+
+	<select id="getCompanyInfo" parameterType="Integer" resultType="SystemDto">
+		SELECT
+			cp_info_seq
+		,	cp_name
+		,	cp_arrive_time
+		,	cp_leave_time
+		,	cp_domain
+		,	menu_set
+		,	cp_start_lun
+		,	cp_end_lun
+		,	cp_din
+		,	cp_end_din
+		,	cp_logo_path
+		FROM tb_intra_cp_info
+		WHERE cp_info_seq = #{cpInfoSeq}
+	</select>
+	
+	<select id="selectDepartmentList" parameterType="SystemDto" resultType="SystemDto">
+		<include refid="prePaging"/>
+		SELECT
+			cp_dept_seq
+		,	cp_dept_parent_seq
+		,	cp_info_seq
+		,	cp_dept_name
+		,	cp_dept_order_rank
+		,	cp_dept_use_yn
+		FROM tb_intra_cp_dept
+		WHERE cp_info_seq = #{cpInfoSeq}
+		<if test="searchType != null and searchType.equals('1')">
+			<![CDATA[ AND INSTR(cp_dept_name, #{searchKeyword}) > 0  ]]>
+		</if>
+		<if test="searchType != null and searchType.equals('2')">
+			<![CDATA[ AND INSTR(cp_dept_name, #{searchKeyword}) > 0  ]]>
+		</if>
+		<include refid="endPaging"/>
+	</select>
+
+	<select id="selectDepartmentCnt" parameterType="SystemDto" resultType="Integer">
+		SELECT
+			COUNT(cp_dept_seq)
+		FROM tb_intra_cp_dept
+		WHERE cp_info_seq = #{cpInfoSeq}
+	</select>
+	
+	<insert id="insertDepartment" parameterType="SystemDto">
+		INSERT INTO tb_intra_cp_dept(
+			cp_dept_seq
+		,	cp_dept_parent_seq
+		,	cp_info_seq
+		,	cp_dept_name
+		,	cp_dept_order_rank
+		,	cp_dept_use_yn
+		)VALUES(
+			SEQ_TB_INTRA_CP_DEPT_PK.NEXTVAL
+		,	#{cpDeptParentSeq}
+		,	#{cpInfoSeq}
+		,	#{cpDeptName}
+		,	#{cpDeptOrderRank}
+		,	'Y'
+		)
+	</insert>
+	
+	<select id="getDeptInfo" parameterType="SystemDto" resultType="SystemDto">
+		SELECT
+			cp_dept_seq
+		,	cp_dept_parent_seq
+		,	cp_info_seq
+		,	cp_dept_name
+		,	cp_dept_order_rank
+		,	cp_dept_use_yn
+		FROM tb_intra_cp_dept
+		WHERE cp_dept_seq = #{cpDeptSeq}
+	</select>
+	
+</mapper>

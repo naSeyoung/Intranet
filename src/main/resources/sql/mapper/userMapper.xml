@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.ezens.Intranet.mapper.UserMapper">
+
+	<sql id="prePaging">
+		SELECT paging.*
+		FROM(
+			SELECT ROWNUM ROW_NUM, page.*
+			FROM(
+	</sql>
+	<sql id="endPaging">
+			) page
+		) paging
+		<![CDATA[
+		WHERE ROW_NUM > #{minRow,  jdbcType=INTEGER} AND ROW_NUM <= #{maxRow, jdbcType=INTEGER}
+		]]>
+	</sql>
+
+	<select id="getUserList" parameterType="UserDto" resultType="UserDto">
+		<include refid="prePaging"/>
+		SELECT 
+			  user_id
+			, user_name
+			, user_pw
+			, email
+			, ctn
+			, cp_info_seq
+			, cp_dept_seq
+			, job_title
+			, position
+			, notice_yn
+			, del_yn
+			, join_cp_dt
+			, last_in_dt
+			, last_in_ip
+		FROM tb_intra_user
+		WHERE cp_info_seq = #{cpInfoSeq}
+<!-- 		<if test="searchType != null AND searchType.equals('1')"> -->
+<!-- 			<![CDATA[  -->
+<!-- 			AND ( -->
+<!-- 				INSTR(USER_ID, #{searchKeyword}) > 0  -->
+<!-- 				OR INSTR(USER_Name, #{searchKeyword}) > 0   -->
+<!-- 				) -->
+<!-- 			]]> -->
+<!-- 		</if> -->
+<!-- 		<if test="searchType != null AND searchType.equals('2')"> -->
+<!-- 			<![CDATA[ AND INSTR(USER_ID, #{searchKeyword}) > 0  ]]> -->
+<!-- 		</if> -->
+<!-- 		<if test="searchType != null AND searchType.equals('3')"> -->
+<!-- 			<![CDATA[ AND INSTR(USER_Name, #{searchKeyword}) > 0  ]]> -->
+<!-- 		</if> -->
+		<include refid="endPaging"/>
+	</select>
+	
+	<select id="getUserListCnt" parameterType="UserDto" resultType="int">
+		SELECT 
+			 COUNT(user_id)
+		FROM tb_intra_user
+		WHERE cp_info_seq = #{cpInfoSeq}
+<!-- 		<if test="searchType != null AND searchType.equals('1')"> -->
+<!-- 			<![CDATA[  -->
+<!-- 			AND ( -->
+<!-- 				INSTR(USER_ID, #{searchKeyword}) > 0  -->
+<!-- 				OR INSTR(USER_Name, #{searchKeyword}) > 0   -->
+<!-- 				) -->
+<!-- 			]]> -->
+<!-- 		</if> -->
+<!-- 		<if test="searchType != null AND searchType.equals('2')"> -->
+<!-- 			<![CDATA[ AND INSTR(USER_ID, #{searchKeyword}) > 0  ]]> -->
+<!-- 		</if> -->
+<!-- 		<if test="searchType != null AND searchType.equals('3')"> -->
+<!-- 			<![CDATA[ AND INSTR(USER_Name, #{searchKeyword}) > 0  ]]> -->
+<!-- 		</if> -->
+	</select>
+
+	<select id="selectUserInfo" parameterType="String" resultType="UserDto">
+		SELECT 
+			  user_id
+			, user_name
+			, user_pw
+			, email
+			, ctn
+			, cp_info_seq
+			, cp_dept_seq
+			, job_title
+			, position
+			, notice_yn
+			, del_yn
+			, join_cp_dt
+			, last_in_dt
+			, last_in_ip
+		FROM tb_intra_user
+		WHERE user_id = #{userId} 
+<!-- 		AND CP_INFO_SEQ = #{cpInfoSeq} -->
+	</select>
+	
+	<insert id="insertUser" parameterType="UserDto">
+		INSERT INTO TB_INTRA_USER(
+			  user_id
+			, user_name
+			, user_pw
+			, email
+			, ctn
+			, cp_info_seq
+			, cp_dept_seq
+			, job_title
+			, position
+			, notice_yn
+			, del_yn
+		)VALUES(
+			  #{userId}
+			, #{userName}
+			, #{userPw}
+			, #{email}
+			, #{ctn}
+			, #{cpInfoSeq}
+			, #{cpDeptSeq}
+			, #{jobTitle}
+			, #{position}
+			, #{noticeYn}
+			, #{delYn}
+		) 
+	</insert> 
+	
+	<update id="updateUserLastLogin" parameterType="String">
+		UPDATE tb_intra_user SET last_in_dt = SYSDATE WHERE user_id = #{userId}
+	</update>
+</mapper>

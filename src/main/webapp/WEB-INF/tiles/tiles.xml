@@ -8,7 +8,9 @@
 	<!-- 레이아웃(tiles) 적용하는 화면  -->
 	<definition name="tilesLayout" template="/WEB-INF/views/tilesLayout.jsp">
 		<put-attribute name="siteTop" value="/WEB-INF/views/header.jsp" />
+		<put-attribute name="bodyTop" value="/WEB-INF/views/bodyTop.jsp" />
 		<put-attribute name="body" value=""/>
+		<put-attribute name="bodyBottom" value="/WEB-INF/views/bodyBottom.jsp" />
 		<put-attribute name="leftNav" value="/WEB-INF/views/navbar.jsp" />
 	</definition>
 	<!-- tiles 적용할 파일 선언 --> 

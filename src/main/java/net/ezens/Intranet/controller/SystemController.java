@@ -51,7 +51,6 @@ public class SystemController {
 			UserDto user = userService.selectUserInfo(principalDetails.getUser().getUserId());
 			SystemDto companyInfo = systemService.getCompanyInfo(user.getCpInfoSeq());
 			model.addAttribute("companyInfo", companyInfo);
-//			log.info(user.getJoinCpDt());
 		} catch (Exception e) {
 			log.error("/system/companyInfo Exception : {}", e.getMessage());
 			return e.getMessage();

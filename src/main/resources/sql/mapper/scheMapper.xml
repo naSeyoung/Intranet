@@ -2,6 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="net.ezens.Intranet.mapper.ScheMapper">
 
+<!--TEST  -->
+
+
+<!-- 	<resultMap type="calen" id="calMap"> 
+		<result property="start" column="start1"/> 
+		<result property="end" column="end1"/> 
+	</resultMap> 
+	<select id="calenList" resultMap="calMap">
+		 SELECT 
+			 id, 
+			 title, 
+			 TO_char(start1, 'YYYY-MM-DD"T"HH24:MI:SS') start1, 
+			 TO_char(end1, 'YYYY-MM-DD"T"HH24:MI:SS') end1, 
+			 ALLDAY, 
+			 TEXTCOLOR, 
+			 BACKGROUNDCOLOR, 
+			 BORDERCOLOR 
+		 FROM CALENDARTEST
+	</select> -->
+
 <select id="SelectAllList" resultType="hashMap">
 	SELECT userCode,userName,TO_CHAR(hiDay,'YYYY-MM-DD HH24:MI') AS h FROM testTable ORDER BY hiDay DESC
 </select>
@@ -25,55 +45,262 @@
 </delete>
 
 
-<select id="scheList" resultType="hashMap">
-	SELECT
+<!-- ***********************************************************************월  별  일  정********************************************************************  -->
+<!-- 일정등록 목록  -->
+<select id="scheList" resultType="ScheDto">
+	  SELECT
 		SCHE_SEQ,
 		MST_SEQ,
 		USER_ID,
-		TO_CHAR(START_DT,'YYYY-MM-DD HH24:MI') START_DT,
-		TO_CHAR(END_DT,'YYYY-MM-DD HH24:MI') END_DT,
+		TO_CHAR(START_DT,'YYYY-MM-DD HH24:MI') AS startDt,
+		TO_CHAR(END_DT,'YYYY-MM-DD HH24:MI') AS endDt,
 		TITLE,
 		CONTENTS,
 		PLACE,
-		REG_ID,
 		REG_DT,
 		UPD_ID,
 		UPD_DT,
-		SCHE_TYPE
-	FROM tb_intra_sche
+        (CASE SCHE_TYPE WHEN 'A' THEN '전체공개'
+							WHEN 'P' THEN '개인공개'
+							ELSE '누락' END ) AS scheType
+	FROM TB_INTRA_SCHE
+	ORDER BY SCHE_SEQ DESC
 </select>
-<insert id="insertSche" parameterType="hashMap">
-	INSERT INTO tb_intra_sche (
-		SCHE_SEQ
-<!-- 		MST_SEQ, -->
-<!-- 		USER_ID, -->
-		,START_DT
-		,END_DT
-		,TITLE
-		,CONTENTS
-		,PLACE
-<!-- 		REG_ID, -->
-<!-- 		REG_DT, -->
-<!-- 		UPD_ID, -->
-<!-- 		UPD_DT, -->
-		,SCHE_TYPE
-	) VALUES (
-		(SELECT NVL(MAX(SCHE_SEQ),0)+1 FROM TB_INTRA_SCHE)
-<!-- 		MST_SEQ... -->
-<!-- 		#{USER_ID} -->
-		,#{calStDt,jdbcType=TIMESTAMP}
-		,#{calEdDt,jdbcType=TIMESTAMP}
-		,#{cal_title,jdbcType=VARCHAR}
-		,#{cal_content,jdbcType=VARCHAR}
-		,#{cal_place,jdbcType=VARCHAR}
-<!-- 		#{REG_ID}, -->
-<!-- 		#{REG_DT}, -->
-<!-- 		#{UPD_ID}, -->
-<!-- 		#{UPD_DT}, -->
-		,#{cal_type,jdbcType=VARCHAR}
-	)
-	
-	
-	
+
+<!-- 일정 등록 & 파일 TEST-->
+<!-- INSERT ALL
+INTO TB_INTRA_SCHE(SCHE_SEQ, MST_SEQ, START_DT, END_DT, TITLE, CONTENTS, REG_DT, SCHE_TYPE) VALUES ('100','1',SYSDATE,SYSDATE,'TESTTT','다중INSERT',SYSDATE,'P')
+INTO TB_INTRA_SCHE_FILE (SFILE_UUID, SCHE_SEQ, ORI_NAME, REG_DATE, DEL_YN) VALUES ('TEST','100','INSERTTEST',SYSDATE,'N')
+SELECT * FROM DUAL; -->
+<insert id="insertScheXXXXXXXXXX" parameterType="hashMap">
+	INSERT ALL
+	INTO TB_INTRA_SCHE (
+		SCHE_SEQ,
+		MST_SEQ,
+		USER_ID,
+		START_DT,
+		END_DT,
+		TITLE,
+		CONTENTS,
+		PLACE,
+		REG_DT,
+		SCHE_TYPE
+		) VALUES (
+		(SELECT NVL(MAX(SCHE_SEQ), 0) + 1 FROM TB_INTRA_SCHE),
+		#{calType},
+		#{userId,jdbcType=VARCHAR},
+		TO_DATE(#{calStartDate} ||' '|| #{calStartTime},'YYYY-MM-DD HH24:MI'),
+		TO_DATE(#{calEndDate} ||' '|| #{calEndTime},'YYYY-MM-DD HH24:MI'),
+		#{calTitle,jdbcType=VARCHAR},
+		#{calContents,jdbcType=VARCHAR},
+		#{calPlace,jdbcType=VARCHAR},
+		SYSDATE,
+		#{calOpenYN}
+		)
+	INTO TB_INTRA_SCHE_FILE (
+		SFILE_UUID,
+		SCHE_SEQ,
+		ORI_NAME,
+		SFILE_EXT,
+		USER_ID,
+		REG_DATE,
+		DEL_YN,
+		SHOW_ORDER,
+		BFILE_PATH
+		) VALUES (
+		#{sfileUuid, jdbcType=VARCHAR},
+		(SELECT NVL(MAX(SCHE_SEQ), 0) + 1 FROM TB_INTRA_SHCE_FILE),
+		#{oriName, jdbcType=VARCHAR},
+		#{sfileExt, jdbcType=VARCHAR},
+		#{userId, jdbcType=VARCHAR},
+		SYSDATE,
+		'N',
+		#{showOrder, jdbcType=INTEGER},
+		#{bfilePath, jdbcType=VARCHAR}
+		)
+		SELECT * FROM DUAL
 </insert>
+
+
+<!-- ###########################################################기존############################################################## -->
+<!-- 일정 등록 -->
+<insert id="insertSche" parameterType="hashMap">
+	INSERT INTO TB_INTRA_SCHE (
+		SCHE_SEQ,
+		MST_SEQ,
+		USER_ID,
+		START_DT,
+		END_DT,
+		TITLE,
+		CONTENTS,
+		PLACE,
+		REG_DT,
+		SCHE_TYPE
+		) VALUES (
+		(SELECT NVL(MAX(SCHE_SEQ), 0) + 1 FROM TB_INTRA_SCHE),
+		<!-- (SELECT NVL(MAX(MST_SEQ), 0) + 1 FROM TB_INTRA_SCHE), -->
+		#{calType},
+		#{userId,jdbcType=VARCHAR},
+		TO_DATE(#{calStartDate} ||' '|| #{calStartTime},'YYYY-MM-DD HH24:MI'),
+		TO_DATE(#{calEndDate} ||' '|| #{calEndTime},'YYYY-MM-DD HH24:MI'),
+		#{calTitle,jdbcType=VARCHAR},
+		#{calContents,jdbcType=VARCHAR},
+		#{calPlace,jdbcType=VARCHAR},
+		SYSDATE,
+		#{calOpenYN}
+		)
+</insert>
+
+<!-- 일정 파일 등록 TEST  -->
+<insert id="fileTest" parameterType="hashMap">
+	INSERT INTO TB_INTRA_SCHE_FILE (
+		SFILE_UUID,
+<!-- 		SCHE_SEQ, -->
+		ORI_NAME,
+<!-- 		SFILE_EXT, -->
+<!-- 		USER_ID, -->
+		REG_DATE,
+		DEL_TY,
+<!-- 		SHOW_ORDER, -->
+		BFILE_PATH
+		) VALUES (
+		#{testName, jdbcType=VARCHAR},
+		SYSDATE,
+		'N'
+	)
+</insert>
+
+
+<!-- 월별일정 상세 -->
+<select id="selectScheInfo" parameterType="int" resultType="ScheDto">
+	SELECT
+		A.SCHE_SEQ,
+		A.MST_SEQ,
+		A.USER_ID,
+		A.START_DT,
+		A.END_DT,
+		A.TITLE,
+		A.CONTENTS,
+		A.PLACE,
+		A.REG_DT,
+		A.UPD_ID,
+		A.UPD_DT,
+		A.SCHE_TYPE,
+        B.MST_NAME
+	FROM TB_INTRA_SCHE A JOIN TB_INTRA_SCHE_MST B
+    ON A.MST_SEQ = B.MST_SEQ
+	WHERE SCHE_SEQ = #{scheSeq, jdbcType=INTEGER}		
+</select>
+
+<!-- 월별일정 수정 -->
+<update id="updateScheInfo" parameterType="hashMap">
+	UPDATE TB_INTRA_SCHE SET
+		MST_SEQ = #{calType, jdbcType=INTEGER},
+		SCHE_TYPE = #{calOpenYN},
+		START_DT = TO_DATE(#{calStartDate} ||' '|| #{calStartTime},'YYYY-MM-DD HH24:MI'),
+		END_DT = TO_DATE(#{calEndDate} ||' '|| #{calEndTime},'YYYY-MM-DD HH24:MI'),
+	    TITLE = #{calTitle, jdbcType=VARCHAR},
+	    PLACE = #{calPlace, jdbcType=VARCHAR},
+	    CONTENTS = #{calContents, jdbcType=VARCHAR},
+	    UPD_ID = #{userId, jdbcType=VARCHAR},
+	    UPD_DT = SYSDATE
+    WHERE SCHE_SEQ = #{scheSeq, jdbcType=INTEGER}
+</update>
+
+<!-- 월별일정 삭제 -->
+<delete id="deleteScheInfo" parameterType="hashMap">
+	DELETE FROM TB_INTRA_SCHE
+		WHERE SCHE_SEQ = #{scheSeq, jdbcType=INTEGER}
+		
+</delete>
+
+
+<!-- *************************************************************************일 정 설 정********************************************************************  -->
+<!-- 등록  -->
+<insert id="insertScheMst" parameterType="hashMap">
+		INSERT INTO TB_INTRA_SCHE_MST (
+			MST_SEQ,
+			CP_INFO_SEQ,
+			MST_NAME,
+			MST_COLOR,
+			DEL_YN,
+			REG_USER,
+			REG_DATE
+			) VALUES (
+			(SELECT NVL(MAX(MST_SEQ), 0) + 1 FROM TB_INTRA_SCHE_MST),
+			#{cpInfoSeq,jdbcType=INTEGER},
+			#{calSetTitle,jdbcType=VARCHAR},
+			#{calHexInput,jdbcType=VARCHAR},
+			'N',
+			#{regUser,jdbcType=VARCHAR},
+			SYSDATE
+			)
+</insert>
+
+<!-- 목록 -->
+<select id="scheMstList" resultType="scheDto">
+	SELECT
+		MST_SEQ AS mstSeq,
+		CP_INFO_SEQ,
+		MST_NAME,
+		MST_COLOR,
+		DEL_YN,
+		REG_USER,
+		REG_DATE,
+		UPD_USER,
+		UPD_DATE
+	FROM TB_INTRA_SCHE_MST
+	WHERE DEL_YN='N'
+	ORDER BY MST_SEQ
+</select>
+
+<!-- 일정등록페이지(calendarAdd) - 일정구분 SELECTBOX  -->
+<select id="selectScheType" resultType="ScheDto">
+ 	<!-- SELECT A.MST_NAME FROM TB_INTRA_SCHE_MST A JOIN TB_INTRA_SCHE B ON A.MST_SEQ = B.MST_SEQ
+    WHERE A.DEL_YN = 'N' -->
+    SELECT 
+    	MST_SEQ
+    	,MST_NAME
+    FROM TB_INTRA_SCHE_MST
+    WHERE DEL_YN = 'N' ORDER BY MST_SEQ
+</select>
+
+<!-- 상세  -->
+<select id="selectScheMstInfo" resultType="ScheDto" parameterType="int">
+	SELECT
+		MST_SEQ,
+		CP_INFO_SEQ,
+		MST_NAME,
+		MST_COLOR,
+		DEL_YN,
+		REG_USER,
+		REG_DATE,
+		UPD_USER,
+		UPD_DATE
+	FROM TB_INTRA_SCHE_MST
+	WHERE DEL_YN = 'N'
+	AND MST_SEQ = #{mstSeq,jdbcType=INTEGER}
+</select>
+
+<!-- 수정 -->
+<update id="updateScheMstInfo" parameterType="hashMap">
+	UPDATE TB_INTRA_SCHE_MST SET 
+	CP_INFO_SEQ = #{cpInfoSeq, jdbcType=INTEGER},
+		MST_NAME = #{calSetTitle, jdbcType=VARCHAR},
+		MST_COLOR = #{calHexInput, jdbcType=VARCHAR},
+		UPD_USER = #{updUser, jdbcType=VARCHAR},
+		UPD_DATE = SYSDATE
+	WHERE MST_SEQ = #{mstSeq, jdbcType=INTEGER} <!-- jdbcType=VARCHAR로 되어있는 이유 궁금 -->
+</update>
+
+<!-- 삭제 -->
+<update id="deleteScheMstInfo" parameterType="hashMap">
+	UPDATE TB_INTRA_SCHE_MST SET
+		DEL_YN='Y',
+		UPD_DATE = SYSDATE,
+		UPD_USER = #{updUser, jdbcType=VARCHAR}
+	WHERE MST_SEQ = #{mstSeq, jdbcType=INTEGER}
+</update>
+
+
 </mapper>

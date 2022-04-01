@@ -81,9 +81,6 @@
 <script type="text/javascript"
    src="/resources/js/fullcalendar/theme-chooser.js"></script>
 
-<!-- ***추가**  -->
-
-
 <!-- fullcalendar 언어 설정관련 script -->
 <script
    src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>
@@ -98,9 +95,6 @@
 
 <!--  제이쿼리 ui js -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-<!-- **************************추가 TEST***********************************  -->
-<script type="text/javascript" src="/resources/js/fullcalendar/esSche.js"></script>
 
 <body>
    <!-- Pre-loader start -->
@@ -130,7 +124,7 @@
                                  <div class="col-sm-12">
                                     <div class="card">
                                        <div class="card-header">
-                                          <h3>일정등록</h3>
+                                          <h3>일정 등록</h3>
                                        </div>
                                        <!-- 표 추가  -->
                                        <div class="card-block table-border-style">
@@ -145,51 +139,49 @@
                                              	</colgroup>
                                                 <tbody>
                                                    <tr>
-                                                      <th><span class="required">*</span>구분</th>
+                                                      <th class="table-info"><span class="required">*</span>구분</th>
                                                       <td>
-                                                         <select id="cal_type" name="cal_type">
+                                                         <select id="calType" name="calType">
                                                          	<option value="">전체</option>
-                                                         	<!-- 리스트 뿌려줘야함 -->
-                                                               <option value="00">개인 일정</option>
-                                                               <option value="01">감리</option>
-                                                               <option value="02">출장</option>
-                                                               <option value="03">회의</option>
+                                                         	<c:forEach var="calTypeInfo" items="${scheTypeList }" varStatus="status">
+                                                         		<option value="${calTypeInfo.mstSeq }">${calTypeInfo.mstName }</option>
+                                                         	</c:forEach>
                                                          </select>
                                                       </td>
-                                                      <th>공개</th>
+                                                      <th class="table-info"><span class="required">*</span>공개</th>
                                                       <td colspan="3">
-                                                         <select id="cal_openYN"name="cal_openYN">
-                                                               <option value="Y">전체공개</option>
-                                                               <option value="N">개인공개</option>
+                                                         <select id="calOpenYN"name="calOpenYN">
+                                                               <option value="A">전체공개</option>
+                                                               <option value="P">개인공개</option>
                                                          </select>
                                                       </td>
                                                    </tr>
                                                    <tr>
-                                                      <th><span class="required">*</span>제목</th>
+                                                      <th class="table-info"><span class="required">*</span>제목</th>
                                                       <td colspan="3">
-                                                      <input type="text" autocomplete="off" name="cal_title" id="cal_title" placeholder="제목을 입력하세요" style="width: 50%"></td>
+                                                      <input type="text" autocomplete="off" name="calTitle" id="calTitle" placeholder="제목을 입력하세요" style="width: 50%"></td>
                                                    </tr>
                                                    <tr>
-                                                      <th><span class="required"></span>장소</th>
+                                                      <th class="table-info"><span class="required"></span>장소</th>
                                                       <td colspan="3"><input type="text" autocomplete="off"
-                                                         name="cal_place" id="cal_place"
+                                                         name="calPlace" id="calPlace"
                                                          placeholder="장소를 입력하세요" style="width: 50%"></td>
                                                    </tr>
                                                    <tr>
-                                                      <th><span class="required">*</span>시작일</th>
+                                                      <th class="table-info"><span class="required">*</span>시작일</th>
                                                       <td>
-                                                         <input type="text" autocomplete="off" id="cal_startDate" name="cal_startDate" value="" placeholder="날짜선택" style="width: 60%"> 
-                                                         <input type="text" autocomplete="off" id="cal_time1" name="cal_time1" value="" placeholder="시간선택" required size="8" maxlength="5" style="margin-left: 3%;">
+                                                         <input type="text" autocomplete="off" id="calStartDate" name="calStartDate" value="" placeholder="날짜선택" style="width: 60%"> 
+                                                         <input type="text" autocomplete="off" id="calStartTime" name="calStartTime" value="" placeholder="시간선택" required size="8" maxlength="5" style="margin-left: 3%;">
                                                       </td>
-                                                      <th><span class="required">*</span>종료일</th>
+                                                      <th class="table-info"><span class="required">*</span>종료일</th>
                                                       <td>
-                                                         <input type="text" autocomplete="off" id="cal_endDate" name="cal_endDate" value="" placeholder="날짜선택" style="width: 60%"> 
-                                                         <input type="text" autocomplete="off" id="cal_time2" name="cal_time2" value="" placeholder="시간선택" required size="8" maxlength="5" style="margin-left: 3%;">
+                                                         <input type="text" autocomplete="off" id="calEndDate" name="calEndDate" value="" placeholder="날짜선택" style="width: 60%"> 
+                                                         <input type="text" autocomplete="off" id="calEndTime" name="calEndTime" value="" placeholder="시간선택" required size="8" maxlength="5" style="margin-left: 3%;">
                                                       </td>
                                                    </tr>
                                                       <tr>
-                                                         <th style="vertical-align: inherit;">내용</th>
-                                                         <td colspan="3"><textarea cols="90" rows="10" name="cal_content" id="cal_content"></textarea></td>
+                                                         <th class="table-info" style="vertical-align: inherit;"><span class="required">*</span>내용</th>
+                                                         <td colspan="3"><textarea autocomplete="off" cols="100" rows="10" name="calContents" id="calContents" style="font-size : 18px;" ></textarea></td>
                                                       </tr>
                                                    </tbody>
                                              </table>
@@ -197,10 +189,12 @@
                                           <h5>파일 첨부</h5>
                                           <br>
                                        </div>
-
                                        
-                                       <input type="button" class="main-btn01" value="추가" style="margin-left: 1%;"onclick=document.all.cal_file.click();>
-										<input type="file" name="cal_file" id="cal_file" style="display: none;"/>       
+<!--                                        <input type="button" id="btn-upload" class="main-btn01" value="추가" style="margin-left: 1%;"> -->
+                                       	<button id="btn-upload" type="button" class="main-btn01" type="button" style="margin-left: 1%;">추가</button>
+										<input id="input_file" multiple="multiple" type="file" style="display:none;">       
+                                       <span style="font-size: 15px; color: gray;">&nbsp;&nbsp; ※첨부파일은 최대 5개까지 등록이 가능합니다.</span>
+	
 
                                        <!-- 파일 표추가 -->
                                              <table class="main-table02" style="margin-top: 3%;">
@@ -210,23 +204,17 @@
                                              	</colgroup>
                                                 <tbody>
                                                    <tr>
-                                                      <td></td>
-                                                      <td style="width: 90%;">파일명</td>
+                                                      <th class="table-info"></th>
+                                                      <th class="table-info" style="width: 90%;">파일명</th>
                                                    </tr>
-                                                   <tr>
-                                                      <td style="text-align: center;"><a href="javascript:fileDel();">[X]</a></td>
-                                                      <td style="width: 90%;"></td>
-                                                   </tr>
-                                                   <tr>
-                                                      <td style="text-align: center;"><a href="javascript:fileDel();">[X]</a></td>
-                                                      <td style="width: 90%;"></td>
-                                                   </tr>
+                                                </tbody>
+                                                <tbody id="tb01">
                                                 </tbody>
                                              </table>
                                              <div>
                                                 <a href="/ezenCalendar"><input type="button"class="main-btn01" value="목록"style="float: right; margin-top: 3%; margin-left: 1%;"></a>
+                                                <a href="/aTest"><input type="button"class="main-btn01" value="임시목록"style="float: right; margin-top: 3%; margin-left: 1%;"></a>
                                                 <a href="javascript:submit_scheAdd(document.cal_form);"><input type="button"class="main-btn01" value="저장"style="float: right; margin-top: 3%; margin-left: 1%;"></a>
-                                                <!-- <button class="main-btn01" type="button" onclick="click_ok();">TEST</button> -->
                                              </div>
                                              </form>
                                           </div>
@@ -251,7 +239,15 @@
 
 
    <script>
-      $('#cal_startDate, #cal_endDate') //날짜선택
+   
+   
+//    $(document).ready(function(){
+
+// 		$("#calStartTime, #calEndTime").timepicker('setTime', new Date());
+
+// 	});
+   
+      $('#calStartDate, #calEndDate') //날짜선택
       .datepicker(
             {
                dateFormat : "yy-mm-dd",
@@ -270,49 +266,188 @@
                showOn : "focus", // 엘리먼트와 이미지 동시 사용
             });
       
-      $("#cal_startDate").datepicker('setDate','today');
-      $("#cal_endDate").datepicker('setDate','today');
+//       $("#calStartDate").datepicker('setDate','today');
+//       $("#calEndDate").datepicker('setDate','today');
 
-      $("#cal_time1, #cal_time2").timepicker({ //시간선택
-         controlType : 'select',
-         timeFormat : "HH:mm" //24시
+      $("#calStartTime, #calEndTime").timepicker({ //시간선택
+    	  controlType : 'select',
+         timeFormat : "HH:mm", //24시
       });
       
-     // var start_dt = $("#cal_startDate") + ${("#cal_time1")}
-      
-      
-
-      
-//       function submit_calForm(form) {
-//      	  if($("#cal_sort").val() == "") {
-//          	 alert("구분을 선택해주세요.");
-//          	 return false;
-//           } else if($("#cal_title").val() == ""){
-//             alert("제목을 입력해주세요");
-//             return false;
-//          } else if($("#cal_startDate").val() == "" || $("#cal_endDate").val() == ""){
-//             alert("날짜를 선택해주세요.");
-//             return false;
-            
-//          } else if($("#cal_startDate").val() > $("#cal_endDate").val()) {
-//             alert("시작일이 종료일보다 큽니다.");
-//             return false;
-//          } else if($("#cal_time1").val() == "" || $("#cal_time2").val() == "") {
-//             alert("시간을 선택해주세요.")
-//             return false;
-//          } 
-         
-//          form.action = "/aTest";
-//          form.submit();
-      
-//       };
-      
+      $("#calStartDate, #calStartTime, #calEndDate, #calEndTime").prop('readonly',true);
+//      var date 
+//      var val = $("#cal_startDate").val();
+//      alert(val);
+     
       function submit_scheAdd(form) {
+    	  
+		if($("#calType").val() == "") {
+		  	 alert("구분을 선택해 주세요.");
+		  	 return false;
+		   } else if($("#calTitle").val() == ""){
+		     alert("제목을 입력해 주세요");
+		     return false;
+		  } else if($("#calStartDate").val() == "" || $("#calEndDate").val() == ""){
+		     alert("날짜를 선택해 주세요.");
+		     return false;
+		  } else if($("#calStartDate").val() > $("#calEndDate").val()) {
+		     alert("시작일이 종료일보다 큽니다.");
+		     return false;
+		  } else if($("#calStartDate").val() == $("#calEndDate").val() && $("#calStartTime").val() > $("#calEndTime").val()) {
+		     alert("시간을 다시 선택해 주세요.")
+		     return false;
+		  } else if($("#calContents").val() == "") {
+		     alert("내용을 입력해 주세요.")
+		     return false;
+		  } 
+    	  
+//     	     var calStDt = $("#calStartDate").val().replace(/-/gi,"").concat($("#calStartTime").val()); 
+//     	     var calEdDt = $("#calEndDate").val().replace(/-/gi,"").concat($("#calEndTime").val()); 
+    	     
+//     	     if(calEdDt-calStDt < 0) {
+//     	    	 alert('다시 ')
+//     	     }
+    	  	  
     	  form.action ="/calendarAdded";
     	  form.submit();
       };
       
       
+      
+      
+ /* #############################################################################################  */
+      $(document).ready(function(){
+   //input file 파일 첨부시 fileCheck 함수 실행 
+   $("#input_file").on("change",fileCheck);
+});
+$(function () {
+    $('#btn-upload').click(function (e) {
+        e.preventDefault();
+        $('#input_file').click();
+    });
+});
+
+//파일 현재 필드 숫자 totalCount랑 비교값 
+var fileCount = 0;
+//해당 숫자를 수정하여 전체 업로드 갯수를 정한다. 
+var totalCount = 5;
+//파일 고유넘버 
+var fileNum = 0;
+//첨부파일 배열 
+var content_files = new Array();
+function fileCheck(e) {
+    var files = e.target.files;
+    // 파일 배열 담기
+    var filesArr = Array.prototype.slice.call(files);
+    console.log("filesArr ----> " + filesArr);
+    // 파일 개수 확인 및 제한
+    if (fileCount + filesArr.length > totalCount) {
+     alert('파일은 최대 '+totalCount+'개까지 업로드 할 수 있습니다.');
+      return;
+    } else {
+        fileCount = fileCount + filesArr.length;
+    }
+     //각각의 파일 배열담기 및 기타
+    filesArr.forEach(function (f) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        content_files.push(f);
+        console.log("content_files.push(f) ---->" + content_files.push(f)); //왜 두개씩 ? 추가? 
+        $('#tb01').append(
+  /*             
+  '<tbody><tr><td class="main-table02-num" style="width:10%;">'
+  +'<img src="../resources/static/img/del.png" onclick="fileDelete(\'file'+fileNum+'\')" style=" vertical-align: middle; cursor: pointer; "/>'
+  +'<td font style="font-size:12px" >' + f.name + '</td></tr></tbody>'
+   */
+  '<tr><td class="main-table02-num" style="width:10%;"><div id="file' + fileNum + '" onclick="fileDelete(\'file' + fileNum + '\')">'
+  +'<img src="resources/img/minus.png" style=" vertical-align: middle; cursor: pointer; "/>'
+  +'<td font style="font-size:12px" >' + f.name + '</td></tr></tbody>'
+      ); 
+        fileNum ++;
+     };
+     reader.readAsDataURL(f);
+   });
+  console.log("파일이름 : " + content_files );
+  console.log("파일이름 : " + fileNum  );
+  $("#input_file").val("");
+  }
+
+//파일 부분 삭제 함수
+function fileDelete(fileNum){
+    console.log("fileDelete 누름");
+   var no = fileNum.replace(/[^0-9]/g, "");
+    console.log("no ---> " + no);
+    content_files[no].is_delete = true;
+//      console.log("content_files[no] ---> "+content_files[no]);
+//      console.log("content_files ---> "+content_files);
+   $('#'+fileNum).parent().parent().remove(); //1번쨰 시도 
+   console.log('hehe');
+   //$('tbody').remove(); //다른 방법 시도 
+//    console.log($('tbody td').eq(fileNum).remove());
+   fileCount --;
+//     console.log(content_files);
+}
+
+// 폼 submit 로직 ---> 여기서부터 맞게 수정해야함 삭제까진 돌아감 
+   function registerAction(){
+   var form = $("form")[0];        
+    var formData = new FormData(form);
+      for (var x = 0; x < content_files.length; x++) {
+         // 삭제 안한것만 담아 준다. 
+         if(!content_files[x].is_delete){
+             formData.append("article_file", content_files[x]);
+         }
+      }
+   //    파일업로드 multiple ajax처리
+         $.ajax({
+                  type: "POST",
+                    enctype: "multipart/form-data",
+                  url: "/file-upload",
+                  data : formData,
+                  processData: false,
+                  contentType: false,
+                  success: function (data) {
+                   if(JSON.parse(data)['result'] == "OK"){
+                      alert("파일업로드 성공");
+               } else
+                  alert("서버내 오류로 처리가 지연되고있습니다. 잠시 후 다시 시도해주세요");
+                  },
+                  error: function (xhr, status, error) {
+                   alert("서버오류로 지연되고있습니다. 잠시 후 다시 시도해주시기 바랍니다.");
+                 return false;
+                  }
+                });
+                return false;
+         }
+document.getElementById("first-reg-dt").value = new Date().toISOString().substring(0, 10); 
+
+CKEDITOR.replace("editor",{
+    /*   filebrowserUploadUrl: '/Intranet/imageUpload.do'
+     filebrowserBrowseUrl:  '/imageUpload2.do?type=Files'
+           filebrowserImageBrowseUrl: '/freeboard/FreeBoardList?type=Files', 
+  filebrowserImageUploadUrl: '/imageUpload.do'         */ <!--이게 화면에 보이게 해주는듯 f12 이경로로 404뜸 -->
+<!--'/imageUpload.do?type=Images',-->
+});
+console.log("upload");
+   CKEDITOR.on('dialogDefinition', function (ev) {
+    var dialog = ev.data.definition.dialog;
+    var dialogName = ev.data.name;
+    var dialogDefinition = ev.data.definition;
+    if (dialogName == 'image') {
+        dialog.on('show', function (obj) {
+            this.selectPage('Upload'); //업로드텝으로 시작 
+        });
+        dialogDefinition.removeContents('advanced'); // 자세히탭 제거
+        dialogDefinition.removeContents('Link'); // 링크탭 제거
+    }
+});
+//window.parent.CKEDITOR.tools.callFunction(1,"${url}","전송완료");
+
+      
+      
+      
+ 
+
    </script>
 
    <!-- Required Jquery -->

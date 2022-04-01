@@ -105,23 +105,23 @@
           dayMaxEvents: true,
           eventColor : 'red',
           locale : 'ko',
-          views                     : {
-              month : {
-                columnFormat : 'dddd'
-              },
-              agendaWeek : {
-                columnFormat : 'M/D ddd',
-                titleFormat  : 'YYYY년 M월 D일',
-                eventLimit   : false
-              },
-              agendaDay : {
-                columnFormat : 'dddd',
-                eventLimit   : false
-              },
-              listWeek : {
-                columnFormat : ''
-              }
-            },
+//           views                     : {
+//               month : {
+//                 columnFormat : 'dddd'
+//               },
+//               agendaWeek : {
+//                 columnFormat : 'M/D ddd',
+//                 titleFormat  : 'YYYY년 M월 D일',
+//                 eventLimit   : false
+//               },
+//               agendaDay : {
+//                 columnFormat : 'dddd',
+//                 eventLimit   : false
+//               },
+//               listWeek : {
+//                 columnFormat : ''
+//               }
+//             },
           // contentHeight : ''
         googleCalendarApiKey: 'AIzaSyAJ9dIKkvU-vS9Mwala5mPBxZuvnNcuZs0', //구글캘린더 연동
   	    eventSources: [
@@ -129,13 +129,6 @@
     	          googleCalendarId: 'qduatr3seur835pk4aolok2900@group.calendar.google.com', //공휴일 데이터 가져오기
     	          className: '공휴일',
     	          color: '#be5683'
-    	        },
-    	        {
-    	        	url : "/aa",
-    	        	method : 'POST',
-    	        	
-    	        	color : "yellow",
-    	        	textColor : "blue"
     	        }
     	    ],
           events: [
@@ -165,36 +158,6 @@
 
         calendar.render();
       });
-</script>
-<script>
-    //fullcalendar
-	 document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        initialDate: '2022-02-12',
-        locale: 'ko',
-        headerToolbar: {
-            left: 'dayGridMonth,timeGridWeek,timeGridDay',
-            center: 'title',
-            right: 'prev,next today'
-        },
-        editable: true,
-        dayMaxEventRows:true,
-
-        events: [
-            {
-            title: '[영업부] 2020년 하반기 영업실적',
-            description: '2020년 하반기 영업실적 안내입니다.',
-            start: '2022-02-01',
-            },
-        ],
-    
-        });
-
-    calendar.render();
-  });
 </script>
 
 <body>
@@ -229,7 +192,7 @@
 													</div>
 													<div class="card-block table-border-style">
 <!-- 													<div id="addCal"><button class="esMbtn01"  onclick="location.href='addCalendar'">일정등록</button></div> -->
-													<div id="addCal"><button class="main-btn01" style="margin-bottom: 1%; margin-left: 90%;" onclick="location.href='addCalendar'">등록</button></div>
+													<div id="addCal"><button class="main-btn01" style="margin-bottom: 1%; margin-left: 90%;" onclick="location.href='calendarAdd'">등록</button></div>
 													<div id='calendar'></div>
 													</div>
 												</div>

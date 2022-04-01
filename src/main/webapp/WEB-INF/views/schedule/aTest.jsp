@@ -62,12 +62,12 @@
 	type="text/javascript"></script>
 
 
+
 <!--timepicker -->
 <link rel="stylesheet"
 	href="resources/css/fullcalendar/jquery-ui-timepicker-addon.css" />
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
-
 </head>
 <!-- fullcalendar js  -->
 <script type="text/javascript"
@@ -125,54 +125,52 @@
 											<div class="col-sm-12">
 												<div class="card">
 													<div class="card-header">
-														<h3>일정 설정</h3>
-													</div>
-													<!-- 표 추가  -->
-													<div class="card-block table-border-style">
-														<div class="table-responsive">
-															<!-- 파일 표추가 -->
-															<input type="hidden" value="${set.mstSeq }">
-															<div id="addCal">
-																<button class="main-btn01" style="margin-left: 90%;"
-																	onclick="location.href='setCalendarAdd'">등록</button>
-															</div>
-															<!--                                              <table class="main-table02" style="margin-top: 3%; margin-left:10%; width: 80%;"> -->
-															<table class="main-table02" style="margin-top: 3%;">
+														<h3>TEST</h3>
+														<!-- 표 추가  -->
+														<div>
+															<H5>DB 연동 확인^</H5>
+
+															<table border="1">
 																<thead>
 																	<tr>
-																		<th style="font-weight : bold;">번호</th>
-																		<th style="width: 95%; font-weight:bold;">일정종류</th>
+																		<th>번호</th>
+																		<th>일정종류</th>
+																		<th>공개여부</th>
+																		<th>제목</th>
+																		<th>장소</th>
+																		<th>내용</th>
+																		<th>시작일</th>
+																		<th>종료일</th>
 																	</tr>
 																</thead>
-																<colgroup>
-																	<col width="20%">
-																	<col width="80%">
-																</colgroup>
 																<tbody>
 																	<c:if test="${empty list }">
-																	<tr>
-																		<th style="font-weight : bold;">번호</th>
-																		<th style="width: 95%; font-weight:bold;">일정종류</th>
-																	</tr>
 																		<tr>
-																			<td class="first" colspan="10">
-																				<div
-																					style="height: 300px; text-align: center; padding-top: 150px;">
-																					등록된 글이 없습니다.</div>
-																			</td>
+																			<td class="first" colspan="2">등록된 글이 없습니다.</td>
 																		</tr>
-
 																	</c:if>
-																	<c:forEach var="set" items="${list}" varStatus="status">
+																	<c:forEach var="scheList" items="${list }" varStatus="status">
 																		<tr>
-																			<td style="text-align: center;">${set.mstSeq}</td>
-																			<td style="text-align: center;">
-																			<a href="javascript:openSetCalModi('${set.mstSeq}')"><c:out value="${set.mstName }"></c:out></a>
+ 																			<td>
+																			<a href="javascript:openCalModi('${scheList.scheSeq}')"><c:out value="${scheList.scheSeq}"></c:out></a>
 																			</td>
+																			<td>${scheList.mstSeq}</td>
+																			<td>${scheList.scheType}</td>
+ 																			<td>
+																			<a href="javascript:openCalDetail('${scheList.scheSeq}')"><c:out value="${scheList.title}"></c:out></a>
+ 																			</td> 
+																			<td>${scheList.place}</td>
+																			<td>${scheList.contents}</td>
+																			<td>${scheList.startDt}</td>
+																			<td>${scheList.endDt}</td>
+
 																		</tr>
 																	</c:forEach>
 																</tbody>
 															</table>
+															<input type="button" value="등록"
+																onclick="location.href='/calendarAdd'">
+
 														</div>
 													</div>
 												</div>
@@ -186,45 +184,42 @@
 				</div>
 			</div>
 		</div>
-	</div>
+		<script>
+		function openCalModi(scheSeq) {
+			console.log(scheSeq)
+			location.href="/calendarModi?scheSeq=" + escape(scheSeq);
+			
+		}
+		function openCalDetail(scheSeq) {
+			console.log(scheSeq)
+			location.href="/calendarDetail?scheSeq=" + escape(scheSeq);
+			
+		}
+		</script>
+		<!-- Required Jquery -->
+		<script type="text/javascript"
+			src="resources/assets/js/jquery/jquery.min.js "></script>
+		<script type="text/javascript"
+			src="resources/assets/js/jquery-ui/jquery-ui.min.js "></script>
+		<script type="text/javascript"
+			src="resources/assets/js/popper.js/popper.min.js"></script>
+		<script type="text/javascript"
+			src="resources/assets/js/bootstrap/js/bootstrap.min.js "></script>
+		<!-- waves js -->
+		<script src="resources/assets/pages/waves/js/waves.min.js"></script>
+		<!-- jquery slimscroll js -->
+		<script type="text/javascript"
+			src="resources/assets/js/jquery-slimscroll/jquery.slimscroll.js"></script>
 
-	<script>
-// 	function openSetCalModi(key) {
-// 		var mstSeq = key;
-// 		console.log(key)
-// 		location.href="/setCalendarModi?mstSeq=" + mstSeq;
-// 	}
-	function openSetCalModi(mstSeq) {
-		console.log(mstSeq)
-		location.href="/setCalendarModi?mstSeq=" + escape(mstSeq);
-	}
-		
-	</script>
+		<!-- slimscroll js -->
+		<script
+			src="resources/assets/js/jquery.mCustomScrollbar.concat.min.js "></script>
 
-	<!-- Required Jquery -->
-	<script type="text/javascript"
-		src="resources/assets/js/jquery/jquery.min.js "></script>
-	<script type="text/javascript"
-		src="resources/assets/js/jquery-ui/jquery-ui.min.js "></script>
-	<script type="text/javascript"
-		src="resources/assets/js/popper.js/popper.min.js"></script>
-	<script type="text/javascript"
-		src="resources/assets/js/bootstrap/js/bootstrap.min.js "></script>
-	<!-- waves js -->
-	<script src="resources/assets/pages/waves/js/waves.min.js"></script>
-	<!-- jquery slimscroll js -->
-	<script type="text/javascript"
-		src="resources/assets/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+		<!-- menu js -->
+		<script src="resources/assets/js/pcoded.min.js"></script>
+		<script src="resources/assets/js/vertical/vertical-layout.min.js "></script>
 
-	<!-- slimscroll js -->
-	<script
-		src="resources/assets/js/jquery.mCustomScrollbar.concat.min.js "></script>
-
-	<!-- menu js -->
-	<script src="resources/assets/js/pcoded.min.js"></script>
-	<script src="resources/assets/js/vertical/vertical-layout.min.js "></script>
-
-	<script type="text/javascript" src="resources/assets/js/script.js "></script>
+		<script type="text/javascript" src="resources/assets/js/script.js "></script>
 </body>
 
 </html>

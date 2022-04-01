@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <fmt:requestEncoding value="utf-8" />
-<!DOCTYPE html>
+<!DOCTYPE html >
 <html lang="ko">
 
 <head>
@@ -81,9 +81,6 @@
 <script type="text/javascript"
    src="/resources/js/fullcalendar/theme-chooser.js"></script>
 
-<!-- ***추가**  -->
-
-
 <!-- fullcalendar 언어 설정관련 script -->
 <script
    src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>
@@ -98,10 +95,6 @@
 
 <!--  제이쿼리 ui js -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-   
-</script>
-
 
 <body>
    <!-- Pre-loader start -->
@@ -131,12 +124,15 @@
                                  <div class="col-sm-12">
                                     <div class="card">
                                        <div class="card-header">
-                                          <h3>일정등록</h3>
+                                          <h3>일정 수정</h3>
                                        </div>
                                        <!-- 표 추가  -->
                                        <div class="card-block table-border-style">
                                           <div class="table-responsive" style="margin-top: 10px;">
-                                             <form action="/test" method="post" name="cal_form" id="cal_form" enctype="multipart/form-data" target="repacatFrame">
+                                             <form action="" method="post" name="modi_form" id="modi_form" enctype="multipart/form-data" target="repacatFrame">
+                                             <input type="hidden" name="scheSeq" value="${scheInfo.scheSeq}">
+                                               <input type="hidden" id="st" name="st" value="${scheInfo.startDt }"style="width: 60%"> 
+                                               <input type="hidden" id="et" name="et" value="${scheInfo.endDt }"style="width: 60%"> 
                                              <table class="main-table02">
                                              	<colgroup>
                                              	<col width="15%">
@@ -146,56 +142,50 @@
                                              	</colgroup>
                                                 <tbody>
                                                    <tr>
-                                                      <th><span class="required">*</span>구분</th>
+                                                      <th class="table-info"><span class="required">*</span>구분</th>
                                                       <td>
-                                                         <select id="cal_sort" name="cal_sort">
-                                                         	<option value="">전체</option>
-                                                               <option value="00">개인 일정</option>
-                                                               <option value="01">감리</option>
-                                                               <option value="02">출장</option>
-                                                               <option value="03">회의</option>
+                                                         <select id="calType" name="calType">
+                                                         	<option value="${scheInfo.mstSeq }">${scheInfo.mstName }</option>
+                                                         	<c:forEach var="calTypeInfo" items="${scheTypeList }" varStatus="status">
+                                                         		<option value="${calTypeInfo.mstSeq }" <c:out value="${calTypeInfo.mstSeq == scheInfo.mstSeq ? 'selected=\"selected\"' : '' }"/>>${calTypeInfo.mstName }</option>
+                                                         	</c:forEach>
                                                          </select>
                                                       </td>
-                                                      <th>공개</th>
+                                                      <th class="table-info"><span class="required">*</span>공개</th>
                                                       <td colspan="3">
-                                                         <select id="cal_openYN"name="cal_openYN">
-                                                               <option value="Y">전체공개</option>
-                                                               <option value="N">개인공개</option>
+                                                         <select id="calOpenYN"name="calOpenYN">
+                                                         <!-- *********체크  해결~~~~~~~~~~~~~~~~~~~~~~~!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+                                                               <option value="A" <c:out value="${scheInfo.scheType == 'A' ? 'selected=\"selected\"' : ''}"/>> 전체공개 </option>
+                                                               <option value="P" <c:out value="${scheInfo.scheType == 'P' ? 'selected=\"selected\"' : ''}"/>> 개인공개 </option>
                                                          </select>
                                                       </td>
                                                    </tr>
                                                    <tr>
-                                                      <th><span class="required">*</span>제목</th>
+                                                      <th class="table-info"><span class="required">*</span>제목</th>
                                                       <td colspan="3">
-                                                      <input type="text" name="cal_title" id="cal_title" placeholder="제목을 입력하세요" style="width: 50%"></td>
-                                                      
+                                                      <input type="text" autocomplete="off" name="calTitle" id="calTitle" value="${scheInfo.title}" style="width: 50%"></td>
                                                    </tr>
                                                    <tr>
-                                                      <th><span class="required"></span>장소</th>
-                                                      <td colspan="3"><input type="text"
-                                                         name="cal_place" id="cal_place"
-                                                         placeholder="장소를 입력하세요" style="width: 50%"></td>
+                                                      <th class="table-info"><span class="required"></span>장소</th>
+                                                      <td colspan="3"><input type="text" autocomplete="off" name="calPlace" id="calPlace" value="${scheInfo.place}" style="width: 50%"></td>
                                                    </tr>
                                                    <tr>
-                                                      <th><span class="required">*</span>시작일</th>
+                                                      <th class="table-info"><span class="required">*</span>시작일</th>
                                                       <td>
-                                                         <input type="text" id="cal_startDate" name="cal_startDate" value="" placeholder="날짜선택" style="width: 60%"> 
-                                                         <input type="text" id="cal_time1" name="cal_time1" value="" placeholder="시간선택" required size="8" maxlength="5" style="margin-left: 3%;">
+                                                         <!-- 기다려봐~~~~~~~~~~~~~~~~~~~~!  해결하자~~~~~~~~~~! 해결완-->
+                                                         <input type="text" autocomplete="off" id="calStartDate" name="calStartDate" value="" style="width: 60%"> 
+                                                         <input type="text" autocomplete="off" id="calStartTime" name="calStartTime" value="" required size="8" maxlength="5" style="margin-left: 3%;">
                                                       </td>
-                                                      <th><span class="required">*</span>종료일</th>
+                                                      <th class="table-info"><span class="required">*</span>종료일</th>
                                                       <td>
-                                                         <input type="text" id="cal_endDate" name="cal_endDate" value="" placeholder="날짜선택" style="width: 60%"> 
-                                                         <input type="text"id="cal_time2" name="cal_time2" value="" placeholder="시간선택" required size="8" maxlength="5" style="margin-left: 3%;">
+                                                         <input type="text" autocomplete="off" id="calEndDate" name="calEndDate" value="" placeholder="날짜선택" style="width: 60%"> 
+                                                         <input type="text" autocomplete="off" id="calEndTime" name="calEndTime" value="" placeholder="시간선택" required size="8" maxlength="5" style="margin-left: 3%;">
                                                       </td>
                                                    </tr>
                                                       <tr>
-                                                         <th style="vertical-align: inherit;">내용</th>
-                                                         <td colspan="3"><textarea cols="90" rows="10" name="cal_content" id="cal_content"></textarea></td>
+                                                         <th class="table-info" style="vertical-align: inherit;"><span class="required">*</span>내용</th>
+                                                         <td colspan="3"><textarea autocomplete="off" cols="100" rows="10" name="calContents" id="calContents" style="font-size : 18px;" ><c:out value = "${scheInfo.contents }"></c:out></textarea></td>
                                                       </tr>
-<!--                                                       <tr> -->
-<!--                                                          <th>파일첨부</th> -->
-<!--                                                          <td colspan="3"><input type="file" name="file"></td> -->
-<!--                                                       </tr> -->
                                                    </tbody>
                                              </table>
                                        <div class="card-header">
@@ -205,12 +195,10 @@
 
                                        
                                        <input type="button" class="main-btn01" value="추가" style="margin-left: 1%;"onclick=document.all.cal_file.click();>
-										<input type="file" name="cal_file" id="cal_file" style="display: none;"/>       
-
-
-
+										<input type="file" name="calFile" id="calFile" style="display: none;"/>       
 
                                        <!-- 파일 표추가 -->
+                                       <h1>to do</h1>
                                              <table class="main-table02" style="margin-top: 3%;">
                                              	<colgroup>
                                              	<col width="10%">
@@ -218,8 +206,8 @@
                                              	</colgroup>
                                                 <tbody>
                                                    <tr>
-                                                      <td></td>
-                                                      <td style="width: 90%;">파일명</td>
+                                                      <th class="table-info"></th>
+                                                      <th class="table-info" style="width: 90%;">파일명</th>
                                                    </tr>
                                                    <tr>
                                                       <td style="text-align: center;"><a href="javascript:fileDel();">[X]</a></td>
@@ -232,9 +220,9 @@
                                                 </tbody>
                                              </table>
                                              <div>
-                                                <a href="/ezenCalendar"><input type="button"class="main-btn01" value="목록"style="float: right; margin-top: 3%; margin-left: 1%;"></a>
-                                                <a href="javascript:submit_calDel(document.cal_form);"><input type="button"class="main-btn01" value="삭제"style="float: right; margin-top: 3%; margin-left: 1%;"></a>
-                                                <a href="javascript:submit_calUpdate(document.cal_form);"><input type="button"class="main-btn01" value="수정"style="float: right; margin-top: 3%; margin-left: 1%;"></a>
+                                                <a href="/aTest"><input type="button"class="main-btn01" value="목록"style="float: right; margin-top: 3%; margin-left: 1%;"></a>
+                                                <a href="javascript:submit_modi(document.modi_form);"><input type="button"class="main-btn01" value="수정"style="float: right; margin-top: 3%; margin-left: 1%;"></a>
+                                                <a href="javascript:submit_del(document.modi_form);"><input type="button"class="main-btn01" value="삭제"style="float: right; margin-top: 3%; margin-left: 1%;"></a>
                                              </div>
                                              </form>
                                           </div>
@@ -259,7 +247,9 @@
 
 
    <script>
-      $('#cal_startDate, #cal_endDate') //날짜선택
+
+      
+       $('#calStartDate, #calEndDate') //날짜선택
       .datepicker(
             {
                dateFormat : "yy-mm-dd",
@@ -278,35 +268,64 @@
                showOn : "focus", // 엘리먼트와 이미지 동시 사용
             });
 
-      $("#cal_time1, #cal_time2").timepicker({ //시간선택
+      $("#calStartTime, #calEndTime").timepicker({ //시간선택
          controlType : 'select',
          timeFormat : "HH:mm" //24시
-
+      });  
+      
+      var st = $("#st").val();
+      var et = $("#et").val();
+     // 2022-02-22 14:10:00.0
+      var esStartDate = st.substr(0,10);
+      var esStartTime = st.substr(11,5);
+      var esEndDate = et.substr(0,10);
+      var esEndTime = et.substr(11,5);
+      
+//       console.log(st);
+//       console.log(esStartDate);
+//       console.log(esStartTime);
+   
+      $(document).ready(function() {
+    	  $('#calStartDate').val(esStartDate);
+    	  $('#calStartTime').val(esStartTime);
+    	  $('#calEndDate').val(esEndDate);
+    	  $('#calEndTime').val(esEndTime);
       });
       
-      function submit_calForm(form) {
-    	  if($("#cal_sort").val() == "") {
-         	 alert("구분을 선택해주세요.");
-         	 return false;
-          } else if($("#cal_title").val() == ""){
-            alert("제목을 입력해주세요");
-            return false;
-         } else if($("#cal_startDate").val() == "" || $("#cal_endDate").val() == ""){
-            alert("날짜를 선택해주세요.");
-            return false;
-            
-         } else if($("#cal_startDate").val() > $("#cal_endDate").val()) {
-            alert("시작일이 종료일보다 큽니다.");
-            return false;
-         } else if($("#cal_time1").val() == "" || $("#cal_time2").val() == "") {
-            alert("시간을 선택해주세요.")
-            return false;
-         };
-         
-         
-         form.action = "/test";
-         form.submit();
-      }
+      function submit_modi(form) {
+    	  
+  		if($("#calType").val() == "") {
+		  	 alert("구분을 선택해 주세요.");
+		  	 return false;
+		   } else if($("#calTitle").val() == ""){
+		     alert("제목을 입력해 주세요");
+		     return false;
+		  } else if($("#calStartDate").val() == "" || $("#calEndDate").val() == ""){
+		     alert("날짜를 선택해 주세요.");
+		     return false;
+		  } else if($("#calStartDate").val() > $("#calEndDate").val()) {
+		     alert("시작일이 종료일보다 큽니다.");
+		     return false;
+		  } else if($("#calStartDate").val() == $("#calEndDate").val() && $("#calStartTime").val() > $("#calEndTime").val()) {
+		     alert("시간을 다시 선택해 주세요.")
+		     return false;
+		  } else if($("#calContents").val() == "") {
+		     alert("내용을 입력해 주세요.")
+		     return false;
+		  } 
+  		
+    	  form.action = "/calendarModied";
+          form.submit();
+       };
+       
+       function submit_del(form) {
+    	   alert("정말 삭제하시겠습니까?");
+    	   form.method="post";
+    	   form.action = "/calendarDel";
+    	   form.submit();
+       };
+       
+
    </script>
 
    <!-- Required Jquery -->

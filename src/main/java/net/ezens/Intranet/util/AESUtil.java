@@ -14,8 +14,9 @@ import javax.crypto.spec.SecretKeySpec;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
-
+@Component
 public class AESUtil {
 
 	private String encKey;
@@ -54,6 +55,7 @@ public class AESUtil {
 		
 		try {
 			byte[] encByte = cipher.doFinal(targetStr.getBytes(CHARSET));
+			System.out.println("encByte : " + encByte);
 			return new String(Base64.encodeBase64(encByte));
 		} catch (IllegalBlockSizeException | BadPaddingException | UnsupportedEncodingException e) {
 			logger.error(e.getMessage(), e);

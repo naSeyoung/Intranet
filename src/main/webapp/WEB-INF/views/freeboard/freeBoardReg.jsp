@@ -1,53 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" import="java.util.*"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
-<c:set var="path" value="${pageContext.request.contextPath }" />
-<fmt:requestEncoding value="utf-8" />
-<!DOCTYPE html>
-<html lang="ko">
-
-<head>
-<title>이젠 인트라넷</title>
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
 
-</head>
-<script type="text/javascript" src="../resources/plugins/ckeditor/ckeditor.js"></script>
-<body>
-	<!-- Pre-loader start -->
-<%-- <%
-String navbarPage = "/WEB-INF/views/navbar.jsp";
-String headerPage = "/WEB-INF/views/header.jsp";
-%> --%>
-
-<!-- Pre-loader end -->
-<div id="pcoded" class="pcoded">
-	<div class="pcoded-overlay-box"></div>
-	<div class="pcoded-container navbar-wrapper">
-		<!-- .navbar header-navbar pcoded-header
-<!-- header 있는 자리  -->
-<%-- <jsp:include page="<%=headerPage%>" /> --%>
-<div class="pcoded-main-container">
-	<div class="pcoded-wrapper">
-		<!-- .pcoded-navbar 부분 -->
-<%-- <jsp:include page="<%=navbarPage%>" /> --%>
 
 <form id="contentsForm" action="/FreeBoardRegFin" method="POST"  onsubmit="registerAction()" enctype="multipart/form-data">
-<div class="pcoded-content">
-	<!-- 지우지말기 -->
-<!-- Page-header end -->
-<div class="pcoded-inner-content">
-	<!-- Main-body start -->
-<div class="main-body">
-	<div class="page-wrapper">
-		<!-- Page-body start -->
-						<div class="page-body">
-							<div class="row">
 								<div class="col-sm-12">
 									<div class="card">
 										<div class="card-header">
@@ -65,7 +22,7 @@ String headerPage = "/WEB-INF/views/header.jsp";
 </div>
 										</div>
 										<div class="card-block table-border-style">
-										
+										<div class="fixed-box">
 											<div class="table-responsive">
 												<table class="main-table01">
 													<tbody>
@@ -132,20 +89,9 @@ style="font-size: 15px; color: gray;">&nbsp;&nbsp; ※첨부파일은 최대 	5�
 													</div>
 												</div>
 											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							</div>
 							
 					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-</body>
-
+<script type="text/javascript" src="../resources/plugins/ckeditor/ckeditor.js"></script>
 <script>
 /*  function contentsSubmit(){
 console.log("ㅇㅇㅇㅇㅇ");

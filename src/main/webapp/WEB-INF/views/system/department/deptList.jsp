@@ -95,6 +95,7 @@ function viewGo(key){
 function submitSearch(){
 	var formid = document.frm;
 	formid.cpage.value = 1;
+	formid.method= "GET";
 	formid.action = "/system/department/deptList";
 	formid.submit();
 }
@@ -124,26 +125,28 @@ function submitSearch(){
 				
 				<div class="tbl_top_left">
 					<ul>
-						<li>
-							<span>일자 </span>
-							<input class="datepicker" id="startDate" name="startDate"  readonly />
-							~ <input class="datepicker" id="endDate" name="endDate" readonly />
-						</li>
+<!-- 						<li> -->
+<!-- 							<span>일자 </span> -->
+<!-- 							<input class="datepicker" id="startDate" name="startDate"  readonly /> -->
+<!-- 							~ <input class="datepicker" id="endDate" name="endDate" readonly /> -->
+<!-- 						</li> -->
 						<li>
 							<select id="searchType" name="searchType">
-								<option value="1" selected="selected">전체</option>
-								<option value="2">부서명</option>
+								<option value="1" <c:if test="${systemDto.searchType eq 1}">selected="selected"</c:if>>전체</option>
+								<option value="2" <c:if test="${systemDto.searchType eq 2}">selected="selected"</c:if>>부서명</option>
 							</select>
 						</li>
 						<li>
-							<input id="searchWord" name="searchWord">
+							<input id="searchKeyword" name="searchKeyword" value="${systemDto.searchKeyword}">
 						</li>
 						<li>
-							<button class ="main-btn01" type="button" value="검색">검색</button>
+							<button class ="main-btn01" type="button" onclick="submitSearch();" onKeydown="if(event.keyCode == 13){loginProc();}">검색</button>
 						</li>
 						<li>
-							<button class ="main-btn01" type="button" value="등록" onclick="insertGo();">등록</button>
+							<button class ="main-btn01" type="button" onclick="insertGo();">등록</button>
 						</li>
+					</ul>
+					<ul>
 					</ul>
 				</div>
 				

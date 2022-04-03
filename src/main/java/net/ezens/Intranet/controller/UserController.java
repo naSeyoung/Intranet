@@ -1,5 +1,6 @@
 package net.ezens.Intranet.controller;
 
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.ezens.Intranet.common.paging.PaginationInfo;
+import net.ezens.Intranet.config.auth.AuthFailureHandler;
 import net.ezens.Intranet.config.security.CustomPasswordEncoding;
 import net.ezens.Intranet.dto.UserDto;
 import net.ezens.Intranet.service.UserService;
@@ -41,9 +43,15 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	AuthFailureHandler authFailureHandler;
 
 	@GetMapping("/join")
-	public String join() {
+	public String join(@RequestParam(value = "error", required = false) String error,
+			@RequestParam(value = "exception", required = false) String exception, Model model) {
+		model.addAttribute("error", error);
+		model.addAttribute("exception", exception);
 		return "user/joinForm.tiles";
 	}
 
@@ -58,17 +66,31 @@ public class UserController {
 	@PostMapping("/joinProc")
 	public String joinProc(@Valid UserDto userDto, Errors errors, Model model) throws Exception {
 		try {
-			if (errors.hasErrors()) {
-				model.addAttribute("userDto", userDto);
-				/* 유효성 통과 못한 필드와 메시지를 핸들링 */
-				Map<String, String> validatorResult = userService.validateHandling(errors);
-				for (String key : validatorResult.keySet()) {
-					model.addAttribute(key, validatorResult.get(key));
-				}
-				return "user/joinForm";
+			// 파라미터 유효성검사 https://dev-coco.tistory.com/123
+//			if (errors.hasErrors()) {
+//				model.addAttribute("userDto", userDto);
+//				/* 유효성 통과 못한 필드와 메시지를 핸들링 */
+//				Map<String, String> validatorResult = userService.validateHandling(errors);
+//				for (String key : validatorResult.keySet()) {
+//					model.addAttribute(key, validatorResult.get(key));
+//				}
+//				return "user/joinForm";
+//			}
+			
+			UserDto userInfo = userService.selectUserInfo(userDto.getUserId());
+			
+			if(userInfo != null) {
+				String errorMessage = "중복된 아이디입니다.";
+				errorMessage = URLEncoder.encode(errorMessage, "UTF-8");
+				return "redirect:/join?error=true&exception=" + errorMessage;
 			}
-		
-			userService.insertUser(userDto);
+
+			int success = userService.insertUser(userDto);
+			if(success < 0){
+				String errorMessage = "회원가입에 실패했습니다. 관리자에 문의해주세요.";
+				errorMessage = URLEncoder.encode(errorMessage, "UTF-8");
+				return "redirect:/join?error=true&exception=" + errorMessage;
+			}
 
 		} catch (Exception e) {
 			log.info(e.getMessage());

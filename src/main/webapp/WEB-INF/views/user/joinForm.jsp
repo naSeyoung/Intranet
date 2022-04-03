@@ -25,20 +25,27 @@ function insertUser(){
 	<div class="card-block table-border-style">
 		<div class="fixed-box" >
 			<form id="frm" name="frm" method="post">
+				<input type="hidden" id="cpInfoSeq" name="cpInfoSeq" value="1" readonly>
+				<input type="hidden" id="noticeYn" name="noticeYn" value="N" readonly>
+				<input type="hidden" id="delYn" name="delYn" value="N" readonly>
 			
 				<div class="card-block table-border-style">
 					<div class="table-responsive" style="margin-top: 10px;">
 					<table class="main-table02">
 						<tbody>
-							<tr>
-								<th scope="row" class="table-info" id="main-table02-num">회사</th>
-								<td><input type="text" id="cpInfoSeq" name="cpInfoSeq" value="1" readonly></td>
-							</tr>
+<!-- 							<tr> -->
+<!-- 								<th scope="row" class="table-info" id="main-table02-num">회사</th> -->
+<!-- 							</tr> -->
 							<tr>
 								<th scope="row" class="table-info" id="main-table02-num">아이디</th>
 								<td><input type="text" id="userId" name="userId"></td>
 								<c:if test="${not empty valid_userId}">
 									<span id="valid">${valid_userId}</span>
+								</c:if>
+								<c:if test="${not empty error}">
+									<span> 
+										<p id="valid" class="alert alert-danger">${exception}</p> 
+									</span>
 								</c:if>
 							</tr>
 							<tr>

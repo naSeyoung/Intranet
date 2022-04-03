@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
@@ -14,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.ezens.Intranet.config.security.CustomPasswordEncoding;
 import net.ezens.Intranet.dto.UserDto;
 import net.ezens.Intranet.mapper.UserMapper;
+import net.ezens.Intranet.util.AESUtil;
 
 @Slf4j
 @Service
@@ -23,11 +25,18 @@ public class UserService {
 	UserMapper usermapper;
 	
 	@Autowired
+	private AESUtil aes;
+	
+	@Autowired
 	private CustomPasswordEncoding passwordEncoder;
+	
+	@Autowired
+	BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	public int insertUser(UserDto userDto) throws Exception {
 		String rawPassword = userDto.getUserPw();
-		String encPassword = passwordEncoder.sha256Encoding(rawPassword);
+		String encPassword = bCryptPasswordEncoder.encode(rawPassword);
+//		String encPassword = aes.encryptCBC(rawPassword);
 		userDto.setUserPw(encPassword);
 
 		return usermapper.insertUser(userDto);

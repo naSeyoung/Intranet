@@ -20,4 +20,8 @@ public interface SystemMapper {
 	public int insertDepartment(SystemDto systemDto);
 
 	public SystemDto getDeptInfo(String cpDeptSeq);
+
+	public int updateDepartment(SystemDto systemDto);
+
+	public int deleteDepartment(SystemDto systemDto);
 }

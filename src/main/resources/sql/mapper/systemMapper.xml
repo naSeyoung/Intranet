@@ -58,6 +58,12 @@
 			COUNT(cp_dept_seq)
 		FROM tb_intra_cp_dept
 		WHERE cp_info_seq = #{cpInfoSeq}
+		<if test="searchType != null and searchType.equals('1')">
+			<![CDATA[ AND INSTR(cp_dept_name, #{searchKeyword}) > 0  ]]>
+		</if>
+		<if test="searchType != null and searchType.equals('2')">
+			<![CDATA[ AND INSTR(cp_dept_name, #{searchKeyword}) > 0  ]]>
+		</if>
 	</select>
 	
 	<insert id="insertDepartment" parameterType="SystemDto">
@@ -89,5 +95,22 @@
 		FROM tb_intra_cp_dept
 		WHERE cp_dept_seq = #{cpDeptSeq}
 	</select>
+	
+	<update id="updateDepartment" parameterType="SystemDto">
+		UPDATE tb_intra_cp_dept
+		SET 
+			cp_dept_parent_seq	= #{cpDeptParentSeq}
+		,	cp_info_seq 		= #{cpInfoSeq}
+		,	cp_dept_name		= #{cpDeptName}
+		,	cp_dept_order_rank	= #{cpDeptOrderRank}
+		WHERE cp_dept_seq = #{cpDeptSeq}
+	</update>
+	
+	<update id="deleteDepartment" parameterType="SystemDto">
+		UPDATE  tb_intra_cp_dept
+		SET 	cp_dept_use_yn	= 'N'
+		WHERE   cp_dept_seq = #{cpDeptSeq}
+	</update>
+	
 	
 </mapper>

@@ -6,11 +6,11 @@
 }
 </style>
 <script>
-function goInsert(){
+function goUpdate(){
 	chkIns();
 	
 	var formid = document.frm;
-	formid.action = "/system/department/insertDept"
+	formid.action = "/system/department/updateDept"
 	formid.submit();
 }
 
@@ -139,7 +139,7 @@ function delRow(obj){
 				</div>
 				
 				<div class="tbl_btn_right">
-					<button class ="main-btn01" type="button" value="저장"  onclick="goInsert()"> 저장</button>
+					<button class ="main-btn01" type="button" value="저장"  onclick="goUpdate()"> 저장</button>
 				</div>
 				
 			</form>

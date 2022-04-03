@@ -33,4 +33,13 @@ public class SystemService {
 	public SystemDto getDeptInfo(String cpDeptSeq) {
 		return systemMapper.getDeptInfo(cpDeptSeq);
 	}
+
+	public int updateDepartment(SystemDto systemDto) {
+		return systemMapper.updateDepartment(systemDto);
+	}
+	
+	public int deleteDepartment(SystemDto systemDto) {
+		return systemMapper.deleteDepartment(systemDto);
+	}
+	
 }

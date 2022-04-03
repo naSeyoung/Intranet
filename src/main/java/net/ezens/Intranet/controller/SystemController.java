@@ -121,7 +121,7 @@ public class SystemController {
 			systemDto.setCpInfoSeq(user.getCpInfoSeq());
 			int result = systemService.insertDepartment(systemDto);
 			if(result < 0) {
-				return uiUtils.showMessageWithRedirect("게시글 등록에 실패하였습니다.", "/system/department/deptList", Method.GET, null, model);
+				return uiUtils.showMessageWithRedirect("부서 등록에 실패하였습니다.", "/system/department/deptList", Method.GET, null, model);
 			}
 		} catch (Exception e) {
 			log.error("/system/insertDepartment Exception : {}", e.getMessage());
@@ -147,6 +147,53 @@ public class SystemController {
 		}
 		return "system/department/deptInfo.tiles";
 	}
+	
+	// 부서 update 
+	@PostMapping("/system/department/updateDept")
+	public String updateDepartment(HttpServletRequest httpServletRequest
+			, HttpServletResponse httpServletResponse
+			, @ModelAttribute SystemDto systemDto
+			, Model model
+			, RedirectAttributes redirectAttributes
+			, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+		
+		try {
+			UserDto user = userService.selectUserInfo(principalDetails.getUser().getUserId());
+			systemDto.setCpInfoSeq(user.getCpInfoSeq());
+			int result = systemService.updateDepartment(systemDto);
+			if(result < 0) {
+				return uiUtils.showMessageWithRedirect("부서 수정에 실패하였습니다.", "/system/department/deptList", Method.GET, null, model);
+			}
+		} catch (Exception e) {
+			log.error("/system/insertDepartment Exception : {}", e.getMessage());
+			return e.getMessage();
+		}
+		return "redirect:/system/department/deptList";
+	}
+	
+	// 부서 delete
+	@PostMapping("/system/department/deleteDept")
+	public String deleteDepartment(HttpServletRequest httpServletRequest
+			, HttpServletResponse httpServletResponse
+			, @ModelAttribute SystemDto systemDto
+			, Model model
+			, RedirectAttributes redirectAttributes
+			, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+		
+		try {
+			UserDto user = userService.selectUserInfo(principalDetails.getUser().getUserId());
+			systemDto.setCpInfoSeq(user.getCpInfoSeq());
+			int result = systemService.deleteDepartment(systemDto);
+			if(result < 0) {
+				return uiUtils.showMessageWithRedirect("부서 삭제에 실패하였습니다.", "/system/department/deptList", Method.GET, null, model);
+			}
+		} catch (Exception e) {
+			log.error("/system/insertDepartment Exception : {}", e.getMessage());
+			return e.getMessage();
+		}
+		return "redirect:/system/department/deptList";
+	}
+	
 	
 	
 	//직책관리 position

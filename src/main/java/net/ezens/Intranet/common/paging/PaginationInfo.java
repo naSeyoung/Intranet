@@ -13,7 +13,7 @@ public class PaginationInfo {
 	private String sfield;
 	private String smethod; 
 	private String searchKeyword;
-	private String searchType;
+	private String searchType = "1";
 
 	private int totalcount = 0;						//전체 개수
 	private int pagecount = 0;						//

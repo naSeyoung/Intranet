@@ -8,15 +8,7 @@ public class mainController {
 	
 	@RequestMapping("/intranet")
 	public String main() {
-		System.out.println("화면 나와라");
-		System.out.println("화면 나와라");
-		System.out.println("화면 나와라");
-		System.out.println("화면 나와라");
-		System.out.println("화면 나와라");
-		System.out.println("화면 나와라");
-		System.out.println("화면 나와라");
-		System.out.println("화면 나와라");
-		return "index.tiles";
+		return "redirect:/ezenCalendar";
 	}
 	@RequestMapping("/daily-Schedule")
 	public String dailySchedule() {

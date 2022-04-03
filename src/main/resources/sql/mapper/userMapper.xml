@@ -106,6 +106,7 @@
 			, job_title
 			, position
 			, notice_yn
+			, last_in_dp
 			, del_yn
 		)VALUES(
 			  #{userId}
@@ -118,6 +119,7 @@
 			, #{jobTitle}
 			, #{position}
 			, #{noticeYn}
+			, SYSDATE
 			, #{delYn}
 		) 
 	</insert> 
